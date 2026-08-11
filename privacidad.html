@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidad — Alerta Barrio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+        Roboto, Oxygen, sans-serif;
+      background: #F6F7FA;
+      color: #1a1a2e;
+      line-height: 1.6;
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, #101A2E 0%, #1a2d4a 100%);
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .logo-text {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-text span:first-child { color: #FF3355; }
+    .logo-text span:last-child  { color: #ffffff; }
+
+    .header-sub {
+      color: rgba(255,255,255,0.6);
+      font-size: 13px;
+    }
+
+    /* ── Warning banner ── */
+    .warning-banner {
+      background: #FFF7ED;
+      border-left: 4px solid #F59E0B;
+      margin: 24px auto;
+      max-width: 820px;
+      padding: 16px 20px;
+      border-radius: 0 10px 10px 0;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .warning-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .warning-text {
+      font-size: 13.5px;
+      color: #7C2D12;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    /* ── Main ── */
+    main {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* ── Meta card ── */
+    .meta-card {
+      background: #EEF2FF;
+      border: 1px solid #C7D2FE;
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: #101A2E;
+      font-weight: 500;
+    }
+
+    /* ── Legal framework ── */
+    .legal-box {
+      background: #EEF2FF;
+      border: 1px solid #C7D2FE;
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 32px;
+    }
+
+    .legal-box h3 {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #101A2E;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .legal-box ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .legal-box ul li {
+      font-size: 13px;
+      color: #374151;
+      padding: 3px 0;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .legal-box ul li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: #101A2E;
+    }
+
+    /* ── Sections ── */
+    section {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 16px;
+      border: 1px solid #E3E7EE;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .section-bar {
+      width: 4px;
+      height: 22px;
+      background: #101A2E;
+      border-radius: 2px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .section-bar.red  { background: #FF3355; }
+    .section-bar.teal { background: #0BA89E; }
+
+    h2 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #101A2E;
+      line-height: 1.3;
+    }
+
+    p {
+      font-size: 13.5px;
+      color: #374151;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    ul, ol {
+      padding-left: 20px;
+      margin: 8px 0 12px;
+    }
+
+    ul li, ol li {
+      font-size: 13.5px;
+      color: #374151;
+      line-height: 1.7;
+      margin-bottom: 4px;
+    }
+
+    strong { color: #101A2E; font-weight: 600; }
+
+    /* ── Table ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 13px;
+    }
+
+    th {
+      background: #F1F5F9;
+      color: #101A2E;
+      font-weight: 700;
+      padding: 10px 14px;
+      text-align: left;
+      border: 1px solid #E3E7EE;
+    }
+
+    td {
+      padding: 9px 14px;
+      border: 1px solid #E3E7EE;
+      color: #374151;
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) td { background: #F8FAFC; }
+
+    /* ── Alert reveal box ── */
+    .reveal-box {
+      background: #FEF2F2;
+      border: 1px solid #FECACA;
+      border-radius: 10px;
+      padding: 16px;
+      margin: 12px 0;
+    }
+
+    .reveal-box p {
+      color: #7F1D1D;
+      font-size: 13.5px;
+      margin: 0;
+    }
+
+    /* ── Contact ── */
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+      color: #374151;
+      margin-bottom: 6px;
+    }
+
+    .contact-item a {
+      color: #101A2E;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-item a:hover { text-decoration: underline; }
+
+    /* ── Footer ── */
+    footer {
+      background: #101A2E;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 24px;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    footer a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+    }
+
+    footer strong { color: rgba(255,255,255,0.9); }
+
+    /* ── Divider ── */
+    hr {
+      border: none;
+      border-top: 1px solid #E3E7EE;
+      margin: 16px 0;
+    }
+
+    @media (max-width: 600px) {
+      header { padding: 24px 16px; }
+      main { padding: 0 12px 40px; }
+      section { padding: 18px 16px; }
+      table { font-size: 12px; }
+      th, td { padding: 8px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header>
+  <div class="logo-area">
+    <div class="logo-text">
+      <span>Alerta</span><span>Barrio</span>
+    </div>
+  </div>
+  <p class="header-sub">🔒 Política de Privacidad y Protección de Datos</p>
+</header>
+
+<!-- ── Warning banner ── -->
+<div style="max-width:820px;margin:0 auto;padding:0 20px;">
+  <div class="warning-banner">
+    <div class="warning-icon">⚠️</div>
+    <div class="warning-text">
+      <strong>AVISO IMPORTANTE:</strong> Sus datos personales podrán ser revelados
+      a autoridades competentes (Ministerio Público, Policía Nacional, Poder Judicial)
+      cuando así lo requiera la ley vigente, una orden judicial o para proteger la
+      seguridad de personas en riesgo. Al usar esta aplicación usted acepta esta condición.
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- Meta -->
+  <div class="meta-card">
+    📄 &nbsp;Versión 1.0 &nbsp;•&nbsp; Vigente desde agosto de 2026 &nbsp;•&nbsp; Alertas Globales S de R L
+  </div>
+
+  <!-- Marco legal -->
+  <div class="legal-box">
+    <h3>⚖️ Marco legal aplicable</h3>
+    <ul>
+      <li>Constitución de Honduras, Art. 76 y Art. 182 (Habeas Data)</li>
+      <li>Ley de Transparencia y Acceso a la Información Pública (Decreto 170-2006)</li>
+      <li>Anteproyecto de Ley de Protección de Datos Personales de Honduras</li>
+      <li>Principios del RGPD europeo adoptados como estándar internacional</li>
+    </ul>
+  </div>
+
+  <!-- 1 -->
+  <section>
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <h2>1. Responsable del tratamiento</h2>
+    </div>
+    <p><strong>Alertas Globales S de R L</strong>, con domicilio en la República de Honduras,
+    Centroamérica, es la empresa responsable del tratamiento de sus datos personales
+    a través de la aplicación móvil Alerta Barrio.</p>
+    <div class="contact-item">📧 <a href="mailto:privacidad@alertabarrio.com">privacidad@alertabarrio.com</a></div>
+    <div class="contact-item">🌐 <a href="https://alertabarrio.com">alertabarrio.com</a></div>
+  </section>
+
+  <!-- 2 -->
+  <section>
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <h2>2. Datos personales que recopilamos</h2>
+    </div>
+    <p><strong>Datos que usted nos proporciona:</strong></p>
+    <ul>
+      <li>Número de teléfono celular (obligatorio para verificación)</li>
+      <li>Nombre o alias (para identificación en la comunidad)</li>
+      <li>Zona de residencia y/o trabajo (colonia, ciudad, país)</li>
+      <li>Fotografía de perfil (opcional)</li>
+      <li>Contenido publicado: textos, fotos y videos</li>
+    </ul>
+    <p><strong>Datos recopilados automáticamente:</strong></p>
+    <ul>
+      <li>Ubicación geográfica: SOLO cuando usted la activa al emitir una alerta.
+      Por defecto se almacena una ubicación aproximada (60-80 metros) para proteger su identidad</li>
+      <li>Tokens FCM para notificaciones push</li>
+      <li>Datos de uso y modelo del dispositivo</li>
+    </ul>
+    <p><strong>Lo que NO recopilamos:</strong></p>
+    <ul>
+      <li>No accedemos a sus contactos telefónicos</li>
+      <li>No rastreamos su ubicación en segundo plano</li>
+      <li>No recopilamos información financiera o bancaria</li>
+    </ul>
+  </section>
+
+  <!-- 3 -->
+  <section>
+    <div class="section-header">
+      <div class="section-bar teal"></div>
+      <h2>3. Finalidad y uso de sus datos</h2>
+    </div>
+    <table>
+      <tr><th>Dato</th><th>Finalidad</th></tr>
+      <tr><td>Número de teléfono</td><td>Verificación de identidad, autenticación OTP</td></tr>
+      <tr><td>Nombre</td><td>Identificación en la comunidad</td></tr>
+      <tr><td>Zona de residencia</td><td>Segmentación de alertas por colonia/ciudad</td></tr>
+      <tr><td>Ubicación</td><td>Mostrar en alertas (aproximada por defecto)</td></tr>
+      <tr><td>Tokens FCM</td><td>Envío de notificaciones push</td></tr>
+      <tr><td>Fotos/videos</td><td>Publicación en alertas y muro comunitario</td></tr>
+      <tr><td>Datos de uso</td><td>Mejorar la app y detectar fraudes</td></tr>
+    </table>
+  </section>
+
+  <!-- 4 -->
+  <section>
+    <div class="section-header">
+      <div class="section-bar red"></div>
+      <h2>4. Compartición de datos — SUS DATOS SERÁN REVELADOS</h2>
+    </div>
+
+    <p><strong>Con otros usuarios:</strong></p>
+    <ul>
+      <li>Su nombre y foto son visibles SOLO para vecinos de su colonia si no elige el modo anónimo</li>
+      <li>Su número de teléfono NUNCA es visible para otros usuarios</li>
+    </ul>
+
+    <div class="reveal-box">
+      <p>⚠️ <strong>SUS DATOS SERÁN REVELADOS a autoridades cuando:</strong><br><br>
+      • Exista orden judicial emitida por juez competente<br>
+      • Lo requiera el Ministerio Público en investigación criminal<br>
+      • Sea necesario para proteger la vida de personas en peligro inmediato<br>
+      • Lo exija la Policía Nacional ante emergencia verificada<br>
+      • Lo requiera cualquier autoridad competente conforme a la ley vigente<br><br>
+      En emergencias verificadas, su ubicación y número podrán compartirse con el
+      <strong>911, Policía Nacional o Bomberos</strong>.</p>
+    </div>
+
+    <p><strong>Con proveedores tecnológicos:</strong></p>
+    <ul>
+      <li>Google Firebase: autenticación, base de datos, almacenamiento y notificaciones</li>
+      <li>Google Cloud: infraestructura de servidores</li>
+    </ul>
+    <p><strong>Lo que NUNCA hacemos:</strong> No vendemos sus datos. No los compartimos con anunciantes sin su consentimiento.</p>
+  </section>
+
+  <!-- 5 -->
+  <section>
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <h2>5. Almacenamiento y seguridad</h2>
+    </div>
+    <p>Sus datos se almacenan en servidores de <strong>Google Firebase</strong> en Estados Unidos,
+    bajo las garantías de transferencia internacional de Google.</p>
+    <p><strong>Medidas de seguridad:</strong></p>
+    <ul>
+      <li>Cifrado en tránsito (HTTPS/TLS)</li>
+      <li>Cifrado en reposo en Firebase</li>
+      <li>Reglas de acceso restrictivas</li>
+      <li>Autenticación de dos factores mediante OTP</li>
+    </ul>
+    <p><strong>Tiempo de conservación:</strong></p>
+    <ul>
+      <li>Cuenta activa: mientras mantenga su cuenta</li>
+      <li>Alertas y publicaciones: hasta 2 años</li>
+      <li>Cuenta eliminada: 30 días para recuperación, luego eliminación definitiva</li>
+    </ul>
+  </section>
+
+  <!-- 6 -->
+  <section>
+    <div class="section-header">
+      <div class="section-bar teal"></div>
+      <h2>6. Anonimato y protección de identidad</h2>
+    </div>
+    <p>Las alertas de emergencia se publican de forma <strong>anónima por defecto</strong>.
+    La ubicación es aproximada (60-80 metros) para proteger su identidad.</p>
+    <p>No revelaremos su identidad a otros usuarios. Sin embargo, como se indica en la
+    sección 4, sus datos SÍ podrán ser revelados a autoridades competentes cuando sea
+    necesario conforme a la ley.</p>
+  </section>
+
+  <!-- 7 -->
+  <section>
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <h2>7. Sus derechos</h2>
+    </div>
+    <p>Conforme a la Constitución de Honduras (Art. 182 Habeas Data) y la Ley de
+    Transparencia, usted tiene derecho a:</p>
+    <ul>
+      <li><strong>Acceso:</strong> conocer qué datos tenemos sobre usted</li>
+      <li><strong>Rectificación:</strong> corregir datos inexactos</li>
+      <li><strong>Cancelación:</strong> solicitar borrado de sus datos</li>
+      <li><strong>Oposición:</strong> oponerse a ciertos tratamientos</li>
+      <li><strong>Portabilidad:</strong> recibir sus datos en formato estructurado</li>
+    </ul>
+    <p>Para ejercer estos derechos: <a href="mailto:privacidad@alertabarrio.com">privacidad@alertabarrio.com</a>
+    — Responderemos en máximo 30 días hábiles.</p>
+  </section>
+
+  <!-- 8 -->
+  <section>
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <h2>8. Menores de edad</h2>
+    </div>
+    <p>Alerta Barrio <strong>no está dirigida a personas menores de 18 años</strong>.
+    Si detectamos que un menor se ha registrado, eliminaremos su cuenta de inmediato.
+    Contáctenos en <a href="mailto:privacidad@alertabarrio.com">privacidad@alertabarrio.com</a>.</p>
+  </section>
+
+  <!-- 9 -->
+  <section>
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <h2>9. Ubicación y notificaciones</h2>
+    </div>
+    <p>La ubicación SOLO se accede cuando usted la activa al emitir una alerta.
+    <strong>Alerta Barrio NO rastrea su ubicación en segundo plano</strong> ni cuando
+    la aplicación está cerrada.</p>
+    <p>Puede desactivar las notificaciones push desde la configuración de su dispositivo.</p>
+  </section>
+
+  <!-- 10 -->
+  <section>
+    <div class="section-header">
+      <div class="section-bar"></div>
+      <h2>10. Cambios y contacto</h2>
+    </div>
+    <p>Podemos actualizar esta Política periódicamente. Los cambios se notificarán en la
+    aplicación. Los cambios relacionados con revelación de datos a autoridades siempre
+    aplicarán conforme a la ley vigente.</p>
+    <hr>
+    <div class="contact-item">🏢 <strong>Alertas Globales S de R L</strong></div>
+    <div class="contact-item">📧 <a href="mailto:privacidad@alertabarrio.com">privacidad@alertabarrio.com</a></div>
+    <div class="contact-item">📧 <a href="mailto:legal@alertabarrio.com">legal@alertabarrio.com</a></div>
+    <div class="contact-item">🌐 <a href="https://alertabarrio.com">alertabarrio.com</a></div>
+    <div class="contact-item">🏛️ Instituto de Acceso a la Información Pública (IAIP) de Honduras</div>
+  </section>
+
+</main>
+
+<footer>
+  <strong>Alertas Globales S de R L</strong><br>
+  Versión 1.0 &nbsp;·&nbsp; Agosto 2026 &nbsp;·&nbsp; Honduras, C.A.<br>
+  <a href="terminos.html">Términos y Condiciones</a>
+  &nbsp;·&nbsp;
+  <a href="privacidad.html">Política de Privacidad</a>
+</footer>
+
+</body>
+</html>
