@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Alerta Barrio — Presentación del Proyecto</title>
-<meta name="description" content="Alerta Barrio: alertas comunitarias en tiempo real entre vecinos, instituciones y empresas, segmentadas por colonia, ciudad y país.">
+<meta name="description" content="Alerta Barrio: alertas comunitarias en tiempo real entre vecinos, con instituciones y empresas registradas, segmentadas por colonia, ciudad y país.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;700&display=swap">
@@ -45,8 +45,9 @@
     max-width:1100px; margin:0 auto; padding:0 24px;
     height:68px; display:flex; align-items:center; justify-content:space-between;
   }
-  .brand{display:flex; align-items:center; gap:10px; font-size:19px; font-weight:700;}
-  .brand .mark{width:30px; height:30px; border-radius:9px; background:var(--navy); display:flex; align-items:center; justify-content:center; flex:none;}
+  .brand{display:flex; align-items:center; gap:10px; font-size:19px; font-weight:700; text-decoration:none;}
+  .brand .mark{width:32px; height:32px; border-radius:9px; background:var(--navy); display:flex; align-items:center; justify-content:center; flex:none; overflow:hidden;}
+  .brand .mark img{width:100%; height:100%; object-fit:cover; display:block;}
   .brand .a{color:var(--rojo);} .brand .b{color:var(--navy);}
   nav.links{display:flex; gap:26px;}
   nav.links a{font-size:14px; font-weight:600; text-decoration:none; color:var(--text-muted);}
@@ -168,17 +169,6 @@
     table.tbl td::before{content:attr(data-label); display:block; font-size:11px; font-weight:700; text-transform:uppercase; color:#9AA2B1; margin-bottom:4px;}
   }
 
-  /* ---------- CHECKLIST ---------- */
-  .checklist{display:flex; flex-direction:column; gap:14px; margin-top:40px;}
-  .checklist .row{
-    display:flex; align-items:flex-start; gap:16px; background:#fff; border:1px solid var(--border);
-    border-radius:14px; padding:20px 24px;
-  }
-  .checklist .row .dot{width:26px; height:26px; border-radius:50%; background:var(--rojo); color:#fff; flex:none;
-    display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700;}
-  .checklist p{font-size:15px; color:var(--text);}
-  .checklist b{color:var(--navy);}
-
   /* ---------- CLOSING ---------- */
   section.closing{
     background:linear-gradient(160deg,var(--navy) 0%, var(--navy2) 100%); color:#fff; padding:100px 0;
@@ -201,18 +191,18 @@
 <header class="nav">
   <input type="checkbox" id="menu-toggle">
   <div class="nav-inner">
-    <div class="brand">
+    <a class="brand" href="index.html">
       <div class="mark">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v6c0 5.2 3.6 9.7 10 11 6.4-1.3 10-5.8 10-11V7l-10-5z" fill="#FF2244"/></svg>
+        <img src="logo.png" alt="Alerta Barrio" onerror="this.parentElement.innerHTML='&lt;svg width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M12 2L2 7v6c0 5.2 3.6 9.7 10 11 6.4-1.3 10-5.8 10-11V7l-10-5z&quot; fill=&quot;#FF2244&quot;/&gt;&lt;/svg&gt;'">
       </div>
       <span><span class="a">Alerta</span><span class="b">Barrio</span></span>
-    </div>
+    </a>
     <label for="menu-toggle" class="burger" aria-label="Abrir menú"><span></span><span></span><span></span></label>
     <nav class="links">
       <a href="#problema">Problema</a>
       <a href="#producto">Producto</a>
       <a href="#funciones">Funciones</a>
-      <a href="#tecnologia">Tecnología</a>
+      <a href="#seguridad">Seguridad</a>
       <a href="#estado">Estado</a>
     </nav>
     <a class="nav-cta" href="#contacto">Contacto</a>
@@ -223,7 +213,7 @@
   <div class="wrap">
     <div class="eyebrow">Alertas Globales S de R L</div>
     <h1>Tu colonia, <span class="rojo">conectada</span><br>en tiempo real</h1>
-    <p class="lead">Alerta Barrio es la plataforma de comunicación, prevención y colaboración comunitaria que conecta a vecinos, instituciones gubernamentales y empresas — segmentada por colonia, ciudad y país.</p>
+    <p class="lead">Alerta Barrio es la plataforma de comunicación, prevención y colaboración comunitaria entre vecinos — segmentada por colonia, ciudad y país, con espacio para que instituciones y empresas registradas publiquen sus propios avisos.</p>
     <div class="hero-cta">
       <a class="btn primary" href="#producto">Ver cómo funciona</a>
       <a class="btn ghost" href="terminos.html">Términos y Privacidad</a>
@@ -268,7 +258,7 @@
       <div class="card dark">
         <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke="#fff" stroke-width="2"/></svg></div>
         <h3>01 · Conectar</h3>
-        <p>Vecinos, instituciones gubernamentales y empresas se comunican dentro de una sola plataforma.</p>
+        <p>Vecinos se comunican en tiempo real, y las instituciones y empresas que se registren pueden sumarse para publicar sus propios avisos.</p>
       </div>
       <div class="card">
         <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4.5 8-11.2C20 5.9 16.4 3 12 3S4 5.9 4 10.8C4 17.5 12 22 12 22z" stroke="#fff" stroke-width="2"/></svg></div>
@@ -288,7 +278,7 @@
   <div class="wrap">
     <div class="kicker">Qué es Alerta Barrio</div>
     <h2 class="sec-title">Comunicación, prevención y colaboración comunitaria</h2>
-    <p class="sec-lead">Alerta Barrio es una plataforma tecnológica que permite emitir y recibir alertas, comunicarse entre usuarios, publicar información comunitaria, reportar personas, mascotas o vehículos, y recibir comunicaciones oficiales de instituciones, empresas y organizaciones verificadas.</p>
+    <p class="sec-lead">Alerta Barrio es una plataforma tecnológica que permite emitir y recibir alertas, comunicarse entre usuarios, publicar información comunitaria, reportar personas, mascotas o vehículos, y recibir avisos de instituciones, empresas y organizaciones verificadas que se registren en la plataforma.</p>
     <div class="callout">
       <h3>Alerta Barrio no es una entidad de seguridad</h3>
       <p>No es una autoridad policial, judicial, médica, de protección civil ni de investigación. Es una herramienta tecnológica para facilitar la comunicación entre vecinos, la población y las instituciones u organizaciones — no sustituye los servicios oficiales de emergencia.</p>
@@ -337,7 +327,7 @@
       <thead><tr><th style="width:22%">Rol</th><th>Qué hace en la app</th></tr></thead>
       <tbody>
         <tr><td data-label="Rol"><span class="tbl-tag tag-rojo">Vecino</span></td><td data-label="Qué hace">Recibe y emite alertas de su colonia, ciudad y zona de trabajo; participa en el muro comunitario y el chat.</td></tr>
-        <tr><td data-label="Rol"><span class="tbl-tag tag-rojo">Institución</span></td><td data-label="Qué hace">Entidades gubernamentales (ENEE, SANAA, COPECO, alcaldías) envían avisos oficiales y alertas según su alcance.</td></tr>
+        <tr><td data-label="Rol"><span class="tbl-tag tag-rojo">Institución</span></td><td data-label="Qué hace">Entidades gubernamentales (ENEE, SANAA, COPECO, alcaldías) podrán publicar avisos y alertas oficiales según su alcance, una vez registradas en la plataforma.</td></tr>
         <tr><td data-label="Rol"><span class="tbl-tag tag-rojo">Empresa</span></td><td data-label="Qué hace">Negocios verificados (bancos, telecomunicaciones, etc.) comparten avisos y promociones por zona contratada.</td></tr>
         <tr><td data-label="Rol"><span class="tbl-tag tag-rojo">Patrocinador</span></td><td data-label="Qué hace">Aparece como aliado en el panel principal o el muro vecinal, según el nivel de alcance negociado.</td></tr>
         <tr><td data-label="Rol"><span class="tbl-tag tag-rojo">Admin</span></td><td data-label="Qué hace">Gestiona países, ciudades y colonias; registra instituciones y empresas; modera reportes y ve estadísticas.</td></tr>
@@ -355,7 +345,7 @@
       <tbody>
         <tr><td data-label="Alerta"><span class="tbl-tag tag-rojo">Roja · Emergencias</span></td><td data-label="Quién la emite">Vecinos</td><td data-label="Qué comunica">Riesgo de vida: asalto, incendio, violencia doméstica, persona herida — llega a toda la colonia al instante.</td></tr>
         <tr><td data-label="Alerta"><span class="tbl-tag tag-amarillo">Amarilla · Advertencias</span></td><td data-label="Quién la emite">Vecinos</td><td data-label="Qué comunica">Situaciones menos graves: persona o vehículo sospechoso, ruido excesivo, vehículo mal estacionado.</td></tr>
-        <tr><td data-label="Alerta"><span class="tbl-tag tag-navy">Institucional</span></td><td data-label="Quién la emite">Gobierno / ONGs</td><td data-label="Qué comunica">Avisos oficiales, suspensión de servicios, o alertas de emergencia con el alcance contratado.</td></tr>
+        <tr><td data-label="Alerta"><span class="tbl-tag tag-navy">Institucional</span></td><td data-label="Quién la emite">Instituciones registradas</td><td data-label="Qué comunica">Avisos oficiales, suspensión de servicios, o alertas de emergencia, disponibles para instituciones que se registren en la plataforma.</td></tr>
         <tr><td data-label="Alerta">Empresarial</td><td data-label="Quién la emite">Empresas verificadas</td><td data-label="Qué comunica">Notificaciones normales: promociones, avisos de servicio, según la zona contratada.</td></tr>
       </tbody>
     </table>
@@ -365,32 +355,33 @@
 <section class="block" id="ayuda">
   <div class="wrap">
     <div class="kicker">Ayuda a encontrar</div>
-    <h2 class="sec-title">Una red para lo que más importa</h2>
+    <h2 class="sec-title">Una red que busca contigo, tan lejos como haga falta</h2>
+    <p class="sec-lead">Una persona, una mascota o un vehículo pueden estar más allá de tu colonia. Por eso, cada publicación de esta sección puede compartirse a tres niveles: <b style="color:var(--navy)">tu colonia</b>, <b style="color:var(--navy)">tu ciudad</b>, o <b style="color:var(--navy)">el país completo</b> — para que la búsqueda llegue tan lejos como sea necesario.</p>
     <div class="grid cols-3">
       <div class="card">
         <div class="ic"><span style="color:#fff;font-weight:700;font-family:'Space Grotesk',sans-serif">01</span></div>
         <h3>Personas desaparecidas</h3>
-        <p>Foto, descripción y última ubicación conocida, visible a la comunidad correspondiente.</p>
+        <p>Foto y descripción para movilizar a la comunidad rápidamente — desde tu colonia hasta, si es necesario, todo el país.</p>
       </div>
       <div class="card">
         <div class="ic"><span style="color:#fff;font-weight:700;font-family:'Space Grotesk',sans-serif">02</span></div>
         <h3>Mascotas perdidas</h3>
-        <p>Reportes con fotos y video corto, con la opción de chat privado para dar información.</p>
+        <p>Foto y datos para que los vecinos de la zona que elijas ayuden a encontrarla y te contacten con información.</p>
       </div>
       <div class="card">
         <div class="ic"><span style="color:#fff;font-weight:700;font-family:'Space Grotesk',sans-serif">03</span></div>
         <h3>Vehículos reportados</h3>
-        <p>Placa, descripción y zona, con opción de recompensa configurable por el usuario.</p>
+        <p>Descripción y placa visibles en la zona elegida, para que cualquiera que lo vea pueda avisar de inmediato.</p>
       </div>
     </div>
     <div class="grid cols-2" style="margin-top:22px">
       <div class="card dark">
-        <h3>Alcance ampliable</h3>
-        <p>Mi barrio · Mi ciudad · Todo el país (pago único)</p>
+        <h3>Tú eliges hasta dónde llega</h3>
+        <p>Mi colonia · Mi ciudad · Todo el país — el alcance más amplio se habilita con un pago único, dado su mayor impacto.</p>
       </div>
       <div class="card dark">
         <h3>Recompensa opcional</h3>
-        <p>El usuario puede activar y definir el monto a ofrecer</p>
+        <p>Puedes ofrecer una recompensa y definir el monto, para animar a la comunidad a colaborar.</p>
       </div>
     </div>
   </div>
@@ -409,12 +400,12 @@
       <div class="card">
         <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#fff" stroke-width="2"/></svg></div>
         <h3>Chat segmentado</h3>
-        <p>Entre vecinos, y un canal distinto para instituciones y empresas que reciben mensajes por colonia.</p>
+        <p>Entre vecinos, y un canal distinto para instituciones y empresas registradas, que pueden publicar avisos por colonia.</p>
       </div>
       <div class="card">
         <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="2" stroke="#fff" stroke-width="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4" stroke="#fff" stroke-width="2"/></svg></div>
         <h3>Contactos de confianza</h3>
-        <p>Hasta 3 contactos reciben una alerta directa, con ubicación exacta, si estás fuera de tu zona.</p>
+        <p>Forma un grupo cerrado con las personas de tu confianza. Si necesitas ayuda fuera de tu zona, ellas reciben tu alerta con tu ubicación en tiempo real, para poder auxiliarte mejor.</p>
       </div>
       <div class="card">
         <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#fff" stroke-width="2"/><path d="M21 21l-4.3-4.3" stroke="#fff" stroke-width="2"/></svg></div>
@@ -432,43 +423,13 @@
     <table class="tbl" style="color:#fff;">
       <thead><tr><th style="width:28%;color:var(--rojo)">Medida</th><th style="color:var(--rojo)">Cómo protege al usuario</th></tr></thead>
       <tbody>
-        <tr><td data-label="Medida" style="color:#fff;font-weight:600">Verificación por OTP</td><td data-label="Cómo protege" style="color:#BFC6D6">Registro e inicio de sesión validados con código, igual que WhatsApp — reduce cuentas falsas.</td></tr>
-        <tr><td data-label="Medida" style="color:#fff;font-weight:600">Ubicación protegida</td><td data-label="Cómo protege" style="color:#BFC6D6">En alertas rojas y amarillas, la ubicación mostrada a otros vecinos se desplaza 60–80 m por defecto.</td></tr>
-        <tr><td data-label="Medida" style="color:#fff;font-weight:600">Anonimato configurable</td><td data-label="Cómo protege" style="color:#BFC6D6">Las alertas de riesgo pueden emitirse de forma anónima, sin exponer el perfil del vecino.</td></tr>
+        <tr><td data-label="Medida" style="color:#fff;font-weight:600">Verificación de identidad</td><td data-label="Cómo protege" style="color:#BFC6D6">El registro y el inicio de sesión se validan con un código enviado por teléfono, reduciendo cuentas falsas.</td></tr>
+        <tr><td data-label="Medida" style="color:#fff;font-weight:600">Ubicación protegida</td><td data-label="Cómo protege" style="color:#BFC6D6">En alertas de riesgo, tu ubicación exacta nunca se muestra a otros vecinos — se protege automáticamente.</td></tr>
+        <tr><td data-label="Medida" style="color:#fff;font-weight:600">Anonimato configurable</td><td data-label="Cómo protege" style="color:#BFC6D6">Las alertas sensibles pueden emitirse de forma anónima, sin exponer el perfil del vecino.</td></tr>
         <tr><td data-label="Medida" style="color:#fff;font-weight:600">Perfiles por colonia</td><td data-label="Cómo protege" style="color:#BFC6D6">El perfil de un vecino solo es visible para otros vecinos de su misma colonia.</td></tr>
         <tr><td data-label="Medida" style="color:#fff;font-weight:600">Moderación de reportes</td><td data-label="Cómo protege" style="color:#BFC6D6">Todo reporte de contenido o perfil pasa por el panel de administración antes de una acción.</td></tr>
       </tbody>
     </table>
-  </div>
-</section>
-
-<section class="block alt" id="tecnologia">
-  <div class="wrap">
-    <div class="kicker">Tecnología</div>
-    <h2 class="sec-title">Flutter + Firebase, para Android e iOS</h2>
-    <div class="grid cols-4">
-      <div class="card"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6" stroke="#fff" stroke-width="2"/></svg></div><h3>Flutter</h3><p>Una sola base de código para Android e iOS.</p></div>
-      <div class="card"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 1L3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5l-9-4z" stroke="#fff" stroke-width="2"/></svg></div><h3>Firebase Auth</h3><p>Registro y login por teléfono con OTP.</p></div>
-      <div class="card"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="5" rx="9" ry="3" stroke="#fff" stroke-width="2"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5" stroke="#fff" stroke-width="2"/></svg></div><h3>Cloud Firestore</h3><p>Base de datos en tiempo real, segmentada por zona.</p></div>
-      <div class="card"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" stroke="#fff" stroke-width="2"/></svg></div><h3>Firebase Storage</h3><p>Fotos y clips de video de cada reporte.</p></div>
-      <div class="card"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M14.7 6.3a1 1 0 0 0 1.1.2 1 1 0 0 1 1.4.9V9a1 1 0 0 0 1 1h1.6a1 1 0 0 1 .9 1.4 1 1 0 0 0 .2 1.1l1.1 1.1a1 1 0 0 1 0 1.4L20.9 16a1 1 0 0 0-.2 1.1 1 1 0 0 1-.9 1.4H18a1 1 0 0 0-1 1v1.6a1 1 0 0 1-1.4.9 1 1 0 0 0-1.1.2l-1.1 1.1a1 1 0 0 1-1.4 0L10.9 22a1 1 0 0 0-1.1-.2 1 1 0 0 1-1.4-.9V19.6a1 1 0 0 0-1-1H5.9a1 1 0 0 1-.9-1.4 1 1 0 0 0-.2-1.1l-1.1-1.1a1 1 0 0 1 0-1.4L4.8 12.9a1 1 0 0 0 .2-1.1 1 1 0 0 1 .9-1.4H7.5a1 1 0 0 0 1-1V7.7a1 1 0 0 1 1.4-.9 1 1 0 0 0 1.1-.2l1.1-1.1a1 1 0 0 1 1.4 0z" stroke="#fff" stroke-width="1.5"/></svg></div><h3>Cloud Functions</h3><p>Lógica de backend en TypeScript.</p></div>
-      <div class="card"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" stroke="#fff" stroke-width="2"/></svg></div><h3>Cloud Messaging</h3><p>Notificaciones push instantáneas (FCM).</p></div>
-      <div class="card"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="2" stroke="#fff" stroke-width="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4" stroke="#fff" stroke-width="2"/></svg></div><h3>App Check</h3><p>Play Integrity: verifica que la app es legítima.</p></div>
-      <div class="card dark" style="justify-content:center; display:flex; flex-direction:column;"><h3>100% nativo móvil</h3><p>Diseñada para escalar a gran número de usuarios.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="block">
-  <div class="wrap">
-    <div class="kicker">Eficiencia operativa</div>
-    <h2 class="sec-title">Diseñada para escalar sin disparar costos</h2>
-    <div class="checklist">
-      <div class="row"><div class="dot">&#10003;</div><p><b>Consultas segmentadas</b> por colonia, ciudad y país — nunca se lee más información de la necesaria.</p></div>
-      <div class="row"><div class="dot">&#10003;</div><p><b>Paginación</b> en todas las listas y muros — se cargan solo los registros visibles.</p></div>
-      <div class="row"><div class="dot">&#10003;</div><p><b>Listeners en tiempo real solo donde son indispensables</b> — se evita el costo de escuchas innecesarias.</p></div>
-      <div class="row"><div class="dot">&#10003;</div><p><b>Compresión de video</b> antes de subir — clips cortos de 20 a 30 segundos por reporte.</p></div>
-    </div>
   </div>
 </section>
 
@@ -483,7 +444,7 @@
       </div>
       <div class="card">
         <h3>Fase 2 · iOS</h3>
-        <p>Publicación en App Store, misma base de código Flutter.</p>
+        <p>Publicación en App Store, con la misma experiencia ya disponible en Android.</p>
       </div>
       <div class="card">
         <h3>Fase 3 · Regional</h3>
@@ -500,11 +461,9 @@
     <table class="tbl">
       <thead><tr><th style="width:70%">Ítem</th><th>Estado</th></tr></thead>
       <tbody>
-        <tr><td data-label="Ítem">App construida en Flutter, conectada a Firebase</td><td data-label="Estado"><span class="status-ok">Completado</span></td></tr>
-        <tr><td data-label="Ítem">Seguridad reforzada con App Check (Play Integrity)</td><td data-label="Estado"><span class="status-ok">Completado</span></td></tr>
+        <tr><td data-label="Ítem">Desarrollo de la aplicación</td><td data-label="Estado"><span class="status-ok">Completado</span></td></tr>
         <tr><td data-label="Ítem">Sitio oficial y legal — alertabarrio.com</td><td data-label="Estado"><span class="status-ok">Publicado</span></td></tr>
-        <tr><td data-label="Ítem">Envío a revisión en Google Play</td><td data-label="Estado"><span class="status-pending">En revisión</span></td></tr>
-        <tr><td data-label="Ítem">Cuenta de Organización en Play Console</td><td data-label="Estado"><span class="status-pending">En proceso</span></td></tr>
+        <tr><td data-label="Ítem">Lanzamiento en Google Play (Android)</td><td data-label="Estado"><span class="status-pending">En proceso</span></td></tr>
         <tr><td data-label="Ítem">Lanzamiento en App Store (iOS)</td><td data-label="Estado"><span class="status-later">Fase 2</span></td></tr>
       </tbody>
     </table>
@@ -515,7 +474,7 @@
   <div class="wrap">
     <h2>Conectemos <span class="rojo">tu comunidad</span></h2>
     <p>Alerta Barrio está lista para acompañar a vecinos, instituciones y empresas en la construcción de comunidades más seguras y conectadas.</p>
-    <a class="btn primary" href="mailto:CORREO_CONTACTO">Escríbenos</a>
+    <a class="btn primary" href="mailto:contacto@alertabarrio.com">Escríbenos</a>
   </div>
 </section>
 
@@ -524,7 +483,7 @@
     <div>
       <a href="terminos.html">Términos y Condiciones</a>
       <a href="privacidad.html">Política de Privacidad</a>
-      <a href="mailto:CORREO_CONTACTO">Contacto</a>
+      <a href="mailto:contacto@alertabarrio.com">Contacto</a>
     </div>
     <div class="copy">© 2026 Alertas Globales S de R L. Todos los derechos reservados.</div>
   </div>
