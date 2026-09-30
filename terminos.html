@@ -1,317 +1,308 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Términos y Condiciones — Alerta Barrio</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
-        Roboto, Oxygen, sans-serif;
-      background: #F6F7FA;
-      color: #1a1a2e;
-      line-height: 1.6;
-    }
-
-    header {
-      background: linear-gradient(135deg, #101A2E 0%, #1a2d4a 100%);
-      padding: 32px 24px;
-      text-align: center;
-    }
-
-    .logo-text {
-      font-size: 28px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      margin-bottom: 8px;
-    }
-
-    .logo-text span:first-child { color: #FF3355; }
-    .logo-text span:last-child  { color: #ffffff; }
-
-    .header-sub { color: rgba(255,255,255,0.6); font-size: 13px; }
-
-    main {
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 24px 20px 60px;
-    }
-
-    .meta-card {
-      background: #EEF2FF;
-      border: 1px solid #C7D2FE;
-      border-radius: 12px;
-      padding: 14px 18px;
-      margin-bottom: 28px;
-      font-size: 13px;
-      color: #101A2E;
-      font-weight: 500;
-    }
-
-    section {
-      background: #ffffff;
-      border-radius: 14px;
-      padding: 24px;
-      margin-bottom: 16px;
-      border: 1px solid #E3E7EE;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    }
-
-    .section-header {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-
-    .section-bar {
-      width: 4px;
-      height: 22px;
-      background: #FF3355;
-      border-radius: 2px;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    h2 {
-      font-size: 15px;
-      font-weight: 700;
-      color: #101A2E;
-      line-height: 1.3;
-    }
-
-    p {
-      font-size: 13.5px;
-      color: #374151;
-      line-height: 1.7;
-      margin-bottom: 12px;
-    }
-
-    p:last-child { margin-bottom: 0; }
-
-    ul {
-      padding-left: 20px;
-      margin: 8px 0 12px;
-    }
-
-    ul li {
-      font-size: 13.5px;
-      color: #374151;
-      line-height: 1.7;
-      margin-bottom: 4px;
-    }
-
-    strong { color: #101A2E; font-weight: 600; }
-
-    .warning-box {
-      background: #FEF2F2;
-      border: 1px solid #FECACA;
-      border-radius: 10px;
-      padding: 16px;
-      margin: 12px 0;
-    }
-
-    .warning-box p { color: #7F1D1D; margin: 0; }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13.5px;
-      color: #374151;
-      margin-bottom: 6px;
-    }
-
-    .contact-item a {
-      color: #101A2E;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    hr {
-      border: none;
-      border-top: 1px solid #E3E7EE;
-      margin: 16px 0;
-    }
-
-    footer {
-      background: #101A2E;
-      color: rgba(255,255,255,0.5);
-      text-align: center;
-      padding: 24px;
-      font-size: 12px;
-      line-height: 1.6;
-    }
-
-    footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
-    footer strong { color: rgba(255,255,255,0.9); }
-
-    @media (max-width: 600px) {
-      header { padding: 24px 16px; }
-      main { padding: 16px 12px 40px; }
-      section { padding: 18px 16px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Términos y Condiciones de Uso — Alerta Barrio</title>
+<style>
+  :root{
+    --navy:#101A2E;
+    --rojo:#FF2244;
+    --border:#E3E7EF;
+    --bg-soft:#F6F7FA;
+    --text:#3A4257;
+    --info-bg:#F0F4FF;
+    --info-border:#BFD0FF;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:0;
+    background:#FFFFFF;
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.65;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:32px 20px 64px;}
+  header.top{display:flex; align-items:center; gap:12px; margin-bottom:6px;}
+  header.top .brand{font-size:22px; font-weight:800; letter-spacing:-0.5px;}
+  header.top .brand .a{color:var(--rojo);}
+  header.top .brand .b{color:var(--navy);}
+  .subtitle{font-size:13px; color:#8A93A6; margin-top:2px;}
+  .badge{
+    display:inline-block; margin-top:14px; padding:5px 10px;
+    background:var(--info-bg); color:var(--navy);
+    border-radius:8px; font-size:12.5px; font-weight:600;
+  }
+  hr{border:none; border-top:1px solid var(--border); margin:20px 0 8px;}
+  h2{
+    font-size:16px; color:var(--navy); font-weight:700;
+    margin:28px 0 10px; padding-left:12px; border-left:4px solid var(--rojo);
+  }
+  p, li{font-size:14.5px; color:var(--text);}
+  ul{margin:6px 0; padding-left:22px;}
+  .callout{
+    background:var(--info-bg); border:1px solid var(--info-border);
+    border-radius:12px; padding:14px 16px; margin:16px 0 8px;
+    font-size:13.5px; color:var(--navy);
+  }
+  .callout.warn{
+    background:#FFF7ED; border-color:#FBBF24; color:#7C2D12;
+  }
+  .callout.child-safety{
+    background:#FFF0F3; border:1px solid var(--rojo); color:#5A0E1A;
+  }
+  .footer-box{
+    margin-top:28px; background:var(--bg-soft); border:1px solid var(--border);
+    border-radius:14px; padding:16px; font-size:12px; color:#8A93A6; line-height:1.5;
+  }
+  a{color:var(--navy);}
+  #proteccion-menores h2{border-left-color:var(--rojo);}
+</style>
 </head>
 <body>
+<div class="wrap">
 
-<header>
-  <div class="logo-text">
-    <span>Alerta</span><span>Barrio</span>
-  </div>
-  <p class="header-sub">📄 Términos y Condiciones de Uso</p>
-</header>
-
-<main>
-
-  <div class="meta-card">
-    📄 &nbsp;Versión 1.0 &nbsp;•&nbsp; Vigente desde agosto de 2026 &nbsp;•&nbsp; Alertas Globales S de R L
-  </div>
-
-  <section>
-    <div class="section-header"><div class="section-bar"></div><h2>1. Aceptación de los términos</h2></div>
-    <p>Al descargar, instalar, registrarse o utilizar la aplicación móvil <strong>Alerta Barrio</strong>,
-    usted acepta de forma expresa, voluntaria e informada los presentes Términos y Condiciones de Uso.
-    Si no está de acuerdo, no utilice la Aplicación.</p>
-    <p>La Aplicación es operada por <strong>Alertas Globales S de R L</strong>, con domicilio en la
-    República de Honduras, Centroamérica.</p>
-  </section>
-
-  <section>
-    <div class="section-header"><div class="section-bar"></div><h2>2. Descripción del servicio</h2></div>
-    <p>Alerta Barrio es una plataforma digital de seguridad ciudadana y comunicación comunitaria que permite:</p>
-    <ul>
-      <li>Emitir y recibir alertas de seguridad en tiempo real</li>
-      <li>Comunicarse entre vecinos de la misma comunidad</li>
-      <li>Reportar situaciones de emergencia y sucesos de interés comunitario</li>
-      <li>Publicar información de personas desaparecidas, mascotas perdidas y vehículos</li>
-      <li>Recibir comunicados oficiales de instituciones y empresas</li>
-    </ul>
-  </section>
-
-  <section>
-    <div class="section-header"><div class="section-bar"></div><h2>3. Registro y cuenta de usuario</h2></div>
-    <p><strong>Requisitos:</strong></p>
-    <ul>
-      <li>Tener al menos 18 años de edad</li>
-      <li>Poseer un número de teléfono celular válido y activo</li>
-      <li>Proporcionar información veraz, completa y actualizada</li>
-      <li>Aceptar estos Términos y la Política de Privacidad</li>
-    </ul>
-    <p>El registro se realiza mediante verificación del número de teléfono a través de un código OTP.
-    Cada número de teléfono únicamente puede estar asociado a una cuenta.</p>
-  </section>
-
-  <section>
-    <div class="section-header"><div class="section-bar"></div><h2>4. Uso aceptable</h2></div>
-    <p>Está estrictamente <strong>PROHIBIDO</strong>:</p>
-    <ul>
-      <li>Emitir alertas, reportes o publicaciones falsas, exageradas o fabricadas</li>
-      <li>Publicar contenido difamatorio, discriminatorio, racista, sexista u odioso</li>
-      <li>Suplantar la identidad de personas, autoridades o instituciones</li>
-      <li>Publicar contenido pornográfico u obsceno</li>
-      <li>Acosar, intimidar o amenazar a otros usuarios</li>
-      <li>Compartir información personal de terceros sin consentimiento</li>
-      <li>Usar la Aplicación para fines comerciales no autorizados</li>
-      <li>Usar bots o medios artificiales para interactuar con la Aplicación</li>
-    </ul>
-  </section>
-
-  <section>
-    <div class="section-header"><div class="section-bar"></div><h2>5. Alertas y reportes de emergencia</h2></div>
-    <p>Las alertas de emergencia deben corresponder a situaciones <strong>reales y verificables</strong>.
-    La emisión de alertas falsas puede constituir un delito conforme a la legislación vigente.</p>
-    <div class="warning-box">
-      <p>⚠️ La emisión de alertas falsas puede resultar en: suspensión permanente de la cuenta,
-      reporte a las autoridades competentes y responsabilidad civil y penal.</p>
+  <header class="top">
+    <div>
+      <div class="brand"><span class="a">Alerta</span><span class="b">Barrio</span></div>
+      <div class="subtitle">Términos y Condiciones de Uso</div>
     </div>
-    <p>Por defecto, la ubicación publicada es aproximada (60-80 metros) para proteger la identidad
-    del denunciante. Alerta Barrio no sustituye a los servicios de emergencia. En emergencia real
-    contacte al <strong>911</strong>.</p>
+  </header>
+  <span class="badge">Versión 2.0 · Vigente desde septiembre de 2026</span>
+  <hr>
+
+  <section id="identificacion">
+    <h2>1. Identificación y aceptación</h2>
+    <p>Al descargar, instalar, registrarse, acceder o utilizar Alerta Barrio (la "Aplicación" o el "Servicio"), usted acepta estos Términos y Condiciones de Uso (los "Términos"), junto con la Política de Privacidad y las demás políticas que formen parte del Servicio.</p>
+    <p>El Servicio es operado por Alertas Globales S de R L, sociedad constituida conforme a las leyes de la República de Honduras. Si no acepta estos Términos, no deberá utilizar la Aplicación. Cuando la legislación de su país exija una forma específica de consentimiento, se utilizará el mecanismo correspondiente.</p>
   </section>
 
-  <section>
-    <div class="section-header"><div class="section-bar"></div><h2>6. Contenido del usuario</h2></div>
-    <p>El usuario conserva la propiedad de su contenido. Al publicarlo, otorga a la Empresa una
-    licencia no exclusiva y gratuita para mostrarlo dentro de la Aplicación.</p>
-    <p>El usuario es el único responsable del contenido que publica. La Empresa se reserva el
-    derecho de eliminar contenido que viole estos Términos sin previo aviso.</p>
+  <section id="naturaleza">
+    <h2>2. Naturaleza y finalidad del Servicio</h2>
+    <p>Alerta Barrio es una plataforma tecnológica de comunicación, prevención y colaboración comunitaria que puede permitir emitir y recibir alertas, comunicarse con usuarios, publicar información comunitaria, reportar personas, mascotas o vehículos y recibir comunicaciones de instituciones, empresas y organizaciones verificadas.</p>
+    <div class="callout warn">
+      <strong>Alerta Barrio no es una entidad de seguridad.</strong> No es una autoridad policial, judicial, médica, de protección civil ni de investigación. Es únicamente una herramienta tecnológica para facilitar la comunicación entre vecinos, la población en general y las instituciones u organizaciones, y no sustituye los servicios oficiales de emergencia, seguridad, salud, rescate o atención de desastres. En una emergencia, el usuario deberá contactar al número oficial de emergencias de su país.
+    </div>
   </section>
 
-  <section>
-    <div class="section-header"><div class="section-bar"></div><h2>7. Privacidad y datos personales</h2></div>
-    <p>El tratamiento de sus datos personales se rige por nuestra
-    <a href="privacidad.html"><strong>Política de Privacidad</strong></a>,
-    la cual forma parte integral de estos Términos.</p>
+  <section id="alcance">
+    <h2>3. Alcance internacional y legislación aplicable</h2>
+    <p>Alerta Barrio podrá estar disponible en distintos países. La Empresa procurará adaptar el Servicio a las obligaciones legales aplicables en cada jurisdicción.</p>
+    <p>Estos Términos se regirán, en principio, por las leyes de la República de Honduras. Esta elección no pretende excluir ni limitar derechos, protecciones al consumidor, privacidad, protección de datos u otras disposiciones imperativas que correspondan al usuario por razón de su país o residencia.</p>
+    <p>Cuando una disposición sea incompatible con una norma obligatoria aplicable al usuario, prevalecerá dicha norma únicamente en la medida de la incompatibilidad.</p>
   </section>
 
-  <section>
-    <div class="section-header"><div class="section-bar"></div><h2>8. Anonimato</h2></div>
-    <p>Las alertas de emergencia se publican de forma anónima por defecto. La Empresa no revela la
-    identidad de usuarios anónimos salvo por orden judicial o requerimiento de autoridad competente
-    conforme a la ley hondureña.</p>
+  <section id="edad">
+    <h2>4. Edad y requisitos de registro</h2>
+    <p>El Servicio está destinado a personas de 18 años o más. El usuario declara cumplir esta condición al crear una cuenta.</p>
+    <p>La Aplicación no está dirigida a menores. Si la Empresa conoce que una persona que no cumple la edad mínima ha creado una cuenta, podrá suspenderla o eliminarla conforme a la legislación aplicable.</p>
+    <p>Las leyes de determinados países pueden establecer edades o requisitos distintos. Cuando una legislación obligatoria imponga requisitos adicionales para el tratamiento de datos de menores, se aplicarán dichos requisitos.</p>
+    <p>El usuario deberá proporcionar información veraz, actualizada y suficiente para la finalidad para la que se solicita.</p>
   </section>
 
-  <section>
-    <div class="section-header"><div class="section-bar"></div><h2>9. Instituciones y empresas</h2></div>
-    <p>Las cuentas institucionales son registradas y verificadas por el administrador de la plataforma.
-    Se rigen por estos Términos y los contratos específicos suscritos con la Empresa.</p>
+  <section id="cuenta">
+    <h2>5. Cuenta, autenticación y seguridad</h2>
+    <p>El registro puede requerir la verificación de un número telefónico mediante código OTP u otro mecanismo de autenticación.</p>
+    <p>El usuario es responsable de mantener bajo su control los medios de acceso y de informar oportunamente sobre accesos no autorizados.</p>
+    <p>La Empresa podrá aplicar medidas de verificación, prevención del fraude, seguridad, bloqueo o suspensión temporal cuando existan razones razonables relacionadas con la seguridad o el cumplimiento de estos Términos.</p>
+    <p>La verificación de un número telefónico no constituye una certificación absoluta de identidad civil.</p>
   </section>
 
-  <section>
-    <div class="section-header"><div class="section-bar"></div><h2>10. Suspensión y cancelación</h2></div>
-    <p>La Empresa puede suspender o cancelar cuentas que violen estos Términos, emitan contenido
-    falso o sean usadas fraudulentamente. El usuario puede cancelar su cuenta desde la sección
-    de Perfil de la Aplicación.</p>
+  <section id="uso-permitido">
+    <h2>6. Uso permitido y prohibiciones</h2>
+    <p>El usuario deberá utilizar el Servicio de manera lícita, responsable y respetuosa.</p>
+    <p>Está prohibido:</p>
+    <ul>
+      <li>Emitir deliberadamente alertas, reportes o información falsos o engañosos.</li>
+      <li>Suplantar a personas, empresas, instituciones o autoridades.</li>
+      <li>Utilizar identidades o números falsos para obtener acceso.</li>
+      <li>Amenazar, acosar, intimidar, extorsionar o perseguir a otras personas.</li>
+      <li>Publicar datos personales de terceros sin base legítima o autorización cuando esta sea necesaria.</li>
+      <li>Publicar explotación sexual, material de abuso sexual infantil o contenido destinado a facilitar delitos.</li>
+      <li>Promover o facilitar actividades ilegales.</li>
+      <li>Publicar malware o código malicioso.</li>
+      <li>Usar bots, scraping o automatización no autorizada para manipular el Servicio.</li>
+      <li>Intentar acceder a cuentas, sistemas o bases de datos sin autorización.</li>
+      <li>Utilizar el Servicio para spam, fraude o actividades comerciales no autorizadas.</li>
+      <li>Interferir con el funcionamiento, seguridad o disponibilidad de la Aplicación.</li>
+      <li>Poner deliberadamente en peligro a una persona mediante información falsa o manipulada.</li>
+    </ul>
   </section>
 
-  <section>
-    <div class="section-header"><div class="section-bar"></div><h2>11. Propiedad intelectual</h2></div>
-    <p>Todos los derechos de la Aplicación — nombre, logo, diseño, código y funcionalidades —
-    son propiedad exclusiva de <strong>Alertas Globales S de R L</strong>. Queda prohibida su
-    reproducción sin autorización expresa.</p>
+  <section id="alertas">
+    <h2>7. Alertas, reportes y emergencias</h2>
+    <p>Las alertas y reportes deben corresponder, según el conocimiento razonable del usuario, a hechos reales o información que considere razonablemente relevante.</p>
+    <p>La Empresa no garantiza que una alerta sea verdadera, completa, actual, legítima o proveniente de una fuente oficial, salvo cuando una cuenta haya sido expresamente verificada para una función determinada.</p>
+    <p>Las alertas falsas o manipuladas pueden ocasionar suspensión, eliminación del contenido y, cuando exista fundamento jurídico, comunicación a autoridades. La responsabilidad civil, administrativa o penal dependerá de la legislación aplicable.</p>
+    <p>La Empresa no garantiza que una alerta será recibida, mostrada, entregada instantáneamente o atendida por un tercero. La conectividad, dispositivo, permisos, proveedores, mantenimiento y otros factores pueden afectar las notificaciones.</p>
+    <p><strong>La Aplicación nunca debe ser el único medio para solicitar ayuda en una emergencia.</strong></p>
   </section>
 
-  <section>
-    <div class="section-header"><div class="section-bar"></div><h2>12. Limitación de responsabilidad</h2></div>
-    <p>La Empresa no será responsable por daños derivados del uso de la Aplicación, la exactitud
-    del contenido publicado por usuarios, fallos en redes de telecomunicaciones, pérdida de datos
-    por causas ajenas, ni por decisiones basadas en información de la Aplicación.</p>
+  <section id="ubicacion">
+    <h2>8. Ubicación</h2>
+    <p>Cuando una función utilice ubicación, el acceso dependerá de los permisos del dispositivo y de la configuración elegida por el usuario.</p>
+    <p>La ubicación puede utilizarse para asociar una alerta a una zona, incluir una ubicación en una alerta o proporcionar funciones basadas en localización.</p>
+    <p>Cuando una función esté diseñada para proteger la identidad, la Aplicación podrá aplicar aproximación, reducción de precisión u otras medidas técnicas antes de mostrar una ubicación a terceros. No se garantiza una distancia fija de anonimización.</p>
+    <p>La ubicación exacta podrá tratarse cuando sea necesaria para una función habilitada por el usuario o cuando exista una base jurídica válida para su tratamiento o divulgación.</p>
   </section>
 
-  <section>
-    <div class="section-header"><div class="section-bar"></div><h2>13. Modificaciones</h2></div>
-    <p>La Empresa puede modificar estos Términos en cualquier momento. Las modificaciones entran
-    en vigor al publicarse. El uso continuado constituye la aceptación.</p>
+  <section id="contenido-usuario">
+    <h2>9. Contenido generado por usuarios</h2>
+    <p>Los usuarios pueden publicar textos, fotografías, videos, ubicaciones, alertas, comentarios y otros materiales ("Contenido del Usuario").</p>
+    <p>El usuario conserva los derechos que legalmente le correspondan. Al publicar, concede a Alertas Globales S de R L una licencia no exclusiva, mundial, gratuita y limitada a lo necesario para alojar, almacenar, reproducir, procesar, adaptar técnicamente, mostrar y distribuir el contenido dentro del Servicio y mediante sus funciones.</p>
+    <p>La licencia terminará cuando el contenido sea eliminado, salvo copias necesarias por obligaciones legales, seguridad, prevención del fraude, resolución de controversias o respaldos técnicos temporales.</p>
+    <p>El usuario declara que posee los derechos, permisos o bases legales necesarios para publicar el contenido y que su publicación no infringe derechos de terceros ni la legislación aplicable.</p>
+    <p>La Empresa podrá retirar o restringir contenido que infrinja estos Términos, las Normas de la Comunidad, derechos de terceros o la legislación aplicable.</p>
   </section>
 
-  <section>
-    <div class="section-header"><div class="section-bar"></div><h2>14. Ley aplicable y jurisdicción</h2></div>
-    <p>Estos Términos se rigen por las leyes de la <strong>República de Honduras</strong>.
-    Cualquier controversia se someterá a los tribunales competentes de
-    <strong>Tegucigalpa, Honduras</strong>.</p>
+  <section id="moderacion">
+    <h2>10. Moderación, denuncias y bloqueo</h2>
+    <p>Alerta Barrio podrá utilizar revisión humana y, cuando corresponda, herramientas automatizadas para detectar, priorizar, revisar o limitar contenido que pueda infringir las reglas.</p>
+    <p>La Aplicación proporcionará mecanismos razonables para denunciar contenido o conductas abusivas y, cuando la función esté disponible, bloquear usuarios.</p>
+    <p>Las medidas pueden incluir advertencias, reducción de visibilidad, eliminación, suspensión temporal, suspensión permanente o restricción de funciones.</p>
+    <p>La Empresa podrá actuar inmediatamente cuando sea razonablemente necesario para proteger a usuarios, terceros, la seguridad del Servicio o cumplir una obligación legal.</p>
+    <p>Cuando la legislación otorgue derechos de reclamación o revisión frente a una decisión de moderación, se proporcionará el mecanismo correspondiente.</p>
   </section>
 
-  <section>
-    <div class="section-header"><div class="section-bar"></div><h2>15. Contacto</h2></div>
-    <hr>
-    <div class="contact-item">🏢 <strong>Alertas Globales S de R L</strong></div>
-    <div class="contact-item">📧 <a href="mailto:alertabarriohn@gmail.com">alertabarriohn@gmail.com</a></div>
-    <div class="contact-item">🌐 <a href="https://alertabarrio.com">alertabarrio.com</a></div>
-    <div class="contact-item">🇭🇳 Honduras, Centroamérica</div>
+  <section id="desaparecidas">
+    <h2>11. Personas desaparecidas, mascotas y vehículos</h2>
+    <p>Las funciones de búsqueda o reporte tienen finalidad informativa y comunitaria. No convierten a la Empresa ni a los usuarios en autoridades investigadoras.</p>
+    <p>El usuario que publique información deberá procurar que sea exacta, actualizada y legítimamente obtenida. No deberá publicar información que ponga innecesariamente en riesgo a una persona, revele datos sensibles sin fundamento o interfiera con una investigación oficial.</p>
+    <p>La Empresa podrá retirar un reporte por falsedad, riesgo, vulneración de privacidad, solicitud válida de una autoridad u otra razón prevista por la ley o las políticas del Servicio.</p>
   </section>
 
-</main>
+  <section id="mensajeria">
+    <h2>12. Mensajería y comunicaciones</h2>
+    <p>Cuando el Servicio permita mensajes privados, comentarios u otras comunicaciones, deberán respetar estos Términos y las Normas de la Comunidad.</p>
+    <p>La Empresa podrá recibir y tratar reportes sobre comunicaciones abusivas y acceder al contenido estrictamente cuando sea necesario para operar la función, investigar una denuncia, aplicar medidas de seguridad, cumplir una obligación legal o proteger derechos y personas, conforme a la legislación aplicable.</p>
+    <p>La Empresa no garantiza confidencialidad absoluta de comunicaciones realizadas mediante una plataforma conectada a Internet.</p>
+  </section>
 
-<footer>
-  <strong>Alertas Globales S de R L</strong><br>
-  Versión 1.0 &nbsp;·&nbsp; Agosto 2026 &nbsp;·&nbsp; Honduras, C.A.<br>
-  <a href="terminos.html">Términos y Condiciones</a>
-  &nbsp;·&nbsp;
-  <a href="privacidad.html">Política de Privacidad</a>
-</footer>
+  <section id="instituciones">
+    <h2>13. Instituciones, empresas y cuentas verificadas</h2>
+    <p>Las instituciones, autoridades, empresas, organizaciones y patrocinadores podrán disponer de perfiles o funciones especiales sujetos a verificación y, cuando corresponda, contratos independientes.</p>
+    <p>La condición de cuenta verificada no significa que la Empresa garantice la legalidad, exactitud, competencia, actuación o decisiones de la institución o empresa.</p>
+    <p>Los servicios comerciales, contratación de barrios, publicidad, patrocinio, facturación y relaciones B2B podrán estar sujetos a términos comerciales o contratos separados.</p>
+  </section>
 
+  <section id="propiedad-intelectual">
+    <h2>14. Propiedad intelectual</h2>
+    <p>La marca Alerta Barrio, nombres comerciales, logotipos, diseños, interfaces, código fuente, código objeto, bases de datos, documentación, elementos gráficos y demás elementos desarrollados por la Empresa están protegidos por las leyes aplicables.</p>
+    <p>Salvo autorización expresa, no podrán copiarse, reproducirse, modificarse, distribuirse, venderse, arrendarse, descompilarse, someterse a ingeniería inversa o explotarse comercialmente, salvo cuando una ley imperativa permita expresamente hacerlo.</p>
+    <p>Los derechos de terceros utilizados en la Aplicación pertenecen a sus respectivos titulares.</p>
+  </section>
+
+  <section id="reclamaciones-pi">
+    <h2>15. Reclamaciones de propiedad intelectual</h2>
+    <p>Las reclamaciones sobre derechos de autor, marcas u otros derechos de propiedad intelectual pueden enviarse a legal@alertabarrio.com, identificando suficientemente el contenido, el derecho presuntamente afectado y los datos necesarios para contactar al reclamante.</p>
+    <p>La Empresa podrá retirar o limitar el acceso al contenido mientras evalúa una reclamación y solicitar información adicional.</p>
+  </section>
+
+  <section id="privacidad-ref">
+    <h2>16. Privacidad y protección de datos</h2>
+    <p>El tratamiento de datos personales se rige por la <a href="./privacidad.html">Política de Privacidad</a> de Alerta Barrio, que forma parte integral de estos Términos.</p>
+    <p>Cuando resulte aplicable legislación de otras jurisdicciones, se respetarán los derechos y garantías imperativas correspondientes, incluyendo, cuando proceda, los previstos por el RGPD, UK GDPR y leyes estatales de privacidad de Estados Unidos.</p>
+  </section>
+
+  <section id="transferencias">
+    <h2>17. Transferencias internacionales</h2>
+    <p>El Servicio utiliza proveedores tecnológicos ubicados en distintos países. Por ello, los datos pueden ser transferidos, almacenados o tratados internacionalmente.</p>
+    <p>Cuando una legislación aplicable imponga requisitos específicos, la Empresa utilizará mecanismos legalmente reconocidos, que pueden incluir decisiones de adecuación, cláusulas contractuales estándar, acuerdos equivalentes, garantías apropiadas u otros mecanismos permitidos.</p>
+    <p>La información específica sobre proveedores, categorías de datos y transferencias se encuentra en la Política de Privacidad.</p>
+  </section>
+
+  <section id="disponibilidad">
+    <h2>18. Disponibilidad y terceros</h2>
+    <p>La Empresa procurará mantener el Servicio disponible y seguro, pero no garantiza disponibilidad continua o ininterrumpida.</p>
+    <p>El Servicio puede depender de redes, sistemas operativos, tiendas de aplicaciones, servicios de nube, autenticación, mensajería, mapas, almacenamiento y otros proveedores externos.</p>
+    <p>La Empresa podrá actualizar, modificar, sustituir o retirar funciones por motivos técnicos, comerciales, de seguridad, legales o de evolución del producto.</p>
+  </section>
+
+  <section id="responsabilidad">
+    <h2>19. Limitación de responsabilidad</h2>
+    <p>En la máxima medida permitida por la legislación aplicable, la Empresa no será responsable por daños derivados de hechos fuera de su control razonable, interrupciones de redes o servicios externos, fallas de dispositivos, indisponibilidad de Internet, errores de ubicación, alertas no recibidas, contenido generado por usuarios, actuaciones de terceros o decisiones tomadas exclusivamente con base en información publicada en la Aplicación.</p>
+    <p>La Empresa no garantiza que la información publicada por usuarios sea exacta, completa, actual, verificada o apropiada para una decisión concreta.</p>
+    <p>Nada de estos Términos excluye o limita responsabilidad que legalmente no pueda excluirse o limitarse, incluidos derechos imperativos del consumidor.</p>
+  </section>
+
+  <section id="indemnizacion">
+    <h2>20. Indemnización</h2>
+    <p>En la medida permitida por la legislación aplicable, el usuario podrá ser responsable frente a la Empresa por reclamaciones de terceros que deriven directamente de contenido que haya publicado, de una infracción de estos Términos o de un uso ilícito del Servicio, cuando dicha responsabilidad resulte legalmente procedente.</p>
+    <p>Esta cláusula no limita derechos del usuario ni impone responsabilidades que la ley prohíba imponer al consumidor.</p>
+  </section>
+
+  <section id="suspension">
+    <h2>21. Suspensión y eliminación de cuenta</h2>
+    <p>La Empresa podrá suspender, restringir o cancelar una cuenta por infracción de estos Términos, riesgo de seguridad, fraude, abuso, uso ilícito, requerimiento legal u otra causa legítima.</p>
+    <p>Cuando la ley lo exija, se informará la razón y se proporcionará un mecanismo de reclamación o revisión.</p>
+    <p>El usuario podrá solicitar la eliminación de su cuenta desde la Aplicación y mediante el mecanismo web de eliminación publicado por la Empresa.</p>
+    <p>La eliminación no impide conservar información cuando exista obligación legal o una necesidad legítima y legalmente permitida de conservarla.</p>
+  </section>
+
+  <section id="modificaciones">
+    <h2>22. Modificaciones</h2>
+    <p>La Empresa podrá actualizar estos Términos para reflejar cambios legales, regulatorios, tecnológicos, operativos o del Servicio.</p>
+    <p>Cuando un cambio sea material y la legislación aplicable lo requiera, se proporcionará aviso adecuado y, cuando corresponda, se solicitará nuevo consentimiento.</p>
+    <p>La fecha de entrada en vigor se indicará en la versión publicada.</p>
+  </section>
+
+  <section id="fuerza-mayor">
+    <h2>23. Fuerza mayor</h2>
+    <p>La Empresa no será responsable por interrupciones o incumplimientos causados por acontecimientos fuera de su control razonable, incluidos desastres naturales, incendios, inundaciones, epidemias, guerras, conflictos civiles, actos gubernamentales, interrupciones de energía o telecomunicaciones, fallos generalizados de Internet, ataques informáticos de terceros o fallas de proveedores esenciales.</p>
+  </section>
+
+  <section id="divisibilidad">
+    <h2>24. Divisibilidad y no renuncia</h2>
+    <p>Si una disposición es declarada inválida, ilegal o inaplicable, las demás continuarán vigentes en la máxima medida permitida por la ley.</p>
+    <p>La falta de ejercicio inmediato de un derecho no constituye renuncia a dicho derecho.</p>
+  </section>
+
+  <section id="ley-aplicable">
+    <h2>25. Ley aplicable y jurisdicción</h2>
+    <p>Sin perjuicio de las normas imperativas aplicables al usuario, estos Términos se regirán por las leyes de la República de Honduras.</p>
+    <p>Las controversias podrán someterse a los tribunales competentes de Honduras, incluyendo Tegucigalpa cuando corresponda conforme a las reglas de competencia.</p>
+    <p>Esta cláusula no pretende privar al consumidor de derechos obligatorios de jurisdicción, protección al consumidor, protección de datos o mecanismos de resolución de controversias que le correspondan en su país de residencia.</p>
+  </section>
+
+  <section id="proteccion-menores">
+    <h2>26. Estándares de seguridad infantil y protección contra la explotación y el abuso sexual infantil</h2>
+    <div class="callout child-safety">
+      <strong>Tolerancia cero.</strong> Alerta Barrio prohíbe absolutamente, y no tolera bajo ninguna circunstancia, la explotación o el abuso sexual infantil (Child Sexual Abuse and Exploitation, "CSAE") en cualquier forma: publicación, distribución, solicitud, promoción o facilitación de dicho material o conducta a través de la Aplicación, sus funciones de mensajería, alertas, comentarios o cualquier otro medio del Servicio.
+    </div>
+    <p>Esta prohibición forma parte de la Sección 6 (Uso permitido y prohibiciones) de estos Términos y de las Normas de la Comunidad, y su incumplimiento constituye una infracción grave.</p>
+    <p><strong>Cómo denunciar.</strong> Cualquier persona, sea o no usuaria registrada, puede reportar contenido o conducta que constituya o sospeche que constituya explotación o abuso sexual infantil mediante:</p>
+    <ul>
+      <li>La función de denuncia disponible dentro de la Aplicación, en cada publicación, alerta, comentario, perfil o conversación.</li>
+      <li>El correo electrónico <a href="mailto:legal@alertabarrio.com">legal@alertabarrio.com</a>, con el asunto "Seguridad infantil".</li>
+    </ul>
+    <p><strong>Cómo respondemos.</strong> Ante una denuncia o detección de contenido que constituya o pueda constituir explotación o abuso sexual infantil, la Empresa:</p>
+    <ul>
+      <li>Retira o restringe el contenido y, cuando corresponda, suspende o elimina de forma permanente la cuenta involucrada, sin necesidad de aviso previo.</li>
+      <li>Conserva la información técnica estrictamente necesaria para atender la denuncia y para cumplir con obligaciones legales de reporte.</li>
+      <li>Reporta a las autoridades competentes de Honduras y, cuando la legislación aplicable lo requiera o lo permita, a las autoridades u organismos correspondientes de otras jurisdicciones, incluyendo mecanismos internacionales de reporte de explotación infantil cuando sean aplicables al Servicio.</li>
+      <li>Coopera con las investigaciones de las autoridades competentes dentro del marco legal aplicable.</li>
+    </ul>
+    <p>Alerta Barrio establece una edad mínima de 18 años para crear una cuenta (Sección 4) precisamente como una de las medidas para reducir el riesgo de que menores de edad sean usuarios directos del Servicio.</p>
+    <p>Preguntas sobre estos estándares: <a href="mailto:legal@alertabarrio.com">legal@alertabarrio.com</a>.</p>
+  </section>
+
+  <section id="contacto">
+    <h2>27. Contacto</h2>
+    <p>
+      Alertas Globales S de R L<br>
+      legal@alertabarrio.com<br>
+      privacidad@alertabarrio.com<br>
+      alertabarrio.com<br>
+      Honduras, Centroamérica
+    </p>
+    <p>La Empresa podrá designar representantes o responsables de privacidad en jurisdicciones donde la legislación aplicable lo requiera.</p>
+  </section>
+
+  <div class="footer-box">
+    Alertas Globales S de R L<br>
+    Alerta Barrio · Versión internacional 2.0 · Septiembre 2026
+  </div>
+
+</div>
 </body>
 </html>

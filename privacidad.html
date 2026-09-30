@@ -1,525 +1,363 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Política de Privacidad — Alerta Barrio</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
-        Roboto, Oxygen, sans-serif;
-      background: #F6F7FA;
-      color: #1a1a2e;
-      line-height: 1.6;
-    }
-
-    /* ── Header ── */
-    header {
-      background: linear-gradient(135deg, #101A2E 0%, #1a2d4a 100%);
-      padding: 32px 24px;
-      text-align: center;
-    }
-
-    .logo-area {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 8px;
-    }
-
-    .logo-text {
-      font-size: 28px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-    }
-
-    .logo-text span:first-child { color: #FF3355; }
-    .logo-text span:last-child  { color: #ffffff; }
-
-    .header-sub {
-      color: rgba(255,255,255,0.6);
-      font-size: 13px;
-    }
-
-    /* ── Warning banner ── */
-    .warning-banner {
-      background: #FFF7ED;
-      border-left: 4px solid #F59E0B;
-      margin: 24px auto;
-      max-width: 820px;
-      padding: 16px 20px;
-      border-radius: 0 10px 10px 0;
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-    }
-
-    .warning-icon {
-      font-size: 20px;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-
-    .warning-text {
-      font-size: 13.5px;
-      color: #7C2D12;
-      line-height: 1.6;
-      font-weight: 500;
-    }
-
-    /* ── Main ── */
-    main {
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 0 20px 60px;
-    }
-
-    /* ── Meta card ── */
-    .meta-card {
-      background: #EEF2FF;
-      border: 1px solid #C7D2FE;
-      border-radius: 12px;
-      padding: 14px 18px;
-      margin-bottom: 28px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13px;
-      color: #101A2E;
-      font-weight: 500;
-    }
-
-    /* ── Legal framework ── */
-    .legal-box {
-      background: #EEF2FF;
-      border: 1px solid #C7D2FE;
-      border-radius: 12px;
-      padding: 18px 20px;
-      margin-bottom: 32px;
-    }
-
-    .legal-box h3 {
-      font-size: 13.5px;
-      font-weight: 700;
-      color: #101A2E;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .legal-box ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .legal-box ul li {
-      font-size: 13px;
-      color: #374151;
-      padding: 3px 0;
-      padding-left: 16px;
-      position: relative;
-    }
-
-    .legal-box ul li::before {
-      content: '•';
-      position: absolute;
-      left: 0;
-      color: #101A2E;
-    }
-
-    /* ── Sections ── */
-    section {
-      background: #ffffff;
-      border-radius: 14px;
-      padding: 24px;
-      margin-bottom: 16px;
-      border: 1px solid #E3E7EE;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    }
-
-    .section-header {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-
-    .section-bar {
-      width: 4px;
-      height: 22px;
-      background: #101A2E;
-      border-radius: 2px;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .section-bar.red  { background: #FF3355; }
-    .section-bar.teal { background: #0BA89E; }
-
-    h2 {
-      font-size: 15px;
-      font-weight: 700;
-      color: #101A2E;
-      line-height: 1.3;
-    }
-
-    p {
-      font-size: 13.5px;
-      color: #374151;
-      line-height: 1.7;
-      margin-bottom: 12px;
-    }
-
-    p:last-child { margin-bottom: 0; }
-
-    ul, ol {
-      padding-left: 20px;
-      margin: 8px 0 12px;
-    }
-
-    ul li, ol li {
-      font-size: 13.5px;
-      color: #374151;
-      line-height: 1.7;
-      margin-bottom: 4px;
-    }
-
-    strong { color: #101A2E; font-weight: 600; }
-
-    /* ── Table ── */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 12px 0;
-      font-size: 13px;
-    }
-
-    th {
-      background: #F1F5F9;
-      color: #101A2E;
-      font-weight: 700;
-      padding: 10px 14px;
-      text-align: left;
-      border: 1px solid #E3E7EE;
-    }
-
-    td {
-      padding: 9px 14px;
-      border: 1px solid #E3E7EE;
-      color: #374151;
-      vertical-align: top;
-    }
-
-    tr:nth-child(even) td { background: #F8FAFC; }
-
-    /* ── Alert reveal box ── */
-    .reveal-box {
-      background: #FEF2F2;
-      border: 1px solid #FECACA;
-      border-radius: 10px;
-      padding: 16px;
-      margin: 12px 0;
-    }
-
-    .reveal-box p {
-      color: #7F1D1D;
-      font-size: 13.5px;
-      margin: 0;
-    }
-
-    /* ── Contact ── */
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13.5px;
-      color: #374151;
-      margin-bottom: 6px;
-    }
-
-    .contact-item a {
-      color: #101A2E;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .contact-item a:hover { text-decoration: underline; }
-
-    /* ── Footer ── */
-    footer {
-      background: #101A2E;
-      color: rgba(255,255,255,0.5);
-      text-align: center;
-      padding: 24px;
-      font-size: 12px;
-      line-height: 1.6;
-    }
-
-    footer a {
-      color: rgba(255,255,255,0.7);
-      text-decoration: none;
-    }
-
-    footer strong { color: rgba(255,255,255,0.9); }
-
-    /* ── Divider ── */
-    hr {
-      border: none;
-      border-top: 1px solid #E3E7EE;
-      margin: 16px 0;
-    }
-
-    @media (max-width: 600px) {
-      header { padding: 24px 16px; }
-      main { padding: 0 12px 40px; }
-      section { padding: 18px 16px; }
-      table { font-size: 12px; }
-      th, td { padding: 8px 10px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de Privacidad — Alerta Barrio</title>
+<style>
+  :root{
+    --navy:#101A2E;
+    --rojo:#FF2244;
+    --border:#E3E7EF;
+    --bg-soft:#F6F7FA;
+    --text:#3A4257;
+    --info-bg:#F0F4FF;
+    --info-border:#BFD0FF;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:0;
+    background:#FFFFFF;
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.65;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:32px 20px 64px;}
+  header.top .brand{font-size:22px; font-weight:800; letter-spacing:-0.5px;}
+  header.top .brand .a{color:var(--rojo);}
+  header.top .brand .b{color:var(--navy);}
+  .subtitle{font-size:13px; color:#8A93A6; margin-top:2px;}
+  .badge{
+    display:inline-block; margin-top:14px; padding:5px 10px;
+    background:var(--info-bg); color:var(--navy);
+    border-radius:8px; font-size:12.5px; font-weight:600;
+  }
+  hr{border:none; border-top:1px solid var(--border); margin:20px 0 8px;}
+  h2{
+    font-size:16px; color:var(--navy); font-weight:700;
+    margin:28px 0 10px; padding-left:12px; border-left:4px solid var(--navy);
+  }
+  p, li{font-size:14.5px; color:var(--text);}
+  ul{margin:6px 0; padding-left:22px;}
+  .callout{
+    background:var(--info-bg); border:1px solid var(--info-border);
+    border-radius:12px; padding:14px 16px; margin:16px 0 8px;
+    font-size:13.5px; color:var(--navy);
+  }
+  .callout.warn{
+    background:#FFF7ED; border-color:#FBBF24; color:#7C2D12;
+  }
+  .callout.child-safety{
+    background:#FFF0F3; border:1px solid var(--rojo); color:#5A0E1A;
+  }
+  .footer-box{
+    margin-top:28px; background:var(--bg-soft); border:1px solid var(--border);
+    border-radius:14px; padding:16px; font-size:12px; color:#8A93A6; line-height:1.5;
+  }
+  a{color:var(--navy);}
+  #proteccion-menores h2{border-left-color:var(--rojo);}
+</style>
 </head>
 <body>
+<div class="wrap">
 
-<!-- ── Header ── -->
-<header>
-  <div class="logo-area">
-    <div class="logo-text">
-      <span>Alerta</span><span>Barrio</span>
-    </div>
-  </div>
-  <p class="header-sub">🔒 Política de Privacidad y Protección de Datos</p>
-</header>
+  <header class="top">
+    <div class="brand"><span class="a">Alerta</span><span class="b">Barrio</span></div>
+    <div class="subtitle">Política de Privacidad y Protección de Datos</div>
+  </header>
+  <span class="badge">Versión 2.0 · Vigente desde septiembre de 2026</span>
+  <hr>
 
-<!-- ── Warning banner ── -->
-<div style="max-width:820px;margin:0 auto;padding:0 20px;">
-  <div class="warning-banner">
-    <div class="warning-icon">⚠️</div>
-    <div class="warning-text">
-      <strong>AVISO IMPORTANTE:</strong> Sus datos personales podrán ser revelados
-      a autoridades competentes (Ministerio Público, Policía Nacional, Poder Judicial)
-      cuando así lo requiera la ley vigente, una orden judicial o para proteger la
-      seguridad de personas en riesgo. Al usar esta aplicación usted acepta esta condición.
-    </div>
+  <div class="callout warn">
+    <strong>AVISO IMPORTANTE:</strong> Alerta Barrio puede divulgar datos personales a autoridades u otros terceros cuando exista una obligación legal, una solicitud jurídicamente válida, una emergencia o una base legal que lo permita. La divulgación se limitará a lo permitido o requerido por la legislación aplicable.
   </div>
+
+  <div class="callout">
+    <strong>Marco jurídico.</strong> Esta Política se interpreta conforme a la legislación aplicable en cada jurisdicción donde opere Alerta Barrio. En Honduras se consideran, entre otras normas aplicables, la Constitución de la República y la normativa vigente sobre acceso a la información y protección de datos. La Empresa adopta además principios internacionales de privacidad cuando resulten aplicables, incluidos los del RGPD y las leyes de privacidad de determinadas jurisdicciones de Estados Unidos. Los proyectos o anteproyectos de ley no se presentan como legislación vigente.
+  </div>
+
+  <section id="responsable">
+    <h2>1. Responsable del tratamiento</h2>
+    <p>Alertas Globales S de R L, con domicilio en la República de Honduras, Centroamérica, es responsable del tratamiento de los datos personales que procese directamente a través de Alerta Barrio cuando actúe como responsable.</p>
+    <p>Contacto:<br>
+      privacidad@alertabarrio.com<br>
+      legal@alertabarrio.com<br>
+      alertabarrio.com
+    </p>
+    <p>Cuando una institución, empresa u otro tercero determine por sí mismo las finalidades y medios de un tratamiento, podrá actuar como responsable independiente respecto de ese tratamiento, según corresponda legalmente.</p>
+  </section>
+
+  <section id="datos">
+    <h2>2. Datos que podemos recopilar</h2>
+    <p>Dependiendo de las funciones utilizadas, podemos tratar:</p>
+    <p><strong>2.1 Datos proporcionados:</strong></p>
+    <ul>
+      <li>Número de teléfono para registro y autenticación.</li>
+      <li>Nombre, alias o nombre mostrado.</li>
+      <li>País, ciudad y zona o comunidad seleccionada.</li>
+      <li>Fotografía de perfil, si el usuario la proporciona.</li>
+      <li>Textos, fotografías, videos, alertas, comentarios y demás contenido publicado.</li>
+      <li>Información incluida voluntariamente en reportes de personas, mascotas o vehículos.</li>
+      <li>Información proporcionada al contactar soporte o ejercer derechos.</li>
+    </ul>
+    <p><strong>2.2 Datos técnicos y de uso:</strong></p>
+    <ul>
+      <li>Identificadores técnicos necesarios para autenticación, seguridad o notificaciones.</li>
+      <li>Tokens de notificación push, como Firebase Cloud Messaging.</li>
+      <li>Modelo del dispositivo, sistema operativo, versión de la aplicación y datos técnicos necesarios para funcionamiento.</li>
+      <li>Registros técnicos, eventos, errores y datos de uso cuando los servicios o SDK instalados los recopilen.</li>
+      <li>Información necesaria para detectar fraude, abuso, accesos no autorizados o incidentes.</li>
+    </ul>
+    <p><strong>2.3 Ubicación:</strong> La Aplicación puede acceder a ubicación únicamente cuando una función que la requiera esté habilitada y el sistema operativo haya concedido el permiso. No se pretende realizar rastreo continuo en segundo plano salvo que una función específica y sus permisos lo permitan.</p>
+    <p><strong>2.4 Datos que no solicitamos deliberadamente:</strong> No solicitamos contraseñas tradicionales cuando el registro utiliza OTP. No necesitamos acceder a la agenda de contactos para prestar las funciones descritas. No solicitamos información bancaria para crear una cuenta de usuario.</p>
+  </section>
+
+  <section id="fuentes">
+    <h2>3. Fuentes de información</h2>
+    <p>Normalmente obtenemos información directamente del usuario, del dispositivo y de su interacción con el Servicio.</p>
+    <p>También podemos recibir información de proveedores que prestan servicios en nuestro nombre, por ejemplo autenticación, almacenamiento, notificaciones, seguridad, infraestructura o análisis, conforme a los contratos y obligaciones aplicables.</p>
+    <p>Cuando recibamos información personal de otra fuente y la legislación nos obligue a informar sobre dicha fuente, proporcionaremos la información correspondiente.</p>
+  </section>
+
+  <section id="finalidades">
+    <h2>4. Finalidades del tratamiento</h2>
+    <p>Podemos utilizar los datos para:</p>
+    <ul>
+      <li>Crear, autenticar y administrar cuentas.</li>
+      <li>Segmentar el Servicio por país, ciudad y comunidad.</li>
+      <li>Crear, mostrar y gestionar alertas.</li>
+      <li>Enviar notificaciones.</li>
+      <li>Facilitar comunicación comunitaria y mensajería.</li>
+      <li>Mostrar perfiles y contenido según la función.</li>
+      <li>Gestionar reportes de personas, mascotas y vehículos.</li>
+      <li>Verificar determinadas cuentas institucionales o empresariales.</li>
+      <li>Mantener seguridad e integridad.</li>
+      <li>Detectar y prevenir fraude, abuso, spam y accesos no autorizados.</li>
+      <li>Resolver solicitudes y problemas técnicos.</li>
+      <li>Cumplir obligaciones legales y atender solicitudes válidas de autoridades.</li>
+      <li>Defender derechos y proteger personas cuando exista una base legal.</li>
+      <li>Mejorar estabilidad, seguridad y funcionamiento.</li>
+      <li>Cumplir otras finalidades informadas al recopilar los datos o permitidas por la ley.</li>
+    </ul>
+  </section>
+
+  <section id="bases-legales">
+    <h2>5. Bases legales</h2>
+    <p>Según la jurisdicción y finalidad, el tratamiento puede basarse en:</p>
+    <ul>
+      <li>Ejecución de un contrato o prestación del Servicio.</li>
+      <li>Consentimiento, cuando sea requerido.</li>
+      <li>Cumplimiento de obligaciones legales.</li>
+      <li>Intereses legítimos, cuando sean legalmente reconocidos y no prevalezcan los derechos del usuario.</li>
+      <li>Protección de intereses vitales, cuando la ley lo permita.</li>
+      <li>Otras bases jurídicas permitidas localmente.</li>
+    </ul>
+    <p>Cuando el tratamiento se base en consentimiento, el usuario podrá retirarlo cuando la legislación lo permita. La retirada no afecta la licitud del tratamiento anterior.</p>
+  </section>
+
+  <section id="comparticion">
+    <h2>6. Compartición de datos</h2>
+    <p>Podemos compartir o permitir acceso a datos, según sea necesario y legalmente permitido, con:</p>
+    <ul>
+      <li>Proveedores de infraestructura, nube, almacenamiento y bases de datos.</li>
+      <li>Proveedores de autenticación y verificación.</li>
+      <li>Proveedores de notificaciones y comunicaciones.</li>
+      <li>Proveedores de seguridad, prevención del fraude y soporte.</li>
+      <li>Proveedores de análisis o diagnóstico cuando estén habilitados.</li>
+      <li>Instituciones o empresas cuando el usuario utilice una función destinada a comunicarse con ellas.</li>
+      <li>Asesores profesionales o entidades involucradas en operaciones corporativas cuando exista finalidad legítima y garantías adecuadas.</li>
+      <li>Autoridades cuando exista una base jurídica válida.</li>
+    </ul>
+    <p>Los proveedores que procesen datos por cuenta de la Empresa estarán sujetos, según corresponda, a obligaciones de confidencialidad, seguridad y tratamiento.</p>
+    <p>Las declaraciones de esta Política deben mantenerse alineadas con los SDK y servicios realmente instalados en la Aplicación.</p>
+  </section>
+
+  <section id="firebase">
+    <h2>7. Firebase y servicios tecnológicos</h2>
+    <p>Alerta Barrio utiliza servicios de Google/Firebase para funciones que pueden incluir autenticación, base de datos, almacenamiento, notificaciones, seguridad y otros servicios.</p>
+    <p>La configuración concreta puede cambiar. Por ello, las declaraciones de privacidad, seguridad y datos compartidos deberán mantenerse actualizadas cuando se incorporen o eliminen SDK o servicios.</p>
+    <p>Los proveedores externos pueden procesar datos en diferentes países y están sujetos a sus propias condiciones y políticas, además de las obligaciones contractuales que correspondan frente a la Empresa.</p>
+  </section>
+
+  <section id="transferencias-internacionales">
+    <h2>8. Transferencias internacionales</h2>
+    <p>Alerta Barrio tiene vocación internacional. Los datos pueden ser almacenados o tratados en Honduras, Estados Unidos y/o otros países donde operen la Empresa o sus proveedores.</p>
+    <p>Cuando una legislación restrinja transferencias internacionales, la Empresa utilizará los mecanismos legalmente reconocidos que correspondan, como decisiones de adecuación, cláusulas contractuales estándar, acuerdos equivalentes, garantías apropiadas u otras bases permitidas.</p>
+    <p>Para usuarios protegidos por el RGPD u otra normativa equivalente, la información sobre transferencias y garantías estará disponible en la medida exigida por dicha normativa.</p>
+    <p>No afirmamos que un país concreto ofrezca por sí mismo un nivel de protección adecuado para todas las jurisdicciones; la legalidad de cada transferencia dependerá del mecanismo aplicable.</p>
+  </section>
+
+  <section id="autoridades">
+    <h2>9. Autoridades y solicitudes gubernamentales</h2>
+    <p>La Empresa podrá divulgar información personal cuando exista una obligación legal, orden judicial, requerimiento jurídicamente válido, solicitud de autoridad competente con fundamento legal o una emergencia en la que la divulgación esté permitida para proteger la vida, integridad o seguridad de una persona.</p>
+    <p>La divulgación se limitará, cuando sea posible y legalmente apropiado, a la información razonablemente necesaria.</p>
+    <p>Si una solicitud es inválida o excesivamente amplia, la Empresa podrá, cuando sea legal y razonablemente posible, solicitar aclaración, limitar su alcance o impugnarla.</p>
+    <p>Cuando la legislación permita notificar al usuario, la Empresa podrá hacerlo salvo prohibición legal, riesgo para una investigación, seguridad de personas u otra excepción aplicable.</p>
+  </section>
+
+  <section id="ubicacion-identidad">
+    <h2>10. Ubicación y protección de identidad</h2>
+    <p>La ubicación puede ser especialmente sensible. Por ello:</p>
+    <ul>
+      <li>No se pretende rastrear continuamente al usuario en segundo plano salvo que una función específica y sus permisos lo permitan.</li>
+      <li>El usuario controla los permisos mediante su dispositivo.</li>
+      <li>Una alerta puede incluir ubicación aproximada o ubicación que el usuario decida compartir.</li>
+      <li>La Empresa puede reducir la precisión antes de mostrar una ubicación a otros usuarios.</li>
+      <li>Una ubicación exacta puede tratarse cuando sea necesaria para una función habilitada por el usuario o exista una base legal válida.</li>
+      <li>En una emergencia, la información puede divulgarse a autoridades o servicios de emergencia cuando exista base jurídica para hacerlo.</li>
+    </ul>
+    <p>La reducción de precisión no constituye una garantía de anonimato absoluto.</p>
+  </section>
+
+  <section id="anonimato">
+    <h2>11. Anonimato y contenido público</h2>
+    <p>Algunas funciones pueden permitir publicar una alerta sin mostrar públicamente el nombre del usuario. El anonimato frente a otros usuarios no significa anonimato frente a la Empresa, proveedores que actúen por cuenta de la Empresa o autoridades que obtengan legalmente información.</p>
+    <p>La Empresa puede conservar información técnica necesaria para investigar abuso, fraude, incidentes de seguridad o solicitudes legalmente válidas.</p>
+    <p>El usuario debe evitar publicar información personal de terceros que no sea necesaria para la finalidad de la publicación.</p>
+  </section>
+
+  <section id="conservacion">
+    <h2>12. Conservación</h2>
+    <p>La Empresa conservará datos durante el tiempo necesario para prestar el Servicio, cumplir la finalidad para la que fueron recopilados, mantener seguridad, resolver controversias, cumplir obligaciones legales o ejercer y defender derechos.</p>
+    <p>No se establece un único período universal para todos los datos. El período puede variar según categoría, finalidad, actividad de la cuenta, requisitos legales, seguridad y respaldos.</p>
+    <p>Cuando sea posible, los datos serán eliminados, anonimizados o desasociados cuando ya no sean necesarios.</p>
+    <p>Los respaldos técnicos pueden conservar copias durante un período limitado adicional hasta su rotación normal.</p>
+  </section>
+
+  <section id="eliminacion">
+    <h2>13. Eliminación de cuenta y datos</h2>
+    <p>El usuario puede solicitar la eliminación de su cuenta mediante la función disponible en la Aplicación y mediante el mecanismo web de eliminación que la Empresa mantenga publicado en alertabarrio.com.</p>
+    <p>Al recibir una solicitud, la Empresa eliminará los datos asociados que ya no sean necesarios, sujetos a excepciones legales y técnicas.</p>
+    <p>Podremos conservar información cuando sea necesario para cumplir una obligación legal, prevenir fraude o abuso, proteger la seguridad, resolver disputas, establecer o ejercer reclamaciones legales, cumplir solicitudes de autoridades o conservar registros exigidos por ley.</p>
+    <p>La eliminación de una cuenta no obliga a un tercero que haya recibido legítimamente información a eliminarla si ese tercero tiene una base legal independiente para conservarla.</p>
+  </section>
+
+  <section id="derechos">
+    <h2>14. Derechos de privacidad</h2>
+    <p>Según la legislación aplicable, el usuario puede tener derecho a:</p>
+    <ul>
+      <li>Ser informado sobre el tratamiento.</li>
+      <li>Acceder a sus datos.</li>
+      <li>Rectificar datos inexactos.</li>
+      <li>Solicitar eliminación o supresión.</li>
+      <li>Solicitar limitación del tratamiento.</li>
+      <li>Oponerse a determinados tratamientos.</li>
+      <li>Retirar consentimiento.</li>
+      <li>Solicitar portabilidad cuando proceda.</li>
+      <li>Solicitar revisión humana de determinadas decisiones automatizadas cuando la ley lo reconozca.</li>
+      <li>Presentar reclamación ante una autoridad competente.</li>
+    </ul>
+    <p>Solicitudes: privacidad@alertabarrio.com.</p>
+    <p>Podremos solicitar información razonable para verificar identidad.</p>
+    <p>Cuando resulte aplicable el RGPD, las solicitudes serán atendidas sin demora indebida y, en principio, dentro de un mes, sujeto a extensiones y excepciones legales. En otras jurisdicciones se aplicarán los plazos locales.</p>
+  </section>
+
+  <section id="derechos-eeuu">
+    <h2>15. Determinados derechos en Estados Unidos</h2>
+    <p>Cuando resulte aplicable una ley estatal de privacidad de Estados Unidos, el usuario puede tener derechos adicionales, incluidos acceso, eliminación, corrección, conocimiento de determinadas categorías de tratamiento y, cuando corresponda, derechos relacionados con la venta o el intercambio de información personal y con información personal sensible.</p>
+    <p>La Empresa no vende información personal de los usuarios.</p>
+    <p>Si en el futuro se implementara una actividad que constituya "venta", "sharing" o publicidad comportamental entre contextos conforme a una ley aplicable, se habilitarán los mecanismos de exclusión y demás derechos exigidos.</p>
+    <p>La ubicación geográfica precisa puede estar sujeta a protecciones especiales en determinadas jurisdicciones.</p>
+  </section>
+
+  <section id="menores">
+    <h2>16. Menores de edad</h2>
+    <p>Alerta Barrio no está dirigido a menores y establece una edad mínima de 18 años para crear una cuenta.</p>
+    <p>La Empresa no pretende recopilar deliberadamente datos personales de menores de 18 años para crear cuentas. Si se detecta una cuenta que incumpla este requisito, podrá ser suspendida o eliminada.</p>
+    <p>En Estados Unidos, COPPA establece obligaciones específicas para servicios dirigidos a menores de 13 años o que tengan conocimiento real de que recopilan información personal de menores de 13 años. Si alguna función o mercado llegara a quedar comprendido en esa normativa u otra equivalente, se aplicarán los requisitos legales correspondientes.</p>
+    <p>Padres, madres o tutores pueden contactar a privacidad@alertabarrio.com.</p>
+  </section>
+
+  <section id="proteccion-menores">
+    <h2>17. Estándares de seguridad infantil y protección contra la explotación y el abuso sexual infantil</h2>
+    <div class="callout child-safety">
+      <strong>Tolerancia cero.</strong> Alerta Barrio prohíbe absolutamente la explotación y el abuso sexual infantil (CSAE) en cualquier forma dentro del Servicio: publicación, distribución, solicitud, promoción o facilitación de dicho material o conducta a través de alertas, publicaciones, comentarios, mensajería o cualquier otra función de la Aplicación.
+    </div>
+    <p><strong>Denuncias.</strong> Cualquier persona puede reportar contenido o conducta sospechosa mediante la función de denuncia integrada en cada publicación, alerta, comentario, perfil o conversación dentro de la Aplicación, o escribiendo a <a href="mailto:legal@alertabarrio.com">legal@alertabarrio.com</a> con el asunto "Seguridad infantil".</p>
+    <p><strong>Respuesta.</strong> Ante una denuncia o detección de este tipo de contenido, la Empresa retira o restringe el contenido, suspende o elimina la cuenta involucrada sin necesidad de aviso previo, conserva la información técnica estrictamente necesaria para atender la denuncia y cumplir obligaciones legales de reporte, y reporta a las autoridades competentes de Honduras y, cuando corresponda, a las autoridades u organismos internacionales aplicables. La Empresa coopera con las investigaciones de las autoridades competentes dentro del marco legal aplicable.</p>
+    <p>Esta sección complementa la Sección 16 (Menores de edad) de esta Política y la Sección 26 de los <a href="./terminos.html#proteccion-menores">Términos y Condiciones</a>. Preguntas: <a href="mailto:legal@alertabarrio.com">legal@alertabarrio.com</a>.</p>
+  </section>
+
+  <section id="seguridad">
+    <h2>18. Seguridad</h2>
+    <p>La Empresa implementa medidas técnicas y organizativas razonables y apropiadas para proteger datos personales frente a acceso, pérdida, destrucción, alteración o divulgación no autorizados, considerando la naturaleza de los datos y los riesgos.</p>
+    <p>Estas medidas pueden incluir cifrado en tránsito y en reposo cuando corresponda, controles de acceso, autenticación, reglas de seguridad, monitoreo, respaldos y mecanismos de protección contra abuso.</p>
+    <p>Ningún sistema conectado a Internet puede garantizar seguridad absoluta. El usuario también debe proteger su dispositivo y códigos de autenticación.</p>
+  </section>
+
+  <section id="incidentes">
+    <h2>19. Incidentes y violaciones de datos</h2>
+    <p>La Empresa mantiene procedimientos para detectar, evaluar, contener, investigar y responder a incidentes de seguridad.</p>
+    <p>Cuando la legislación aplicable exija notificar una violación de datos a una autoridad o a las personas afectadas, la Empresa realizará las notificaciones correspondientes dentro de los plazos y condiciones establecidos por dicha legislación.</p>
+    <p>La existencia de un incidente no significa automáticamente que todos los usuarios deban ser notificados; dependerá de la naturaleza del incidente, el riesgo y la ley aplicable.</p>
+  </section>
+
+  <section id="contenido-terceros">
+    <h2>20. Contenido generado por usuarios y privacidad de terceros</h2>
+    <p>Alerta Barrio puede contener información publicada por usuarios. Los usuarios no deben publicar datos personales de terceros sin una base legítima.</p>
+    <p>La publicación de nombres, teléfonos, direcciones, fotografías, documentos, información médica, ubicación u otros datos de terceros debe realizarse únicamente cuando sea legal y necesario para la finalidad perseguida.</p>
+    <p>La Empresa puede retirar contenido que infrinja derechos de privacidad, protección de datos, propiedad intelectual, seguridad o las Normas de la Comunidad.</p>
+  </section>
+
+  <section id="notificaciones-push">
+    <h2>21. Notificaciones push</h2>
+    <p>Alerta Barrio puede utilizar servicios de notificaciones push, incluyendo Firebase Cloud Messaging u otros servicios compatibles.</p>
+    <p>El usuario puede controlar notificaciones mediante la Aplicación y el sistema operativo, aunque desactivarlas puede impedir recibir determinados avisos.</p>
+    <p>Los identificadores técnicos utilizados para notificaciones se tratarán conforme a la configuración real de los proveedores y a las finalidades descritas en esta Política.</p>
+  </section>
+
+  <section id="cookies">
+    <h2>22. Cookies y tecnologías similares</h2>
+    <p>El sitio web de Alerta Barrio puede utilizar cookies, almacenamiento local, píxeles, registros u otras tecnologías similares para seguridad, funcionamiento, preferencias, medición o funcionalidades del sitio.</p>
+    <p>Cuando la legislación exija consentimiento para determinadas tecnologías, se solicitará mediante el mecanismo correspondiente.</p>
+    <p>El uso de cookies y tecnologías similares en el sitio web puede describirse en una Política de Cookies separada.</p>
+  </section>
+
+  <section id="publicidad">
+    <h2>23. Publicidad y marketing</h2>
+    <p>La Empresa no vende datos personales de los usuarios.</p>
+    <p>La Empresa puede enviar comunicaciones relacionadas con el Servicio, seguridad, cuenta o cambios importantes. Las comunicaciones comerciales estarán sujetas a las opciones del usuario y a la legislación aplicable.</p>
+    <p>Si en el futuro se incorporan publicidad, medición o marketing de terceros que implique nuevas categorías de tratamiento, esta Política será actualizada y, cuando sea necesario, se solicitará consentimiento u ofrecerá exclusión antes del tratamiento correspondiente.</p>
+  </section>
+
+  <section id="decisiones-automatizadas">
+    <h2>24. Decisiones automatizadas e inteligencia artificial</h2>
+    <p>La Empresa puede utilizar herramientas automatizadas para seguridad, detección de spam, prevención de fraude, clasificación de contenido, soporte u otras funciones.</p>
+    <p>Salvo información expresa en contrario, estas herramientas no deben considerarse una decisión automatizada con efectos jurídicos o efectos igualmente significativos sobre el usuario.</p>
+    <p>Si en el futuro se implementara una decisión automatizada sujeta a derechos específicos, se proporcionará la información y salvaguardas exigidas, incluida intervención humana cuando corresponda.</p>
+  </section>
+
+  <section id="cambios">
+    <h2>25. Cambios a esta Política</h2>
+    <p>La Empresa puede actualizar esta Política para reflejar cambios en el Servicio, proveedores, tecnología, legislación o prácticas de privacidad.</p>
+    <p>La versión vigente indicará su fecha. Cuando un cambio sea material y la legislación exija aviso o consentimiento adicional, se utilizará el mecanismo correspondiente.</p>
+    <p>Una actualización no convierte retroactivamente en lícito un tratamiento que requiera una base jurídica inexistente.</p>
+  </section>
+
+  <section id="reclamaciones">
+    <h2>26. Reclamaciones y autoridades</h2>
+    <p>Si el usuario considera que sus datos han sido tratados de forma contraria a esta Política o a la legislación aplicable, puede comunicarse primero con privacidad@alertabarrio.com.</p>
+    <p>Cuando corresponda, también puede presentar una reclamación ante la autoridad de protección de datos, privacidad, consumo o información pública competente de su jurisdicción.</p>
+    <p>Para usuarios protegidos por el RGPD, el derecho a reclamar ante una autoridad de control no se elimina por contactar primero con la Empresa.</p>
+  </section>
+
+  <section id="contacto">
+    <h2>27. Contacto</h2>
+    <p>
+      Alertas Globales S de R L<br>
+      privacidad@alertabarrio.com<br>
+      legal@alertabarrio.com<br>
+      alertabarrio.com<br>
+      Honduras, Centroamérica
+    </p>
+    <p>La Empresa podrá designar representantes, responsables de privacidad o delegados de protección de datos cuando la legislación aplicable lo requiera.</p>
+  </section>
+
+  <div class="footer-box">
+    Alertas Globales S de R L<br>
+    Alerta Barrio · Versión internacional 2.0 · Septiembre 2026
+  </div>
+
 </div>
-
-<main>
-
-  <!-- Meta -->
-  <div class="meta-card">
-    📄 &nbsp;Versión 1.0 &nbsp;•&nbsp; Vigente desde agosto de 2026 &nbsp;•&nbsp; Alertas Globales S de R L
-  </div>
-
-  <!-- Marco legal -->
-  <div class="legal-box">
-    <h3>⚖️ Marco legal aplicable</h3>
-    <ul>
-      <li>Constitución de Honduras, Art. 76 y Art. 182 (Habeas Data)</li>
-      <li>Ley de Transparencia y Acceso a la Información Pública (Decreto 170-2006)</li>
-      <li>Anteproyecto de Ley de Protección de Datos Personales de Honduras</li>
-      <li>Principios del RGPD europeo adoptados como estándar internacional</li>
-    </ul>
-  </div>
-
-  <!-- 1 -->
-  <section>
-    <div class="section-header">
-      <div class="section-bar"></div>
-      <h2>1. Responsable del tratamiento</h2>
-    </div>
-    <p><strong>Alertas Globales S de R L</strong>, con domicilio en la República de Honduras,
-    Centroamérica, es la empresa responsable del tratamiento de sus datos personales
-    a través de la aplicación móvil Alerta Barrio.</p>
-    <div class="contact-item">📧 <a href="mailto:alertabarriohn@gmail.com">alertabarriohn@gmail.com</a></div>
-    <div class="contact-item">🌐 <a href="https://alertabarrio.com">alertabarrio.com</a></div>
-  </section>
-
-  <!-- 2 -->
-  <section>
-    <div class="section-header">
-      <div class="section-bar"></div>
-      <h2>2. Datos personales que recopilamos</h2>
-    </div>
-    <p><strong>Datos que usted nos proporciona:</strong></p>
-    <ul>
-      <li>Número de teléfono celular (obligatorio para verificación)</li>
-      <li>Nombre o alias (para identificación en la comunidad)</li>
-      <li>Zona de residencia y/o trabajo (colonia, ciudad, país)</li>
-      <li>Fotografía de perfil (opcional)</li>
-      <li>Contenido publicado: textos, fotos y videos</li>
-    </ul>
-    <p><strong>Datos recopilados automáticamente:</strong></p>
-    <ul>
-      <li>Ubicación geográfica: SOLO cuando usted la activa al emitir una alerta.
-      Por defecto se almacena una ubicación aproximada (60-80 metros) para proteger su identidad</li>
-      <li>Tokens FCM para notificaciones push</li>
-      <li>Datos de uso y modelo del dispositivo</li>
-    </ul>
-    <p><strong>Lo que NO recopilamos:</strong></p>
-    <ul>
-      <li>No accedemos a sus contactos telefónicos</li>
-      <li>No rastreamos su ubicación en segundo plano</li>
-      <li>No recopilamos información financiera o bancaria</li>
-    </ul>
-  </section>
-
-  <!-- 3 -->
-  <section>
-    <div class="section-header">
-      <div class="section-bar teal"></div>
-      <h2>3. Finalidad y uso de sus datos</h2>
-    </div>
-    <table>
-      <tr><th>Dato</th><th>Finalidad</th></tr>
-      <tr><td>Número de teléfono</td><td>Verificación de identidad, autenticación OTP</td></tr>
-      <tr><td>Nombre</td><td>Identificación en la comunidad</td></tr>
-      <tr><td>Zona de residencia</td><td>Segmentación de alertas por colonia/ciudad</td></tr>
-      <tr><td>Ubicación</td><td>Mostrar en alertas (aproximada por defecto)</td></tr>
-      <tr><td>Tokens FCM</td><td>Envío de notificaciones push</td></tr>
-      <tr><td>Fotos/videos</td><td>Publicación en alertas y muro comunitario</td></tr>
-      <tr><td>Datos de uso</td><td>Mejorar la app y detectar fraudes</td></tr>
-    </table>
-  </section>
-
-  <!-- 4 -->
-  <section>
-    <div class="section-header">
-      <div class="section-bar red"></div>
-      <h2>4. Compartición de datos — SUS DATOS SERÁN REVELADOS</h2>
-    </div>
-
-    <p><strong>Con otros usuarios:</strong></p>
-    <ul>
-      <li>Su nombre y foto son visibles SOLO para vecinos de su colonia si no elige el modo anónimo</li>
-      <li>Su número de teléfono NUNCA es visible para otros usuarios</li>
-    </ul>
-
-    <div class="reveal-box">
-      <p>⚠️ <strong>SUS DATOS SERÁN REVELADOS a autoridades cuando:</strong><br><br>
-      • Exista orden judicial emitida por juez competente<br>
-      • Lo requiera el Ministerio Público en investigación criminal<br>
-      • Sea necesario para proteger la vida de personas en peligro inmediato<br>
-      • Lo exija la Policía Nacional ante emergencia verificada<br>
-      • Lo requiera cualquier autoridad competente conforme a la ley vigente<br><br>
-      En emergencias verificadas, su ubicación y número podrán compartirse con el
-      <strong>911, Policía Nacional o Bomberos</strong>.</p>
-    </div>
-
-    <p><strong>Con proveedores tecnológicos:</strong></p>
-    <ul>
-      <li>Google Firebase: autenticación, base de datos, almacenamiento y notificaciones</li>
-      <li>Google Cloud: infraestructura de servidores</li>
-    </ul>
-    <p><strong>Lo que NUNCA hacemos:</strong> No vendemos sus datos. No los compartimos con anunciantes sin su consentimiento.</p>
-  </section>
-
-  <!-- 5 -->
-  <section>
-    <div class="section-header">
-      <div class="section-bar"></div>
-      <h2>5. Almacenamiento y seguridad</h2>
-    </div>
-    <p>Sus datos se almacenan en servidores de <strong>Google Firebase</strong> en Estados Unidos,
-    bajo las garantías de transferencia internacional de Google.</p>
-    <p><strong>Medidas de seguridad:</strong></p>
-    <ul>
-      <li>Cifrado en tránsito (HTTPS/TLS)</li>
-      <li>Cifrado en reposo en Firebase</li>
-      <li>Reglas de acceso restrictivas</li>
-      <li>Autenticación de dos factores mediante OTP</li>
-    </ul>
-    <p><strong>Tiempo de conservación:</strong></p>
-    <ul>
-      <li>Cuenta activa: mientras mantenga su cuenta</li>
-      <li>Alertas y publicaciones: hasta 2 años</li>
-      <li>Cuenta eliminada: 30 días para recuperación, luego eliminación definitiva</li>
-    </ul>
-  </section>
-
-  <!-- 6 -->
-  <section>
-    <div class="section-header">
-      <div class="section-bar teal"></div>
-      <h2>6. Anonimato y protección de identidad</h2>
-    </div>
-    <p>Las alertas de emergencia se publican de forma <strong>anónima por defecto</strong>.
-    La ubicación es aproximada (60-80 metros) para proteger su identidad.</p>
-    <p>No revelaremos su identidad a otros usuarios. Sin embargo, como se indica en la
-    sección 4, sus datos SÍ podrán ser revelados a autoridades competentes cuando sea
-    necesario conforme a la ley.</p>
-  </section>
-
-  <!-- 7 -->
-  <section>
-    <div class="section-header">
-      <div class="section-bar"></div>
-      <h2>7. Sus derechos</h2>
-    </div>
-    <p>Conforme a la Constitución de Honduras (Art. 182 Habeas Data) y la Ley de
-    Transparencia, usted tiene derecho a:</p>
-    <ul>
-      <li><strong>Acceso:</strong> conocer qué datos tenemos sobre usted</li>
-      <li><strong>Rectificación:</strong> corregir datos inexactos</li>
-      <li><strong>Cancelación:</strong> solicitar borrado de sus datos</li>
-      <li><strong>Oposición:</strong> oponerse a ciertos tratamientos</li>
-      <li><strong>Portabilidad:</strong> recibir sus datos en formato estructurado</li>
-    </ul>
-    <p>Para ejercer estos derechos: <a href="mailto:privacidad@alertabarrio.com">privacidad@alertabarrio.com</a>
-    — Responderemos en máximo 30 días hábiles.</p>
-  </section>
-
-  <!-- 8 -->
-  <section>
-    <div class="section-header">
-      <div class="section-bar"></div>
-      <h2>8. Menores de edad</h2>
-    </div>
-    <p>Alerta Barrio <strong>no está dirigida a personas menores de 18 años</strong>.
-    Si detectamos que un menor se ha registrado, eliminaremos su cuenta de inmediato.
-    Contáctenos en <a href="mailto:privacidad@alertabarrio.com">privacidad@alertabarrio.com</a>.</p>
-  </section>
-
-  <!-- 9 -->
-  <section>
-    <div class="section-header">
-      <div class="section-bar"></div>
-      <h2>9. Ubicación y notificaciones</h2>
-    </div>
-    <p>La ubicación SOLO se accede cuando usted la activa al emitir una alerta.
-    <strong>Alerta Barrio NO rastrea su ubicación en segundo plano</strong> ni cuando
-    la aplicación está cerrada.</p>
-    <p>Puede desactivar las notificaciones push desde la configuración de su dispositivo.</p>
-  </section>
-
-  <!-- 10 -->
-  <section>
-    <div class="section-header">
-      <div class="section-bar"></div>
-      <h2>10. Cambios y contacto</h2>
-    </div>
-    <p>Podemos actualizar esta Política periódicamente. Los cambios se notificarán en la
-    aplicación. Los cambios relacionados con revelación de datos a autoridades siempre
-    aplicarán conforme a la ley vigente.</p>
-    <hr>
-    <div class="contact-item">🏢 <strong>Alertas Globales S de R L</strong></div>
-    <div class="contact-item">📧 <a href="mailto:alertabarriohn@gmail.com">alertabarriohn@gmail.com</a></div>
-    <div class="contact-item">🌐 <a href="https://alertabarrio.com">alertabarrio.com</a></div>
-    
-  </section>
-
-</main>
-
-<footer>
-  <strong>Alertas Globales S de R L</strong><br>
-  Versión 1.0 &nbsp;·&nbsp; Agosto 2026 &nbsp;·&nbsp; Honduras, C.A.<br>
-  <a href="terminos.html">Términos y Condiciones</a>
-  &nbsp;·&nbsp;
-  <a href="privacidad.html">Política de Privacidad</a>
-</footer>
-
 </body>
 </html>
