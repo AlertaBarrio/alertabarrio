@@ -1,633 +1,538 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="Alerta Barrio: todos los barrios y colonias en una sola app. Alertas en tiempo real entre vecinos, instituciones y empresas, con alcance segmentado.">
 <title>Alerta Barrio</title>
-<meta name="description" content="Alerta Barrio: alertas comunitarias en tiempo real entre vecinos, con instituciones y empresas registradas, segmentadas por colonia, ciudad y país.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --navy:#101A2E;
-    --navy2:#0B1220;
-    --rojo:#FF2244;
-    --border:#E3E7EF;
-    --bg-soft:#F6F7FA;
-    --text:#3A4257;
-    --text-muted:#5A6478;
-    --amarillo:#D99A00;
-    --verde:#178A5A;
+/* Concepto: panel de control nocturno (como la app), radar como pieza central,
+   secciones en bloques anchos con un color semántico por tipo de alerta. */
+:root{
+  --bg:#14264a; --bg2:#1c3260; --card:#213a68; --line:#39578c;
+  --fg:#f2f6fd; --dim:#bccbe3; --faint:#8da1c4;
+  --accent:#2f6fe0; --accent-ink:#ffffff; --accent-text:#8bbcff; --sky:#5ac8fa;
+  --red:#ff3355; --amber:#f59e0b; --blue:#4f8cff; --violet:#a78bfa;
+  --r:18px;
+  --f-display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;
+  --f-body:'Instrument Sans','Segoe UI',system-ui,sans-serif;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#f4f6fa; --bg2:#e9eef6; --card:#ffffff; --line:#d9e0ec;
+    --fg:#0d1526; --dim:#4a5b78; --faint:#7a889f;
+    --accent:#1d5fd0; --accent-ink:#ffffff; --accent-text:#1d5fd0; --sky:#0a7fb5;
+    --red:#d91f40; --amber:#b86e00; --blue:#2f6be0; --violet:#6d4fd8;
+    color-scheme:light;
   }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0; padding:0;
-    background:#FFFFFF;
-    color:var(--text);
-    font-family:'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    line-height:1.6;
-  }
-  h1,h2,h3{font-family:'Space Grotesk', -apple-system, sans-serif; margin:0;}
-  p, li{margin:0;}
-  .wrap{max-width:1100px; margin:0 auto; padding:0 24px;}
-  a{color:inherit;}
-  img{max-width:100%; display:block;}
+}
+:root[data-theme="light"]{
+  --bg:#f4f6fa; --bg2:#e9eef6; --card:#ffffff; --line:#d9e0ec;
+  --fg:#0d1526; --dim:#4a5b78; --faint:#7a889f;
+  --accent:#1d5fd0; --accent-ink:#ffffff; --accent-text:#1d5fd0; --sky:#0a7fb5;
+  --red:#d91f40; --amber:#b86e00; --blue:#2f6be0; --violet:#6d4fd8;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 var(--f-body);margin:0;padding-inline:16px;overflow-x:hidden}
+.wrap{max-width:1080px;margin-inline:auto}
+section{padding-block:56px}
+h1,h2,h3{font-family:var(--f-display);line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.02em}
+h1{font-size:clamp(2.4rem,9vw,4.4rem);font-weight:800}
+h2{font-size:clamp(1.7rem,5.5vw,2.6rem);font-weight:800}
+h3{font-size:1.18rem;font-weight:600;letter-spacing:-.01em}
+p{margin:0}
+.eyebrow{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);font-weight:600;margin-bottom:12px}
+.lead{color:var(--dim);font-size:1.06rem;max-width:60ch;margin-top:14px}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent-text);outline-offset:3px;border-radius:6px}
 
-  /* ---------- NAV ---------- */
-  header.nav{
-    position:sticky; top:0; z-index:50;
-    background:rgba(255,255,255,0.92); backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--border);
-  }
-  .nav-inner{
-    max-width:1100px; margin:0 auto; padding:0 24px;
-    height:68px; display:flex; align-items:center; justify-content:space-between;
-  }
-  .brand{display:flex; align-items:center; gap:10px; font-size:19px; font-weight:700; text-decoration:none;}
-  .brand .mark{width:32px; height:32px; border-radius:9px; background:var(--navy); display:flex; align-items:center; justify-content:center; flex:none; overflow:hidden;}
-  .brand .mark img{width:100%; height:100%; object-fit:cover; display:block;}
-  .brand .a{color:var(--rojo);} .brand .b{color:var(--navy);}
-  nav.links{display:flex; gap:26px;}
-  nav.links a{font-size:14px; font-weight:600; text-decoration:none; color:var(--text-muted);}
-  nav.links a:hover{color:var(--rojo);}
-  .nav-cta{
-    display:inline-flex; padding:10px 18px; background:var(--rojo); color:#fff;
-    border-radius:10px; font-size:13.5px; font-weight:700; text-decoration:none; white-space:nowrap;
-  }
-  #menu-toggle{display:none;}
-  .burger{display:none; cursor:pointer; width:26px; height:20px; flex-direction:column; justify-content:space-between;}
-  .burger span{display:block; height:2px; background:var(--navy); border-radius:2px;}
+/* NAV */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;margin-inline:-16px;padding:10px 16px;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:800;font-size:1.1rem;text-decoration:none}
+.brand svg{width:30px;height:30px;flex:none}
+.nav-links{display:none;gap:22px;font-size:.92rem;color:var(--dim)}
+.nav-links a{text-decoration:none}.nav-links a:hover{color:var(--fg)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;border-radius:999px;font-weight:600;font-size:.95rem;text-decoration:none;border:1px solid var(--line);color:var(--fg)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.sm{min-height:38px;padding:0 16px;font-size:.88rem}
+@media(min-width:820px){.nav-links{display:flex}}
 
-  @media (max-width:860px){
-    nav.links{
-      position:absolute; top:68px; left:0; right:0; background:#fff;
-      flex-direction:column; gap:0; border-bottom:1px solid var(--border);
-      max-height:0; overflow:hidden; transition:max-height .25s ease;
-    }
-    nav.links a{padding:16px 24px; border-top:1px solid var(--border);}
-    #menu-toggle:checked ~ .nav-inner nav.links{max-height:420px;}
-    .burger{display:flex;}
-    .nav-cta{display:none;}
-  }
+/* HERO */
+.hero{padding-top:36px;display:grid;gap:28px;align-items:center}
+.hero-copy{min-width:0}
+.hero-copy .lead{font-size:1.12rem}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.status{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-size:.84rem;color:var(--dim);background:var(--card);border:1px solid var(--line);padding:7px 14px;border-radius:999px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 25%,transparent)}
+.radar-box{justify-self:center;width:min(100%,420px);aspect-ratio:1}
+.radar{width:100%;height:100%;display:block}
+.sweep{transform-origin:200px 200px;animation:spin 5s linear infinite}
+.ping{animation:ping 2.4s ease-out infinite;transform-box:fill-box;transform-origin:center}
+.ping.d2{animation-delay:.8s}.ping.d3{animation-delay:1.6s}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes ping{0%{opacity:.9;transform:scale(.4)}100%{opacity:0;transform:scale(2.4)}}
+@media(min-width:860px){.hero{grid-template-columns:1.1fr .9fr;gap:40px}}
 
-  /* ---------- HERO ---------- */
-  section.hero{
-    position:relative; overflow:hidden;
-    color:#FBFBFB; padding:120px 0 100px;
-    background:linear-gradient(160deg,var(--navy) 0%, var(--navy2) 100%);
-  }
-  .hero-bg{position:absolute; inset:0; z-index:0;}
-  .hero-bg img{width:100%; height:100%; object-fit:cover; object-position:center 32%;}
-  .hero-bg::after{
-    content:""; position:absolute; inset:0;
-    background:
-      linear-gradient(100deg, rgba(10,16,28,0.94) 0%, rgba(10,16,28,0.82) 38%, rgba(10,16,28,0.45) 68%, rgba(10,16,28,0.25) 100%),
-      linear-gradient(0deg, rgba(10,16,28,0.55) 0%, rgba(10,16,28,0) 40%);
-  }
-  section.hero .wrap{position:relative; z-index:1;}
-  .hero-content{max-width:700px;}
-  @media (max-width:700px){
-    .hero-bg img{object-position:85% 32%;}
-    .hero-bg::after{
-      background:
-        linear-gradient(180deg, rgba(10,16,28,0.55) 0%, rgba(10,16,28,0.88) 55%, rgba(10,16,28,0.97) 100%);
-    }
-  }
-  .eyebrow{
-    display:inline-flex; align-items:center; gap:8px;
-    font-size:13px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
-    color:#C7CEDB; margin-bottom:22px;
-  }
-  .hero h1{font-size:clamp(40px, 6.5vw, 76px); font-weight:700; letter-spacing:-2px; line-height:1.05; color:#FBFBFB; text-shadow:0 2px 24px rgba(0,0,0,0.35);}
-  .hero h1 .rojo{color:var(--rojo);}
-  .hero p.lead{font-size:clamp(17px,2.2vw,20px); color:#E3E7F0; max-width:620px; margin-top:26px; line-height:1.55;}
-  .hero-cta{display:flex; gap:14px; margin-top:38px; flex-wrap:wrap;}
-  .btn{
-    display:inline-flex; align-items:center; gap:8px; padding:14px 26px;
-    border-radius:12px; font-size:15px; font-weight:700; text-decoration:none;
-  }
-  .btn.primary{background:var(--rojo); color:#fff;}
-  .btn.ghost{background:rgba(255,255,255,0.08); color:#fff; border:1px solid rgba(255,255,255,0.18);}
+/* SCOPE */
+.scope{display:grid;gap:32px;align-items:center}
+.rings{width:min(100%,360px);aspect-ratio:1;justify-self:center}
+.legend{display:grid;gap:12px;margin-top:22px}
+.lg{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;align-items:baseline;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.lg b{font-family:var(--f-display);font-size:1rem}
+.lg span{color:var(--dim);font-size:.93rem}
+.lg i{width:12px;height:12px;border-radius:50%;display:inline-block;align-self:center}
+@media(min-width:820px){.scope{grid-template-columns:.8fr 1.2fr}}
 
-  /* ---------- SECTION SHELL ---------- */
-  section.block{padding:88px 0;}
-  section.block.alt{background:var(--bg-soft);}
-  .kicker{color:var(--rojo); font-size:13px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:14px;}
-  .sec-title{font-size:clamp(28px,4vw,44px); font-weight:700; color:var(--navy); line-height:1.15; max-width:820px;}
-  .sec-lead{font-size:17px; color:var(--text-muted); max-width:720px; margin-top:16px; line-height:1.6;}
+/* ALERT TYPES */
+.grid{display:grid;gap:14px;margin-top:30px}
+.types{grid-template-columns:1fr}
+@media(min-width:620px){.types{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:960px){.types{grid-template-columns:repeat(3,1fr)}}
+.type{--c:var(--accent-text);position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;gap:10px;min-width:0;overflow:hidden}
+.type::after{content:"";position:absolute;inset:auto -36px -36px auto;width:84px;height:84px;border-radius:50%;background:var(--c);opacity:.1;pointer-events:none}
+.tag{align-self:flex-start;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--c);border:1px solid color-mix(in srgb,var(--c) 55%,transparent);padding:3px 10px;border-radius:999px}
+.type p{color:var(--dim);font-size:.94rem}
+.type ul{margin:2px 0 0;padding-left:18px;color:var(--dim);font-size:.9rem}
+.ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 16%,transparent);color:var(--c)}
+.ico svg{width:24px;height:24px}
 
-  /* ---------- CARD GRIDS ---------- */
-  .grid{display:grid; gap:22px; margin-top:44px;}
-  .grid.cols-4{grid-template-columns:repeat(4,1fr);}
-  .grid.cols-3{grid-template-columns:repeat(3,1fr);}
-  .grid.cols-2{grid-template-columns:repeat(2,1fr);}
-  @media (max-width:900px){
-    .grid.cols-4{grid-template-columns:repeat(2,1fr);}
-    .grid.cols-3{grid-template-columns:repeat(2,1fr);}
-  }
-  @media (max-width:600px){
-    .grid.cols-4, .grid.cols-3, .grid.cols-2{grid-template-columns:1fr;}
-  }
-  .card{
-    background:#fff; border:1px solid var(--border); border-radius:18px; padding:30px;
-  }
-  .card.dark{background:var(--navy); border-color:var(--navy);}
-  .card .ic{
-    width:42px; height:42px; border-radius:12px; background:var(--rojo);
-    display:flex; align-items:center; justify-content:center; margin-bottom:16px; flex:none;
-  }
-  .card.dark .ic{background:rgba(255,255,255,0.12);}
-  .card h3{font-size:19px; font-weight:700; color:var(--navy); margin-bottom:8px;}
-  .card.dark h3{color:#fff;}
-  .card p{font-size:14.5px; color:var(--text-muted); line-height:1.55;}
-  .card.dark p{color:#BFC6D6;}
+/* FLOW */
+.band{background:var(--bg2);margin-inline:-16px;padding-inline:16px}
+.flow{display:grid;gap:0;margin-top:30px;counter-reset:s}
+.step{display:grid;grid-template-columns:44px 1fr;gap:16px;padding-bottom:26px;position:relative;min-width:0}
+.step:not(:last-child)::before{content:"";position:absolute;left:21px;top:44px;bottom:2px;width:2px;background:var(--line)}
+.n{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;background:var(--accent);color:var(--accent-ink);counter-increment:s}
+.n::before{content:counter(s)}
+.step p{color:var(--dim);margin-top:4px;font-size:.95rem}
+@media(min-width:900px){
+  .flow{grid-template-columns:repeat(4,1fr);gap:18px}
+  .step{grid-template-columns:1fr;padding-bottom:0}
+  .step:not(:last-child)::before{left:44px;right:-18px;top:21px;bottom:auto;width:auto;height:2px}
+}
+.privacy{margin-top:28px;display:grid;gap:12px}
+@media(min-width:760px){.privacy{grid-template-columns:repeat(3,1fr)}}
+.note{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;min-width:0}
+.note b{display:block;font-family:var(--f-display);margin-bottom:4px}
+.note span{color:var(--dim);font-size:.92rem}
 
-  /* ---------- CALLOUT ---------- */
-  .callout{
-    background:#FFF0F3; border:1px solid var(--rojo); border-radius:18px;
-    padding:28px 32px; margin-top:36px; color:#5A0E1A;
-  }
-  .callout h3{font-size:20px; font-weight:700; margin-bottom:10px; color:#5A0E1A;}
-  .callout p{font-size:15px; line-height:1.6;}
+/* APP SECTIONS */
+.navmock{margin-top:28px;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:14px 8px;display:grid;grid-template-columns:repeat(5,1fr);max-width:480px}
+.navmock div{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:.7rem;color:var(--dim);min-width:0}
+.navmock div.on{color:var(--accent-text)}
+.navmock svg{width:24px;height:24px}
+.secs{display:grid;gap:14px;margin-top:26px}
+@media(min-width:760px){.secs{grid-template-columns:repeat(2,1fr)}}
+.sec{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;min-width:0}
+.sec header{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.sec p{color:var(--dim);font-size:.95rem}
+.sec ul{margin:10px 0 0;padding-left:18px;color:var(--dim);font-size:.92rem;display:grid;gap:4px}
+.sec .ico{--c:var(--accent-text);flex:none}
 
-  /* ---------- FLOW (segmentation) ---------- */
-  .flow{display:flex; align-items:center; gap:18px; margin-top:44px; flex-wrap:wrap;}
-  .flow .step{
-    flex:1; min-width:170px; background:var(--navy); border-radius:16px; padding:26px 18px;
-    text-align:center; color:#fff; display:flex; flex-direction:column; align-items:center; gap:6px;
-  }
-  .flow .step.accent{background:var(--rojo);}
-  .flow .step h4{font-size:19px; font-weight:700;}
-  .flow .step p{font-size:13.5px; color:#BFC6D6;}
-  .flow .step.accent p{color:#FFE3E9;}
-  .flow .arrow{font-size:26px; color:var(--rojo); font-weight:700;}
-  @media (max-width:700px){ .flow{flex-direction:column;} .flow .arrow{transform:rotate(90deg);} }
+/* TOOLS */
+.tools{grid-template-columns:1fr}
+@media(min-width:700px){.tools{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.tools{grid-template-columns:repeat(4,1fr)}}
 
-  /* ---------- TABLES ---------- */
-  table.tbl{width:100%; border-collapse:collapse; margin-top:40px; font-size:14.5px;}
-  table.tbl th{
-    text-align:left; font-size:12.5px; text-transform:uppercase; letter-spacing:0.5px;
-    color:var(--navy); padding:12px 16px; border-bottom:2px solid var(--border);
-  }
-  table.tbl td{padding:16px; border-bottom:1px solid var(--border); vertical-align:top; color:var(--text-muted);}
-  table.tbl tr:nth-child(even) td{background:var(--bg-soft);}
-  .tbl-tag{font-weight:700;}
-  .tag-rojo{color:var(--rojo);} .tag-amarillo{color:var(--amarillo);} .tag-navy{color:var(--navy);}
-  .status-ok{color:var(--verde); font-weight:700;}
-  .status-pending{color:var(--amarillo); font-weight:700;}
-  .status-later{color:var(--text-muted); font-weight:700;}
-  @media (max-width:640px){
-    table.tbl, table.tbl thead, table.tbl tbody, table.tbl th, table.tbl td, table.tbl tr{display:block;}
-    table.tbl thead{display:none;}
-    table.tbl tr{border:1px solid var(--border); border-radius:14px; margin-bottom:14px; padding:6px 4px; background:#fff;}
-    table.tbl tr:nth-child(even) td{background:transparent;}
-    table.tbl td{border:none; padding:8px 14px;}
-    table.tbl td::before{content:attr(data-label); display:block; font-size:11px; font-weight:700; text-transform:uppercase; color:#9AA2B1; margin-bottom:4px;}
-  }
+/* ORG PANEL */
+.panel{display:grid;gap:26px;align-items:start}
+@media(min-width:860px){.panel{grid-template-columns:1fr 1fr}}
+.checks{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:12px}
+.checks li{display:grid;grid-template-columns:24px 1fr;gap:12px;color:var(--dim);font-size:.96rem}
+.checks li b{color:var(--fg);font-weight:600}
+.checks svg{width:22px;height:22px;color:var(--accent-text);margin-top:2px}
+.mock{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px;min-width:0}
+.mock h3{font-size:1rem}
+.mock small{color:var(--faint);font-size:.78rem}
+.bars{display:grid;gap:10px;margin-top:14px}
+.bar{display:grid;grid-template-columns:86px 1fr;gap:10px;align-items:center;font-size:.8rem;color:var(--dim)}
+.bar i{display:block;height:10px;border-radius:99px;background:var(--line);position:relative;overflow:hidden}
+.bar i::after{content:"";position:absolute;inset:0 auto 0 0;width:var(--w);background:var(--c,var(--accent));border-radius:99px}
+.zones{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.zones span{font-size:.78rem;padding:5px 12px;border-radius:99px;background:color-mix(in srgb,var(--accent) 22%,transparent);color:var(--accent-text);border:1px solid color-mix(in srgb,var(--accent) 55%,transparent)}
+.zones span.off{background:transparent;color:var(--faint);border-color:var(--line)}
 
-  /* ---------- SCREENSHOTS SHOWCASE ---------- */
-  .shots-grid{
-    display:grid; grid-template-columns:repeat(3,1fr); gap:30px 26px; margin-top:48px; align-items:start;
-  }
-  @media (max-width:860px){ .shots-grid{grid-template-columns:repeat(2,1fr); gap:28px 20px;} }
-  @media (max-width:420px){ .shots-grid{grid-template-columns:1fr; max-width:260px; margin-left:auto; margin-right:auto;} }
-  .shot img{
-    width:100%; border-radius:22px; display:block;
-    box-shadow:0 24px 44px -16px rgba(16,26,46,0.35), 0 0 0 1px var(--border);
-  }
-  .shot figcaption{margin-top:16px;}
-  .shot h3{font-size:15.5px; font-weight:700; color:var(--navy);}
-  .shot p{font-size:13px; color:var(--text-muted); margin-top:5px; line-height:1.55;}
-  .shot .example-tag{
-    display:inline-flex; align-items:center; gap:5px; margin-top:9px; font-size:10.5px; font-weight:700;
-    letter-spacing:0.4px; text-transform:uppercase; color:#8A5A00; background:#FFF1D6;
-    padding:4px 10px; border-radius:999px;
-  }
+/* SAFETY */
+.safe{grid-template-columns:1fr}
+@media(min-width:620px){.safe{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:960px){.safe{grid-template-columns:repeat(3,1fr)}}
 
-  /* ---------- AYUDA A ENCONTRAR — EJEMPLO REAL ---------- */
-  .example-block{
-    display:flex; align-items:center; gap:48px; margin-top:40px;
-    background:var(--bg-soft); border:1px solid var(--border); border-radius:26px; padding:44px;
-  }
-  .example-text{flex:1 1 auto; min-width:0;}
-  .example-text .example-kicker{
-    display:inline-flex; align-items:center; gap:6px; font-size:11.5px; font-weight:700;
-    letter-spacing:0.5px; text-transform:uppercase; color:var(--verde); background:#E4F5EC;
-    padding:5px 12px; border-radius:999px; margin-bottom:14px;
-  }
-  .example-text h3{font-size:23px; font-weight:700; color:var(--navy); line-height:1.3;}
-  .example-text p{font-size:15px; color:var(--text-muted); margin-top:12px; line-height:1.65;}
-  .example-text .reach-row{display:flex; gap:10px; margin-top:20px; flex-wrap:wrap;}
-  .example-text .reach-pill{
-    font-size:12.5px; font-weight:700; color:var(--navy); background:#fff;
-    border:1px solid var(--border); padding:7px 14px; border-radius:999px;
-  }
-  .example-shot{flex:0 0 230px; max-width:230px;}
-  .example-shot img{
-    width:100%; border-radius:24px; display:block;
-    box-shadow:0 24px 44px -16px rgba(16,26,46,0.3), 0 0 0 1px var(--border);
-  }
-  @media (max-width:760px){
-    .example-block{flex-direction:column; padding:28px; gap:28px;}
-    .example-shot{max-width:200px;}
-  }
+/* ALLIES */
+.levels{display:grid;gap:12px;margin-top:26px}
+@media(min-width:760px){.levels{grid-template-columns:repeat(3,1fr)}}
+.lvl{border:1px dashed var(--line);border-radius:var(--r);padding:20px;min-width:0}
+.lvl b{font-family:var(--f-display);font-size:1.05rem}
+.lvl p{color:var(--dim);font-size:.93rem;margin-top:6px}
 
-  /* ---------- CLOSING ---------- */
-  section.closing{
-    background:linear-gradient(160deg,var(--navy) 0%, var(--navy2) 100%); color:#fff; padding:100px 0;
-    text-align:center;
-  }
-  section.closing h2{font-size:clamp(32px,5vw,56px); font-weight:700; letter-spacing:-1px; max-width:820px; margin:0 auto;}
-  section.closing h2 .rojo{color:var(--rojo);}
-  section.closing p{font-size:17px; color:#BFC6D6; max-width:620px; margin:22px auto 40px; line-height:1.6;}
+/* CTA + FOOTER */
+.final{background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 20%,var(--bg2)),var(--bg2));border:1px solid var(--line);border-radius:26px;padding:36px 22px;text-align:center}
+.final .lead{margin-inline:auto}
+.final .cta{justify-content:center}
+footer{padding-block:34px 44px;color:var(--faint);font-size:.86rem;text-align:center;display:grid;gap:8px}
+footer nav{display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:center}
+footer a{text-decoration:none;color:var(--dim)}
 
-  /* ---------- FOOTER ---------- */
-  footer{border-top:1px solid var(--border); padding:36px 0;}
-  .footer-inner{display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px; align-items:center;}
-  footer a{font-size:13px; text-decoration:none; color:var(--text-muted); margin-right:18px;}
-  footer a:hover{color:var(--rojo);}
-  footer .copy{font-size:12px; color:#9AA2B1;}
+/* CONTACT */
+.contact{display:grid;gap:28px;align-items:start}
+@media(min-width:860px){.contact{grid-template-columns:1fr 1.1fr;gap:48px}}
+.mail{margin-top:18px;color:var(--dim);font-size:.95rem;overflow-wrap:anywhere}
+.mail b{color:var(--fg)}
+.form{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;display:grid;gap:8px;min-width:0}
+.form label{font-size:.82rem;font-weight:600;color:var(--dim);margin-top:6px}
+.form .opt{font-weight:400;color:var(--faint)}
+.form input,.form select,.form textarea{width:100%;min-width:0;font:inherit;font-size:16px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;min-height:46px}
+.form textarea{resize:vertical;min-height:120px}
+.form .btn{margin-top:12px;cursor:pointer;font:inherit;font-weight:600;width:100%}
+.form .btn:disabled{opacity:.6;cursor:default}
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;opacity:0}
+.msg{min-height:1.4em;font-size:.9rem;margin-top:6px}
+.msg.ok{color:var(--accent-text)}.msg.err{color:var(--red)}
+@media (prefers-reduced-motion:reduce){.sweep,.ping{animation:none}html{scroll-behavior:auto}}
 </style>
-</head>
-<body>
+</head><body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-siren" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17v-4a3 3 0 0 1 6 0v4"/><path d="M7 17h10M6 20h12"/><path d="M4.5 11A8 8 0 0 1 6.3 5.5M19.5 11a8 8 0 0 0-1.8-5.5"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2.5 20h19L12 3z"/><path d="M12 10v5M12 17.8v.1"/></symbol>
+  <symbol id="i-bank" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 4l9 5.5M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18"/></symbol>
+  <symbol id="i-store" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9V6l4 3V6l4 3V6l4 3V6l4 3 2 0M4 9v11h16V9M10 20v-7h4v7"/></symbol>
+  <symbol id="i-find" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5.5c0 4.4 3 7.9 7 9.5 4-1.6 7-5.1 7-9.5V6l-7-3z"/><path d="m9 12 2.2 2.2L15.5 10"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 8 7l5 4.5V19H3zM11 19v-5.5L16 9l5 4.5V19z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="7"/><path d="M5 17l-2 4 6-3"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20a8 8 0 0 1 16 0"/></symbol>
+  <symbol id="i-tool" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6.5a4 4 0 0 0 5 5L9 22l-4-4L15.5 7.5"/><path d="m3 7 4-4 3 3-4 4z"/></symbol>
+  <symbol id="i-group" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><circle cx="17.5" cy="9.5" r="2.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 14.5a5 5 0 0 1 5.5 5"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12.3 2.7 2.7L16 9.5"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path d="m4 4 16 16"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M11 18.5h2"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 17V11a6 6 0 0 1 12 0v6l1.5 2h-15zM10 21h4"/></symbol>
+</svg>
 
 <header class="nav">
-  <input type="checkbox" id="menu-toggle">
-  <div class="nav-inner">
-    <a class="brand" href="index.html">
-      <div class="mark">
-        <img src="logo.png" alt="Alerta Barrio" onerror="this.parentElement.innerHTML='&lt;svg width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M12 2L2 7v6c0 5.2 3.6 9.7 10 11 6.4-1.3 10-5.8 10-11V7l-10-5z&quot; fill=&quot;#FF2244&quot;/&gt;&lt;/svg&gt;'">
-      </div>
-      <span><span class="a">Alerta</span><span class="b">Barrio</span></span>
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Alerta Barrio, inicio">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="none" stroke="var(--accent)" stroke-width="2"/><circle cx="16" cy="16" r="8" fill="none" stroke="var(--accent)" stroke-width="2" opacity=".6"/><circle cx="16" cy="16" r="2.6" fill="var(--red)"/></svg>
+      Alerta Barrio
     </a>
-    <label for="menu-toggle" class="burger" aria-label="Abrir menú"><span></span><span></span><span></span></label>
-    <nav class="links">
-      <a href="#problema">Problema</a>
-      <a href="#producto">Producto</a>
-      <a href="#capturas">Capturas</a>
-      <a href="#funciones">Funciones</a>
-      <a href="#seguridad">Seguridad</a>
-      <a href="#estado">Estado</a>
+    <nav class="nav-links" aria-label="Secciones">
+      <a href="#alertas">Alertas</a><a href="#app">La app</a><a href="#instituciones">Instituciones</a><a href="#seguridad">Seguridad</a><a href="#contacto">Contacto</a>
     </nav>
-    <a class="nav-cta" href="#contacto">Contacto</a>
+    <a class="btn primary sm" href="#contacto">Contacto</a>
   </div>
 </header>
 
+<main id="top" class="wrap">
+
 <section class="hero">
-  <div class="hero-bg">
-    <img src="images/hero-cover.jpg" alt="" aria-hidden="true">
+  <div class="hero-copy">
+    <p class="eyebrow">Red vecinal de seguridad</p>
+    <h1>Todo tu barrio, en una sola app.</h1>
+    <p class="lead">Vecinos, instituciones gubernamentales y empresas conectados en tiempo real. Cada mensaje llega directo a la colonia correcta.</p>
+    <div class="cta">
+      <a class="btn primary" href="#app">Ver cómo funciona</a>
+      <a class="btn" href="#instituciones">Para instituciones y empresas</a>
+    </div>
+    <p class="status"><span class="dot"></span>En pruebas cerradas en Google Play · iOS próximamente</p>
   </div>
-  <div class="wrap">
-    <div class="hero-content">
-      <div class="eyebrow">Alertas Globales S. de R. L.</div>
-      <h1>Tu colonia, <span class="rojo">conectada</span><br>en tiempo real</h1>
-      <p class="lead">Alerta Barrio es la plataforma de alertas, comunicación, prevención y colaboración entre vecinos — segmentada por colonia, ciudad y país, con espacio para que instituciones y empresas registradas publiquen sus propios avisos.</p>
-      <div class="hero-cta">
-        <a class="btn primary" href="#producto">Ver cómo funciona</a>
-        <a class="btn ghost" href="terminos.html">Términos y Privacidad</a>
-      </div>
+  <div class="radar-box">
+    <svg class="radar" viewBox="0 0 400 400" role="img" aria-label="Radar de alertas con puntos en distintas zonas del barrio">
+      <defs>
+        <radialGradient id="rg" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="var(--accent)" stop-opacity=".22"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></radialGradient>
+        <linearGradient id="sw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="var(--accent)" stop-opacity="0"/><stop offset="1" stop-color="var(--accent)" stop-opacity=".55"/></linearGradient>
+      </defs>
+      <circle cx="200" cy="200" r="190" fill="url(#rg)"/>
+      <g fill="none" stroke="var(--line)" stroke-width="1.5">
+        <circle cx="200" cy="200" r="190"/><circle cx="200" cy="200" r="140"/><circle cx="200" cy="200" r="90"/><circle cx="200" cy="200" r="40"/>
+        <path d="M200 10v380M10 200h380"/>
+      </g>
+      <g class="sweep"><path d="M200 200 L390 200 A190 190 0 0 0 340 66 Z" fill="url(#sw)"/></g>
+      <circle cx="200" cy="200" r="6" fill="var(--accent)"/>
+      <g>
+        <circle class="ping" cx="288" cy="132" r="9" fill="var(--red)"/><circle cx="288" cy="132" r="6" fill="var(--red)"/>
+        <circle class="ping d2" cx="132" cy="262" r="9" fill="var(--amber)"/><circle cx="132" cy="262" r="6" fill="var(--amber)"/>
+        <circle class="ping d3" cx="256" cy="288" r="9" fill="var(--blue)"/><circle cx="256" cy="288" r="6" fill="var(--blue)"/>
+        <circle cx="146" cy="136" r="6" fill="var(--sky)"/><circle cx="318" cy="236" r="5" fill="var(--violet)"/>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<section id="alcance" class="scope">
+  <svg class="rings" viewBox="0 0 360 360" role="img" aria-label="Tres círculos concéntricos: colonia dentro de ciudad dentro de país">
+    <circle cx="180" cy="180" r="172" fill="color-mix(in srgb,var(--blue) 10%,transparent)" stroke="var(--blue)" stroke-width="1.5"/>
+    <circle cx="180" cy="180" r="118" fill="color-mix(in srgb,var(--amber) 12%,transparent)" stroke="var(--amber)" stroke-width="1.5"/>
+    <circle cx="180" cy="180" r="64" fill="color-mix(in srgb,var(--red) 16%,transparent)" stroke="var(--red)" stroke-width="1.5"/>
+    <circle cx="180" cy="180" r="6" fill="var(--red)"/>
+    <g font-family="Instrument Sans, sans-serif" font-size="13" font-weight="600" text-anchor="middle">
+      <text x="180" y="166" fill="var(--fg)" dy="-18">Tu colonia</text>
+      <text x="180" y="86" fill="var(--fg)">Tu ciudad</text>
+      <text x="180" y="30" fill="var(--fg)">Tu país</text>
+    </g>
+  </svg>
+  <div>
+    <p class="eyebrow">Alcance</p>
+    <h2>Alcance segmentado. Directo a cada colonia.</h2>
+    <p class="lead">Todos los barrios y colonias viven en una misma app, organizados por país, ciudad y zona. Cada alerta, aviso o promoción llega directamente a las zonas que elijas, y nadie recibe ruido de otras partes.</p>
+    <div class="legend">
+      <div class="lg"><i style="background:var(--red)"></i><b>Colonia</b><span></span><span>Emergencias y advertencias de vecinos. Solo los de tu colonia las ven.</span></div>
+      <div class="lg"><i style="background:var(--amber)"></i><b>Ciudad</b><span></span><span>Avisos municipales, reportes de ciudad y personas o mascotas perdidas.</span></div>
+      <div class="lg"><i style="background:var(--blue)"></i><b>País</b><span></span><span>Instituciones gubernamentales nacionales y empresas con cobertura total.</span></div>
     </div>
   </div>
 </section>
 
-<section class="block" id="problema">
-  <div class="wrap">
-    <div class="kicker">El problema</div>
-    <h2 class="sec-title">La comunicación vecinal está fragmentada</h2>
-    <div class="grid cols-4">
-      <div class="card">
-        <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M10.3 3.9L2.5 17a2 2 0 0 0 1.7 3h15.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" stroke="#fff" stroke-width="2"/></svg></div>
-        <h3>Alertas que llegan tarde</h3>
-        <p>La información de riesgo circula en grupos de WhatsApp dispersos, sin verificar ni segmentar por zona.</p>
-      </div>
-      <div class="card">
-        <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4.5 8-11.2C20 5.9 16.4 3 12 3S4 5.9 4 10.8C4 17.5 12 22 12 22z" stroke="#fff" stroke-width="2"/></svg></div>
-        <h3>Líneas de emergencia saturadas</h3>
-        <p>El 911 y otras líneas oficiales reciben reportes que podrían filtrarse o resolverse antes, a nivel comunitario.</p>
-      </div>
-      <div class="card">
-        <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M13.8 10.2l3.9-3.9M10.2 13.8l-3.9 3.9M17.7 6.3a4 4 0 1 1-5.6 5.6M6.3 17.7a4 4 0 1 1 5.6-5.6" stroke="#fff" stroke-width="2"/></svg></div>
-        <h3>Instituciones sin canal directo</h3>
-        <p>ENEE, SANAA, COPECO y las alcaldías no tienen forma segmentada de avisar a una colonia específica.</p>
-      </div>
-      <div class="card">
-        <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="#fff" stroke-width="2"/></svg></div>
-        <h3>Vecinos aislados</h3>
-        <p>No existe una red confiable, por colonia, para compartir información real y colaborar en la prevención.</p>
-      </div>
-    </div>
+<section id="alertas">
+  <p class="eyebrow">Tipos de alerta</p>
+  <h2>Cada alerta, con su color y su alcance.</h2>
+  <p class="lead">El color anticipa la urgencia antes de leer una sola palabra.</p>
+  <div class="grid types">
+    <article class="type" style="--c:var(--red)">
+      <span class="ico"><svg><use href="#i-siren"/></svg></span>
+      <span class="tag">Alerta roja</span><h3>Emergencias</h3>
+      <p>Cuando hay vida en peligro o una situación grave. Se elige la situación y se emite en un toque, sin escribir nada.</p>
+      <ul><li>Asalto, intruso, incendio, inundación</li><li>Violencia doméstica, persona herida</li><li>Llega en pantalla completa a la colonia</li></ul>
+    </article>
+    <article class="type" style="--c:var(--amber)">
+      <span class="ico"><svg><use href="#i-warn"/></svg></span>
+      <span class="tag">Alerta amarilla</span><h3>Advertencias</h3>
+      <p>Situaciones menos graves que conviene conocer a tiempo.</p>
+      <ul><li>Persona o vehículo sospechoso</li><li>Ruido excesivo, vehículo mal estacionado</li><li>Hasta 3 fotos o 1 video corto</li></ul>
+    </article>
+    <article class="type" style="--c:var(--blue)">
+      <span class="ico"><svg><use href="#i-bank"/></svg></span>
+      <span class="tag">Instituciones</span><h3>Instituciones gubernamentales</h3>
+      <p>Avisos oficiales, cortes de servicio y alertas de riesgo, solo en las zonas donde la institución tiene cobertura.</p>
+      <ul><li>Servicios públicos, emergencias y municipalidades</li><li>También emiten alertas rojas, amarillas y verdes</li></ul>
+    </article>
+    <article class="type" style="--c:var(--violet)">
+      <span class="ico"><svg><use href="#i-store"/></svg></span>
+      <span class="tag">Empresas</span><h3>Empresas y negocios</h3>
+      <p>Promociones, avisos de servicio y novedades de las empresas que el vecino sí quiere seguir.</p>
+      <ul><li>Bancos, telefonía, comercios y más</li><li>El vecino puede silenciar a quien no quiera ver</li></ul>
+    </article>
+    <article class="type" style="--c:var(--sky)">
+      <span class="ico"><svg><use href="#i-find"/></svg></span>
+      <span class="tag">Ayuda a encontrar</span><h3>Personas, mascotas, vehículos</h3>
+      <p>Una publicación con fotos, descripción y recompensa opcional. Todo el barrio ayuda a encontrar.</p>
+      <ul><li>Alcance: barrio, ciudad o todo el país</li><li>Botón “Tengo información” con chat privado</li></ul>
+    </article>
+    <article class="type" style="--c:var(--blue)">
+      <span class="ico"><svg><use href="#i-flag"/></svg></span>
+      <span class="tag">Reportes</span><h3>Reportes de ciudad</h3>
+      <p>Un vecino reporta un problema de su ciudad, como basura tirada o daños en la calle, y el reporte llega a la institución correspondiente.</p>
+    </article>
   </div>
 </section>
 
-<section class="block alt">
-  <div class="wrap">
-    <div class="kicker">La solución</div>
-    <h2 class="sec-title">Una sola app que conecta a toda la comunidad, sin ruido</h2>
-    <div class="grid cols-3">
-      <div class="card dark">
-        <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke="#fff" stroke-width="2"/></svg></div>
-        <h3>01 · Conectar</h3>
-        <p>Vecinos se comunican en tiempo real, y las instituciones y empresas que se registren pueden sumarse para publicar sus propios avisos.</p>
-      </div>
-      <div class="card">
-        <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4.5 8-11.2C20 5.9 16.4 3 12 3S4 5.9 4 10.8C4 17.5 12 22 12 22z" stroke="#fff" stroke-width="2"/></svg></div>
-        <h3>02 · Segmentar</h3>
-        <p>Cada alerta llega solo a la colonia, ciudad o país que corresponde — nada de ruido innecesario.</p>
-      </div>
-      <div class="card">
-        <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" stroke="#fff" stroke-width="2"/></svg></div>
-        <h3>03 · Prevenir</h3>
-        <p>Alertas en tiempo real que permiten reaccionar antes de que una situación escale.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="block" id="producto">
-  <div class="wrap">
-    <div class="kicker">Qué es Alerta Barrio</div>
-    <h2 class="sec-title">Comunicación, prevención y colaboración comunitaria</h2>
-    <p class="sec-lead">Alerta Barrio es una plataforma tecnológica que permite emitir y recibir alertas, comunicarse entre usuarios, publicar información comunitaria, reportar personas, mascotas o vehículos, y recibir avisos de instituciones, empresas y organizaciones verificadas que se registren en la plataforma.</p>
-    <div class="callout">
-      <h3>Alerta Barrio no es una entidad de seguridad</h3>
-      <p>No es una autoridad policial, judicial, médica, de protección civil ni de investigación. Es una herramienta tecnológica para facilitar la comunicación entre vecinos, la población y las instituciones u organizaciones — no sustituye los servicios oficiales de emergencia.</p>
-    </div>
-  </div>
-</section>
-
-<section class="block alt" id="capturas">
-  <div class="wrap">
-    <div class="kicker">Así se ve</div>
-    <h2 class="sec-title">La app por dentro</h2>
-    <p class="sec-lead">Un vistazo real a las pantallas de Alerta Barrio: desde el panel principal hasta el muro de vecinos.</p>
-    <div class="shots-grid">
-      <figure class="shot">
-        <img src="screenshots/01-panel-alertas-inicio.png" alt="Panel de alertas, pantalla de inicio de Alerta Barrio">
-        <figcaption>
-          <h3>Panel de alertas</h3>
-          <p>Radar en tiempo real del estado de tu colonia, con acceso directo a cada categoría de alerta.</p>
-        </figcaption>
-      </figure>
-      <figure class="shot">
-        <img src="screenshots/02-emitir-alerta.jpg" alt="Menú para emitir una alerta en Alerta Barrio">
-        <figcaption>
-          <h3>Emitir alerta</h3>
-          <p>Reporta en segundos: línea directa al 911, o alerta inmediata a tu colonia por emergencia o advertencia.</p>
-        </figcaption>
-      </figure>
-      <figure class="shot">
-        <img src="screenshots/07-alerta-recibida.png" alt="Alerta de emergencia recibida por los vecinos de la zona en Alerta Barrio">
-        <figcaption>
-          <h3>Así le llega a los vecinos</h3>
-          <p>La alerta aparece de inmediato en la pantalla de todos los vecinos de la zona — con colonia, ciudad y hora exacta. Puede incluir una foto como evidencia.</p>
-        </figcaption>
-      </figure>
-      <figure class="shot">
-        <img src="screenshots/03-perfil-vecino.png" alt="Perfil de un vecino verificado en Alerta Barrio">
-        <figcaption>
-          <h3>Perfil del vecino</h3>
-          <p>Identidad verificada por teléfono. El número nunca se muestra — solo las autoridades acceden a él en casos de alerta.</p>
-        </figcaption>
-      </figure>
-      <figure class="shot">
-        <img src="screenshots/04-muro-vecinos.png" alt="Muro de vecinos de una colonia en Alerta Barrio">
-        <figcaption>
-          <h3>Muro de vecinos</h3>
-          <p>El espacio comunitario de tu colonia: publicaciones, fotos, comentarios y reacciones entre vecinos.</p>
-        </figcaption>
-      </figure>
-      <figure class="shot">
-        <img src="screenshots/05-perfil-institucion-ejemplo.png" alt="Ejemplo ilustrativo de perfil de institución en Alerta Barrio">
-        <figcaption>
-          <h3>Perfil de institución</h3>
-          <p>Así luciría el perfil de una institución o empresa registrada, con sus publicaciones y canal de contacto.</p>
-          <span class="example-tag">⚠ Solo un ejemplo ilustrativo</span>
-        </figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<section class="block">
-  <div class="wrap">
-    <div class="kicker">Cómo funciona</div>
-    <h2 class="sec-title">Segmentado por país, ciudad y colonia</h2>
+<section class="band" aria-labelledby="flow-h">
+  <div class="wrap" style="padding-block:56px">
+    <p class="eyebrow">Así funciona</p>
+    <h2 id="flow-h">Una emergencia, en un solo toque.</h2>
     <div class="flow">
-      <div class="step">
-        <h4>País</h4>
-        <p>Honduras, primer mercado</p>
-      </div>
-      <div class="arrow">&#8594;</div>
-      <div class="step">
-        <h4>Ciudad</h4>
-        <p>Tegucigalpa, San Pedro Sula…</p>
-      </div>
-      <div class="arrow">&#8594;</div>
-      <div class="step accent">
-        <h4>Colonia</h4>
-        <p>Tu zona de residencia</p>
-      </div>
+      <div class="step"><span class="n"></span><div><h3>Elige qué pasa</h3><p>Una lista de situaciones reales: asalto, incendio, persona sospechosa y más.</p></div></div>
+      <div class="step"><span class="n"></span><div><h3>Emite la alerta</h3><p>Fotos, video y descripción son opcionales. Con solo la situación ya se puede enviar.</p></div></div>
+      <div class="step"><span class="n"></span><div><h3>Los vecinos la ven</h3><p>Aparece en pantalla completa a cada vecino de la colonia, con una foto y el resumen.</p></div></div>
+      <div class="step"><span class="n"></span><div><h3>Ver detalles</h3><p>Abre el muro de alertas con la publicación completa, comentarios y reacciones.</p></div></div>
     </div>
-    <div class="grid cols-2">
-      <div class="card">
-        <h3>Zona de trabajo</h3>
-        <p>El vecino también puede registrar la zona donde trabaja — un mercado, una zona comercial — para recibir alertas ahí también.</p>
-      </div>
-      <div class="card">
-        <h3>Vecino patrocinador (premium)</h3>
-        <p>Con una suscripción mensual, puede registrar una tercera zona: otra ciudad o incluso otro país con Alerta Barrio.</p>
-      </div>
+    <div class="privacy">
+      <div class="note"><b>Ubicación aproximada</b><span>Por defecto se muestra a cierta distancia del lugar real, para proteger a quien denuncia.</span></div>
+      <div class="note"><b>Publicación anónima</b><span>Las alertas rojas y amarillas pueden ser anónimas y no enlazan al perfil.</span></div>
+      <div class="note"><b>Número siempre privado</b><span>El teléfono no se muestra a otros vecinos. Solo lo ven las autoridades competentes.</span></div>
     </div>
   </div>
 </section>
 
-<section class="block" id="roles">
-  <div class="wrap">
-    <div class="kicker">El ecosistema</div>
-    <h2 class="sec-title">Cinco roles, una misma red</h2>
-    <table class="tbl">
-      <thead><tr><th style="width:22%">Rol</th><th>Qué hace en la app</th></tr></thead>
-      <tbody>
-        <tr><td data-label="Rol"><span class="tbl-tag tag-rojo">Vecino</span></td><td data-label="Qué hace">Recibe y emite alertas de su colonia, ciudad y zona de trabajo; participa en el muro comunitario y el chat.</td></tr>
-        <tr><td data-label="Rol"><span class="tbl-tag tag-rojo">Institución</span></td><td data-label="Qué hace">Entidades gubernamentales (ENEE, SANAA, COPECO, alcaldías) podrán publicar avisos y alertas oficiales según su alcance, una vez registradas en la plataforma.</td></tr>
-        <tr><td data-label="Rol"><span class="tbl-tag tag-rojo">Empresa</span></td><td data-label="Qué hace">Negocios verificados (bancos, telecomunicaciones, etc.) comparten avisos y promociones por zona contratada.</td></tr>
-        <tr><td data-label="Rol"><span class="tbl-tag tag-rojo">Patrocinador</span></td><td data-label="Qué hace">Aparece como aliado en el panel principal o el muro vecinal, según el nivel de alcance negociado.</td></tr>
-        <tr><td data-label="Rol"><span class="tbl-tag tag-rojo">Admin</span></td><td data-label="Qué hace">Gestiona países, ciudades y colonias; registra instituciones y empresas; modera reportes y ve estadísticas.</td></tr>
-      </tbody>
-    </table>
+<section id="app">
+  <p class="eyebrow">La app</p>
+  <h2>Todo lo que tu barrio necesita, en cinco pestañas.</h2>
+  <p class="lead">Un menú simple, como las redes sociales que ya conoces. Un botón flotante te deja emitir cualquier alerta desde cualquier pantalla.</p>
+  <div class="navmock" role="img" aria-label="Menú inferior con cinco pestañas: Alertas, Vecinos, Negocios, Chat y Perfil">
+    <div class="on"><svg><use href="#i-siren"/></svg>Alertas</div>
+    <div><svg><use href="#i-home"/></svg>Vecinos</div>
+    <div><svg><use href="#i-store"/></svg>Negocios</div>
+    <div><svg><use href="#i-chat"/></svg>Chat</div>
+    <div><svg><use href="#i-user"/></svg>Perfil</div>
+  </div>
+  <div class="secs">
+    <article class="sec" style="--c:var(--red)">
+      <header><span class="ico" style="--c:var(--red)"><svg><use href="#i-siren"/></svg></span><h3>Alertas</h3></header>
+      <p>La página principal, en tema oscuro. Un radar muestra la actividad de tu zona y las categorías se ordenan en una cuadrícula con imágenes reales.</p>
+      <ul><li>Alertas recientes de tu colonia</li><li>Notificaciones de instituciones y empresas</li><li>“Nuestros aliados” con los patrocinadores</li></ul>
+    </article>
+    <article class="sec">
+      <header><span class="ico" style="--c:var(--blue)"><svg><use href="#i-home"/></svg></span><h3>Vecinos</h3></header>
+      <p>El muro comunitario, igual que una red social. Publica, comenta, responde y comparte fotos con tu colonia.</p>
+      <ul><li>Mensajes de convivencia ciudadana</li><li>Me gusta, comentarios y respuestas</li><li>Reportar o editar tus publicaciones</li></ul>
+    </article>
+    <article class="sec">
+      <header><span class="ico" style="--c:var(--violet)"><svg><use href="#i-store"/></svg></span><h3>Negocios y Servicios</h3></header>
+      <p>Dos secciones en una pestaña, con un selector arriba.</p>
+      <ul><li><b>Negocios:</b> directorio de negocios de tu zona, por categoría</li><li><b>Servicios del barrio:</b> pide o ofrece empleada doméstica, electricista, plomero, mecánico y más</li><li>Las solicitudes nuevas se avisan con un globo rojo</li></ul>
+    </article>
+    <article class="sec">
+      <header><span class="ico" style="--c:var(--violet)"><svg><use href="#i-chat"/></svg></span><h3>Chat</h3></header>
+      <p>Mensajes privados con nombres reales, para que cualquier abuso se pueda identificar y reportar.</p>
+      <ul><li>Fotos y videos</li><li>Chats con negocios e instituciones</li><li>Chats de “Tengo información” y de servicios</li></ul>
+    </article>
+    <article class="sec">
+      <header><span class="ico" style="--c:var(--sky)"><svg><use href="#i-user"/></svg></span><h3>Perfil</h3></header>
+      <p>Sencillo y bonito. Foto, nombre y las opciones de tu cuenta.</p>
+      <ul><li>Editar perfil y contactos de confianza</li><li>Cambio de vecindario, permitido una vez cada 2 meses</li><li>Ser patrocinador, colaborar, contacto y términos</li></ul>
+    </article>
+    <article class="sec">
+      <header><span class="ico" style="--c:var(--amber)"><svg><use href="#i-phone"/></svg></span><h3>Registro con tu número</h3></header>
+      <p>Entras como en WhatsApp: eliges tu país, escribes tu número y confirmas con un código por mensaje.</p>
+      <ul><li>El prefijo se completa solo, con o sin guiones</li><li>Eliges ciudad y colonia al registrarte</li><li>Aceptas términos y reglas de buen uso</li></ul>
+    </article>
   </div>
 </section>
 
-<section class="block alt" id="alertas">
-  <div class="wrap">
-    <div class="kicker">Tipos de alerta</div>
-    <h2 class="sec-title">Cada alerta, con su propio nivel</h2>
-    <table class="tbl">
-      <thead><tr><th style="width:22%">Alerta</th><th style="width:20%">Quién la emite</th><th>Qué comunica</th></tr></thead>
-      <tbody>
-        <tr><td data-label="Alerta"><span class="tbl-tag tag-rojo">Roja · Emergencias</span></td><td data-label="Quién la emite">Vecinos</td><td data-label="Qué comunica">Riesgo de vida: asalto, incendio, violencia doméstica, persona herida — llega a toda la colonia al instante.</td></tr>
-        <tr><td data-label="Alerta"><span class="tbl-tag tag-amarillo">Amarilla · Advertencias</span></td><td data-label="Quién la emite">Vecinos</td><td data-label="Qué comunica">Situaciones menos graves: persona o vehículo sospechoso, ruido excesivo, vehículo mal estacionado.</td></tr>
-        <tr><td data-label="Alerta"><span class="tbl-tag tag-navy">Institucional</span></td><td data-label="Quién la emite">Instituciones registradas</td><td data-label="Qué comunica">Avisos oficiales, suspensión de servicios, o alertas de emergencia, disponibles para instituciones que se registren en la plataforma.</td></tr>
-        <tr><td data-label="Alerta">Empresarial</td><td data-label="Quién la emite">Empresas verificadas</td><td data-label="Qué comunica">Notificaciones normales: promociones, avisos de servicio, según la zona contratada.</td></tr>
-      </tbody>
-    </table>
+<section>
+  <p class="eyebrow">Más herramientas</p>
+  <h2>Herramientas para cada situación.</h2>
+  <div class="grid types tools">
+    <article class="type" style="--c:var(--red)">
+      <span class="ico"><svg><use href="#i-shield"/></svg></span><h3>Contactos de confianza</h3>
+      <p>Hasta 3 personas con la app. Si estás fuera de tu zona y tienes una emergencia, la alerta roja les llega solo a ellos.</p>
+    </article>
+    <article class="type" style="--c:var(--sky)">
+      <span class="ico"><svg><use href="#i-find"/></svg></span><h3>Recompensas</h3>
+      <p>En “Ayuda a encontrar” puedes ofrecer una recompensa en la moneda de tu país.</p>
+    </article>
+    <article class="type" style="--c:var(--amber)">
+      <span class="ico"><svg><use href="#i-tool"/></svg></span><h3>Servicios del barrio</h3>
+      <p>Una bolsa de servicios y empleo. Los vecinos piden, otros ofrecen, y la confianza viene de las reseñas de la comunidad.</p>
+    </article>
+    <article class="type" style="--c:var(--sky)">
+      <span class="ico"><svg><use href="#i-bell"/></svg></span><h3>Tú decides qué ver</h3>
+      <p>Puedes silenciar a una empresa o institución. No recibes su notificación, solo ves el indicador.</p>
+    </article>
   </div>
 </section>
 
-<section class="block" id="ayuda">
-  <div class="wrap">
-    <div class="kicker">Ayuda a encontrar</div>
-    <h2 class="sec-title">Una red que busca contigo, tan lejos como haga falta</h2>
-    <p class="sec-lead">Una persona, una mascota o un vehículo pueden estar más allá de tu colonia. Por eso, cada publicación de esta sección puede compartirse a tres niveles: <b style="color:var(--navy)">tu colonia</b>, <b style="color:var(--navy)">tu ciudad</b>, o <b style="color:var(--navy)">el país completo</b> — para que la búsqueda llegue tan lejos como sea necesario.</p>
-    <div class="grid cols-3">
-      <div class="card">
-        <div class="ic"><span style="color:#fff;font-weight:700;font-family:'Space Grotesk',sans-serif">01</span></div>
-        <h3>Personas desaparecidas</h3>
-        <p>Foto y descripción para movilizar a la comunidad rápidamente — desde tu colonia hasta, si es necesario, todo el país.</p>
-      </div>
-      <div class="card">
-        <div class="ic"><span style="color:#fff;font-weight:700;font-family:'Space Grotesk',sans-serif">02</span></div>
-        <h3>Mascotas perdidas</h3>
-        <p>Foto y datos para que los vecinos de la zona que elijas ayuden a encontrarla y te contacten con información.</p>
-      </div>
-      <div class="card">
-        <div class="ic"><span style="color:#fff;font-weight:700;font-family:'Space Grotesk',sans-serif">03</span></div>
-        <h3>Vehículos reportados</h3>
-        <p>Descripción y placa visibles en la zona elegida, para que cualquiera que lo vea pueda avisar de inmediato.</p>
-      </div>
-    </div>
-    <div class="grid cols-2" style="margin-top:22px">
-      <div class="card dark">
-        <h3>Tú eliges hasta dónde llega</h3>
-        <p>Mi colonia · Mi ciudad · Todo el país — el alcance más amplio se habilita con un pago único, dado su mayor impacto.</p>
-      </div>
-      <div class="card dark">
-        <h3>Recompensa opcional</h3>
-        <p>Puedes ofrecer una recompensa y definir el monto, para animar a la comunidad a colaborar.</p>
-      </div>
-    </div>
-
-    <div class="example-block">
-      <div class="example-text">
-        <span class="example-kicker">● Ejemplo real de la app</span>
-        <h3>Así se ve una mascota perdida en Alerta Barrio</h3>
-        <p>Katherine busca a su gata Mavis, vista por última vez en la colonia Miraflores, y ofrece una recompensa de L 3,000. Cualquier vecino puede tocar <b style="color:var(--navy)">"Tengo información"</b> para contactarla al instante. Si la publicación solo alcanza su colonia y Mavis se alejó más, Katherine puede ampliar el alcance con un toque:</p>
-        <div class="reach-row">
-          <span class="reach-pill">📍 Mi colonia</span>
-          <span class="reach-pill">🏙️ Mi ciudad</span>
-          <span class="reach-pill">🇭🇳 Todo el país</span>
-        </div>
-      </div>
-      <figure class="example-shot">
-        <img src="screenshots/06-ayuda-mascota.png" alt="Publicación real de una mascota perdida con recompensa en Alerta Barrio">
-      </figure>
-    </div>
-  </div>
-</section>
-
-<section class="block alt" id="funciones">
-  <div class="wrap">
-    <div class="kicker">Funciones clave</div>
-    <h2 class="sec-title">Más que alertas, una red vecinal</h2>
-    <div class="grid cols-4">
-      <div class="card">
-        <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke="#fff" stroke-width="2"/></svg></div>
-        <h3>Muro de vecinos</h3>
-        <p>Un muro comunitario estilo red social: comentarios, imágenes y mensajes de convivencia ciudadana.</p>
-      </div>
-      <div class="card">
-        <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#fff" stroke-width="2"/></svg></div>
-        <h3>Chat segmentado</h3>
-        <p>Entre vecinos, y un canal distinto para instituciones y empresas registradas, que pueden publicar avisos por colonia.</p>
-      </div>
-      <div class="card">
-        <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="2" stroke="#fff" stroke-width="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4" stroke="#fff" stroke-width="2"/></svg></div>
-        <h3>Contactos de confianza</h3>
-        <p>Forma un grupo cerrado con las personas de tu confianza. Si necesitas ayuda fuera de tu zona, ellas reciben tu alerta con tu ubicación en tiempo real, para poder auxiliarte mejor.</p>
-      </div>
-      <div class="card">
-        <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#fff" stroke-width="2"/><path d="M21 21l-4.3-4.3" stroke="#fff" stroke-width="2"/></svg></div>
-        <h3>Reportes de ciudad</h3>
-        <p>Reportes ciudadanos (basura, incidentes) enviados directamente a la institución correspondiente.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="block" id="seguridad" style="background:var(--navy); color:#fff;">
-  <div class="wrap">
-    <div class="kicker" style="color:var(--rojo)">Seguridad y privacidad</div>
-    <h2 class="sec-title" style="color:#fff;">Protección pensada por diseño</h2>
-    <table class="tbl" style="color:#fff;">
-      <thead><tr><th style="width:28%;color:var(--rojo)">Medida</th><th style="color:var(--rojo)">Cómo protege al usuario</th></tr></thead>
-      <tbody>
-        <tr><td data-label="Medida" style="color:#fff;font-weight:600">Verificación de identidad</td><td data-label="Cómo protege" style="color:#BFC6D6">El registro y el inicio de sesión se validan con un código enviado por teléfono, reduciendo cuentas falsas.</td></tr>
-        <tr><td data-label="Medida" style="color:#fff;font-weight:600">Ubicación protegida</td><td data-label="Cómo protege" style="color:#BFC6D6">En alertas de riesgo, tu ubicación exacta nunca se muestra a otros vecinos — se protege automáticamente.</td></tr>
-        <tr><td data-label="Medida" style="color:#fff;font-weight:600">Anonimato configurable</td><td data-label="Cómo protege" style="color:#BFC6D6">Las alertas sensibles pueden emitirse de forma anónima, sin exponer el perfil del vecino.</td></tr>
-        <tr><td data-label="Medida" style="color:#fff;font-weight:600">Perfiles por colonia</td><td data-label="Cómo protege" style="color:#BFC6D6">El perfil de un vecino solo es visible para otros vecinos de su misma colonia.</td></tr>
-        <tr><td data-label="Medida" style="color:#fff;font-weight:600">Moderación de reportes</td><td data-label="Cómo protege" style="color:#BFC6D6">Todo reporte de contenido o perfil pasa por el panel de administración antes de una acción.</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<section class="block">
-  <div class="wrap">
-    <div class="kicker">Alcance y expansión</div>
-    <h2 class="sec-title">Nace en Honduras, lista para crecer</h2>
-    <div class="grid cols-3">
-      <div class="card dark">
-        <h3>Fase 1 · Honduras</h3>
-        <p>Lanzamiento en Android, expansión a las principales ciudades del país.</p>
-      </div>
-      <div class="card">
-        <h3>Fase 2 · iOS</h3>
-        <p>Publicación en App Store, con la misma experiencia ya disponible en Android.</p>
-      </div>
-      <div class="card">
-        <h3>Fase 3 · Regional</h3>
-        <p>Expansión a otros países de Centroamérica bajo el mismo modelo.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="block alt" id="estado">
-  <div class="wrap">
-    <div class="kicker">Estado actual</div>
-    <h2 class="sec-title">A un paso del lanzamiento oficial</h2>
-    <table class="tbl">
-      <thead><tr><th style="width:70%">Ítem</th><th>Estado</th></tr></thead>
-      <tbody>
-        <tr><td data-label="Ítem">Desarrollo de la aplicación</td><td data-label="Estado"><span class="status-ok">Completado</span></td></tr>
-        <tr><td data-label="Ítem">Sitio oficial y legal — alertabarrio.com</td><td data-label="Estado"><span class="status-ok">Publicado</span></td></tr>
-        <tr><td data-label="Ítem">Lanzamiento en Google Play (Android)</td><td data-label="Estado"><span class="status-pending">En proceso</span></td></tr>
-        <tr><td data-label="Ítem">Lanzamiento en App Store (iOS)</td><td data-label="Estado"><span class="status-later">Fase 2</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<section class="closing" id="contacto">
-  <div class="wrap">
-    <h2>Conectemos <span class="rojo">tu comunidad</span></h2>
-    <p>Alerta Barrio está lista para acompañar a vecinos, instituciones y empresas en la construcción de comunidades más seguras y conectadas.</p>
-    <a class="btn primary" href="mailto:contacto@alertabarrio.com">Escríbenos</a>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap footer-inner">
+<section id="instituciones">
+  <div class="panel">
     <div>
-      <a href="terminos.html">Términos y Condiciones</a>
-      <a href="privacidad.html">Política de Privacidad</a>
-      <a href="mailto:contacto@alertabarrio.com">Contacto</a>
+      <p class="eyebrow">Instituciones gubernamentales y empresas</p>
+      <h2>Tu mensaje, directo a las colonias que elijas.</h2>
+      <p class="lead">Cada institución, empresa o patrocinador tiene su propio panel, creado y validado por el equipo de Alerta Barrio. Entra con su número y llega directo al panel.</p>
+      <ul class="checks">
+        <li><svg><use href="#i-check"/></svg><span><b>Alcance por zonas.</b> Elige ciudades y colonias con un buscador, o cubre ciudades completas.</span></li>
+        <li><svg><use href="#i-check"/></svg><span><b>Alertas y publicaciones.</b> Emite alertas rojas, amarillas y verdes, o anuncios y promociones con fotos y video.</span></li>
+        <li><svg><use href="#i-check"/></svg><span><b>Bandeja de mensajes.</b> Ve de qué ciudad y colonia llegan los mensajes de los vecinos.</span></li>
+        <li><svg><use href="#i-check"/></svg><span><b>Mis anuncios.</b> Edita o elimina lo publicado.</span></li>
+        <li><svg><use href="#i-check"/></svg><span><b>Reportes y estadísticas.</b> Recibe los reportes de la comunidad y mide el alcance.</span></li>
+        <li><svg><use href="#i-check"/></svg><span><b>Perfil público completo.</b> Portada, logo, WhatsApp, ubicación y publicaciones con comentarios.</span></li>
+      </ul>
     </div>
-    <div class="copy">© 2026 Alertas Globales S de R L. Todos los derechos reservados.</div>
+    <div class="mock" role="img" aria-label="Ejemplo ilustrativo de un panel de institución">
+      <h3>Panel de institución <small>· ejemplo ilustrativo</small></h3>
+      <p style="color:var(--dim);font-size:.85rem;margin-top:6px">Alcance elegido para una publicación</p>
+      <div class="zones"><span>Ciudad principal</span><span>Colonia Centro</span><span>Colonia Norte</span><span class="off">Otra ciudad</span><span class="off">+ Agregar ciudad</span></div>
+      <p style="color:var(--dim);font-size:.85rem;margin-top:20px">Cómo se ve el rendimiento (valores de ejemplo)</p>
+      <div class="bars">
+        <div class="bar">Alcanzados<i style="--w:86%"></i></div>
+        <div class="bar">Vistos<i style="--w:62%;--c:var(--blue)"></i></div>
+        <div class="bar">Reacciones<i style="--w:38%;--c:var(--violet)"></i></div>
+        <div class="bar">Mensajes<i style="--w:21%;--c:var(--amber)"></i></div>
+      </div>
+    </div>
   </div>
+</section>
+
+<section id="seguridad">
+  <p class="eyebrow">Seguridad y confianza</p>
+  <h2>Diseñada para proteger a quien la usa.</h2>
+  <div class="grid types safe">
+    <article class="type" style="--c:var(--sky)"><span class="ico"><svg><use href="#i-lock"/></svg></span><h3>Número protegido</h3><p>Nadie ve tu teléfono. Cambiarlo requiere una solicitud, como en WhatsApp.</p></article>
+    <article class="type" style="--c:var(--blue)"><span class="ico"><svg><use href="#i-pin"/></svg></span><h3>Ubicación con margen</h3><p>Las alertas muestran un punto aproximado para que nadie sepa quién denunció.</p></article>
+    <article class="type" style="--c:var(--violet)"><span class="ico"><svg><use href="#i-eye"/></svg></span><h3>Anonimato opcional</h3><p>En emergencias y advertencias puedes publicar sin que se vea tu perfil.</p></article>
+    <article class="type" style="--c:var(--red)"><span class="ico"><svg><use href="#i-flag"/></svg></span><h3>Reportes y moderación</h3><p>Todo lo publicado se puede reportar. Los reportes llegan al administrador y a sus moderadores.</p></article>
+    <article class="type" style="--c:var(--amber)"><span class="ico"><svg><use href="#i-group"/></svg></span><h3>Zonas separadas</h3><p>Solo los vecinos de la misma colonia ven los perfiles. El cambio de vecindario se limita a uno cada 2 meses.</p></article>
+    <article class="type" style="--c:var(--sky)"><span class="ico"><svg><use href="#i-shield"/></svg></span><h3>Uso responsable</h3><p>Los avisos recuerdan que el mal uso puede llevar a suspender la cuenta y a consecuencias legales.</p></article>
+  </div>
+</section>
+
+<section id="aliados">
+  <p class="eyebrow">Nuestros aliados</p>
+  <h2>Tu marca, presente en cada barrio.</h2>
+  <p class="lead">Los aliados aparecen dentro de la app, frente a los vecinos de las zonas que contratan: en la página principal o en el muro de la comunidad.</p>
+  <div class="levels">
+    <div class="lvl"><b>Por colonia</b><p>Para negocios y comercios que quieren a sus vecinos más cercanos.</p></div>
+    <div class="lvl"><b>Por ciudad</b><p>Para empresas con varias sucursales dentro de una ciudad.</p></div>
+    <div class="lvl"><b>Nacional</b><p>Para instituciones y marcas con presencia en todo el país.</p></div>
+  </div>
+</section>
+
+<section id="contacto" class="contact">
+  <div>
+    <p class="eyebrow">Contacto</p>
+    <h2>Conecta tu barrio con nosotros.</h2>
+    <p class="lead">Instituciones gubernamentales, empresas, comercios y aliados: cuéntanos qué necesitas y te respondemos por correo. No hace falta descargar la app.</p>
+    <p class="mail">También puedes escribir a <b>contacto@alertabarrio.com</b></p>
+  </div>
+  <form id="cf" class="form" novalidate>
+    <label for="cf-name">Nombre</label>
+    <input id="cf-name" name="nombre" type="text" autocomplete="name" required maxlength="80">
+    <label for="cf-email">Correo electrónico</label>
+    <input id="cf-email" name="correo" type="email" autocomplete="email" required maxlength="120">
+    <label for="cf-type">Soy</label>
+    <select id="cf-type" name="tipo">
+      <option>Institución gubernamental</option>
+      <option>Empresa</option>
+      <option>Comercio o negocio local</option>
+      <option>Quiero ser aliado o patrocinador</option>
+      <option>Vecino</option>
+      <option>Otro</option>
+    </select>
+    <label for="cf-org">Institución o empresa <span class="opt">(opcional)</span></label>
+    <input id="cf-org" name="organizacion" type="text" autocomplete="organization" maxlength="100">
+    <label for="cf-msg">Mensaje</label>
+    <textarea id="cf-msg" name="mensaje" rows="5" required maxlength="2000"></textarea>
+    <input class="hp" id="cf-web" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="btn primary" id="cf-send" type="submit">Enviar mensaje</button>
+    <p class="msg" id="cf-status" role="status" aria-live="polite"></p>
+  </form>
+</section>
+<script>
+(function(){
+  var f=document.getElementById('cf'); if(!f) return;
+  var st=document.getElementById('cf-status'), btn=document.getElementById('cf-send');
+  function say(t,ok){ st.textContent=t; st.className='msg '+(ok?'ok':'err'); }
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(f.website.value) return;
+    var n=f.nombre.value.trim(), m=f.correo.value.trim(), t=f.mensaje.value.trim();
+    if(!n||!t){ say('Escribe tu nombre y tu mensaje.',false); return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m)){ say('Revisa tu correo electrónico.',false); return; }
+    btn.disabled=true; say('Enviando...',true);
+    fetch('https://formsubmit.co/ajax/contacto@alertabarrio.com',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        _subject:'Contacto web Alerta Barrio: '+f.tipo.value,
+        _template:'table', _replyto:m,
+        nombre:n, correo:m, tipo:f.tipo.value,
+        organizacion:f.organizacion.value.trim(), mensaje:t
+      })
+    }).then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function(){ f.reset(); say('Mensaje enviado. Te responderemos pronto por correo.',true); })
+    .catch(function(){ say('No se pudo enviar. Escríbenos a contacto@alertabarrio.com.',false); })
+    .then(function(){ btn.disabled=false; });
+  });
+})();
+</script>
+</main>
+
+<footer class="wrap">
+  <nav aria-label="Legal"><a href="terminos.html">Términos y condiciones</a><a href="privacidad.html">Política de privacidad</a></nav>
+  <span>© Alerta Barrio, Honduras C. A. · Alertas Globales S. de R. L.</span>
 </footer>
 
-</body>
-</html>
+</body></html>
