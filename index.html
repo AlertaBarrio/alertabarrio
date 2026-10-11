@@ -75,7 +75,7 @@ nav.llinks a:hover{color:#fff}
   :root{--navh:100px}
   nav.llinks{position:absolute;top:var(--navh);left:0;right:0;background:var(--l-navy);flex-direction:column;gap:0;border-bottom:1px solid rgba(255,255,255,.08);max-height:0;overflow:hidden;transition:max-height .25s ease}
   nav.llinks a{padding:16px 24px;border-top:1px solid rgba(255,255,255,.08)}
-  #menu-toggle:checked ~ .topbar-in nav.llinks{max-height:420px}
+  #menu-toggle:checked ~ .topbar-in nav.llinks{max-height:520px}
   .burger{display:flex}.lcta{display:none}
 }
 section.lhero{position:relative;overflow:hidden;margin-inline:-16px;color:#FBFBFB;padding:120px 24px 100px;background:linear-gradient(160deg,var(--l-navy) 0%,var(--l-navy2) 100%);font-family:'DM Sans',-apple-system,'Segoe UI',sans-serif;line-height:1.6}
@@ -224,6 +224,27 @@ footer a{text-decoration:none;color:var(--dim)}
 .hp{position:absolute!important;left:-9999px;width:1px;height:1px;opacity:0}
 .msg{min-height:1.4em;font-size:.9rem;margin-top:6px}
 .msg.ok{color:var(--accent-text)}.msg.err{color:var(--red)}
+
+/* SERVICIOS / NEGOCIOS / QUIÉN ES QUIÉN */
+.split{display:grid;gap:26px;align-items:start}
+@media(min-width:860px){.split{grid-template-columns:1fr 1fr;gap:44px}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chips span{font-size:.8rem;padding:6px 13px;border-radius:99px;border:1px solid var(--line);color:var(--dim);background:var(--card)}
+.req{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:14px;margin-top:12px;min-width:0}
+.req b{font-family:var(--f-display);font-size:.98rem;display:block}
+.req small{display:block;margin-top:3px;color:var(--faint);font-size:.78rem}
+.req .row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;font-size:.8rem;color:var(--dim)}
+.stars{color:var(--amber);letter-spacing:2px;font-size:.9rem;white-space:nowrap}
+.pill{font-size:.72rem;font-weight:600;padding:4px 11px;border-radius:99px;color:var(--accent-text);border:1px solid color-mix(in srgb,var(--accent) 55%,transparent);background:color-mix(in srgb,var(--accent) 16%,transparent);white-space:nowrap}
+.who{display:grid;gap:14px;margin-top:30px;grid-template-columns:1fr}
+@media(min-width:640px){.who{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1040px){.who{grid-template-columns:repeat(4,1fr)}}
+.who .type dl{margin:4px 0 0;display:grid;gap:10px}
+.who dt{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.who dd{margin:2px 0 0;color:var(--dim);font-size:.92rem}
+.who dd b{color:var(--fg);font-weight:600}
+.callout{margin-top:22px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:14px;padding:16px 18px;color:var(--dim);font-size:.95rem}
+.callout b{color:var(--fg)}
 @media (prefers-reduced-motion:reduce){.sweep,.ping{animation:none}html{scroll-behavior:auto}}
 </style>
 </head><body>
@@ -254,7 +275,7 @@ footer a{text-decoration:none;color:var(--dim)}
   <div class="topbar-in">
     <a class="lbrand" href="#top">
       <div class="mark">
-        <img src="logo.png" alt="Alerta Barrio" onerror="this.parentElement.innerHTML='&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M12 2L2 7v6c0 5.2 3.6 9.7 10 11 6.4-1.3 10-5.8 10-11V7l-10-5z&quot; fill=&quot;#FF2244&quot;/&gt;&lt;/svg&gt;'">
+        <img src="logo.jpg" alt="Alerta Barrio" onerror="this.parentElement.innerHTML='&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M12 2L2 7v6c0 5.2 3.6 9.7 10 11 6.4-1.3 10-5.8 10-11V7l-10-5z&quot; fill=&quot;#FF2244&quot;/&gt;&lt;/svg&gt;'">
       </div>
       <span><span class="a">Alerta</span><span class="b">Barrio</span></span>
     </a>
@@ -262,6 +283,8 @@ footer a{text-decoration:none;color:var(--dim)}
     <nav class="llinks">
       <a href="#alertas">Alertas</a>
       <a href="#app">La app</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#negocios">Negocios</a>
       <a href="#instituciones">Instituciones</a>
       <a href="#seguridad">Seguridad</a>
     </nav>
@@ -452,6 +475,100 @@ footer a{text-decoration:none;color:var(--dim)}
   </div>
 </section>
 
+<section id="servicios">
+  <div class="split">
+    <div>
+      <p class="eyebrow">Servicios del barrio</p>
+      <h2>Empleo entre vecinos, con confianza.</h2>
+      <p class="lead">¿Necesitas una empleada doméstica, un electricista o un mecánico? ¿Ofreces tu oficio y quieres más clientes? Servicios del barrio junta a quien necesita con quien sabe hacer, dentro de tu propia comunidad. Más trabajo para los vecinos, menos tiempo buscando a quién llamar.</p>
+      <ul class="checks">
+        <li><svg><use href="#i-check"/></svg><span><b>Pide lo que necesitas.</b> Publica tu solicitud en segundos y elige la categoría.</span></li>
+        <li><svg><use href="#i-check"/></svg><span><b>Alcance a tu medida.</b> Visible en toda tu ciudad, o en todo el país si buscas a alguien de otro lugar.</span></li>
+        <li><svg><use href="#i-check"/></svg><span><b>Perfil profesional.</b> Quien ofrece servicios tiene foto, experiencia y trabajo garantizado, y aparece en el directorio de Perfiles.</span></li>
+        <li><svg><use href="#i-check"/></svg><span><b>Reseñas de vecinos.</b> Estrellas y comentarios de personas reales que ya contrataron.</span></li>
+        <li><svg><use href="#i-check"/></svg><span><b>Chat con nombres reales.</b> Si alguien abusa, se puede identificar y reportar.</span></li>
+      </ul>
+      <div class="chips" aria-label="Algunas categorías">
+        <span>Empleada doméstica</span><span>Electricista</span><span>Plomería</span><span>Mecánico</span><span>Albañilería</span><span>Y muchas más</span>
+      </div>
+    </div>
+    <div class="mock" role="img" aria-label="Ejemplo ilustrativo de solicitudes de servicios del barrio">
+      <h3>Solicitudes cerca de ti <small>· ejemplo ilustrativo</small></h3>
+      <div class="req"><b>Se busca electricista</b><small>Tu ciudad · hace 1 h</small><div class="row"><span class="pill">Electricista</span><span>3 respuestas</span></div></div>
+      <div class="req"><b>Necesito empleada doméstica</b><small>Todo el país · hace 3 h</small><div class="row"><span class="pill">Doméstica</span><span>5 respuestas</span></div></div>
+      <p style="color:var(--dim);font-size:.85rem;margin-top:18px">Perfil profesional</p>
+      <div class="req"><b>Plomería y reparaciones</b><small>Experiencia: 8 años</small><div class="row"><span class="stars" aria-label="5 estrellas">★★★★★</span><span>Reseñas de vecinos</span></div></div>
+    </div>
+  </div>
+  <p class="callout"><b>Cómo se cuida la confianza.</b> Solo usuarios registrados pueden pedir y ofrecer servicios, y todo perfil profesional se construye con reseñas de la propia comunidad.</p>
+</section>
+
+<section id="negocios">
+  <div class="split">
+    <div>
+      <p class="eyebrow">Negocios del barrio</p>
+      <h2>Que tus vecinos te encuentren primero.</h2>
+      <p class="lead">Tu tienda, taller, farmacia o restaurante aparece frente a quienes viven más cerca de ti. Sin gastar en publicidad que llega a quien no te va a visitar.</p>
+      <ul class="checks">
+        <li><svg><use href="#i-check"/></svg><span><b>Tu colonia, de entrada.</b> Tu negocio llega primero a tu propia colonia, que viene incluida desde el inicio.</span></li>
+        <li><svg><use href="#i-check"/></svg><span><b>Crece a tu ritmo.</b> Suma otras colonias, o llega a toda tu ciudad, según lo que acordemos contigo.</span></li>
+        <li><svg><use href="#i-check"/></svg><span><b>Avisos y promociones.</b> Publica ofertas con fotos y video para tus vecinos.</span></li>
+        <li><svg><use href="#i-check"/></svg><span><b>Bandeja propia.</b> Los clientes te escriben a un chat de negocio, separado de tu chat personal.</span></li>
+        <li><svg><use href="#i-check"/></svg><span><b>Perfil público.</b> Portada, logo, WhatsApp y ubicación para que te contacten fácil.</span></li>
+      </ul>
+    </div>
+    <div class="mock" role="img" aria-label="Ejemplo ilustrativo del alcance de un negocio">
+      <h3>Alcance de un negocio <small>· ejemplo ilustrativo</small></h3>
+      <p style="color:var(--dim);font-size:.85rem;margin-top:6px">Incluida desde el inicio</p>
+      <div class="zones"><span>Tu colonia</span></div>
+      <p style="color:var(--dim);font-size:.85rem;margin-top:18px">Se puede ampliar, hasta tu ciudad</p>
+      <div class="zones"><span>Colonia vecina</span><span>Otra colonia</span><span class="off">Toda tu ciudad</span></div>
+      <p class="callout" style="margin-top:20px">El costo depende del alcance: <b>más cobertura, más vecinos, mayor inversión</b>. Así pagas solo por lo que necesitas.</p>
+    </div>
+  </div>
+</section>
+
+<section id="quien">
+  <p class="eyebrow">Quién es quién</p>
+  <h2>Cada organización, con su lugar y su alcance.</h2>
+  <p class="lead">En Alerta Barrio cada tipo de organización tiene un panel hecho a su medida. Esto es lo que cambia entre una y otra.</p>
+  <div class="who">
+    <article class="type" style="--c:var(--violet)">
+      <span class="ico"><svg><use href="#i-store"/></svg></span><h3>Negocio</h3>
+      <dl>
+        <div><dt>Alcance</dt><dd>Su colonia, ampliable hasta <b>su ciudad</b></dd></div>
+        <div><dt>Publica</dt><dd>Avisos y promociones</dd></div>
+        <div><dt>Ideal para</dt><dd>Comercios, talleres, restaurantes y emprendedores</dd></div>
+      </dl>
+    </article>
+    <article class="type" style="--c:var(--blue)">
+      <span class="ico"><svg><use href="#i-group"/></svg></span><h3>Empresa</h3>
+      <dl>
+        <div><dt>Alcance</dt><dd>Varias ciudades, colonias y sectores, o <b>todo el país</b></dd></div>
+        <div><dt>Publica</dt><dd>Avisos y promociones</dd></div>
+        <div><dt>Ideal para</dt><dd>Compañías con varias sucursales o presencia nacional</dd></div>
+      </dl>
+    </article>
+    <article class="type" style="--c:var(--amber)">
+      <span class="ico"><svg><use href="#i-flag"/></svg></span><h3>Patrocinador</h3>
+      <dl>
+        <div><dt>Alcance</dt><dd>Las zonas que contrate, hasta <b>todo el país</b></dd></div>
+        <div><dt>Publica</dt><dd>Avisos y promociones, y su marca aparece en “Nuestros aliados”</dd></div>
+        <div><dt>Ideal para</dt><dd>Marcas que quieren estar presentes en cada barrio</dd></div>
+      </dl>
+    </article>
+    <article class="type" style="--c:var(--red)">
+      <span class="ico"><svg><use href="#i-bank"/></svg></span><h3>Institución</h3>
+      <dl>
+        <div><dt>Alcance</dt><dd>Ciudades, colonias y sectores, o <b>todo el país</b></dd></div>
+        <div><dt>Publica</dt><dd><b>Alertas</b> rojas, amarillas y verdes, además de avisos</dd></div>
+        <div><dt>Ideal para</dt><dd>Instituciones gubernamentales, municipales y de servicio público</dd></div>
+      </dl>
+    </article>
+  </div>
+  <p class="callout"><b>La diferencia clave:</b> solo las instituciones emiten alertas de emergencia. Empresas, patrocinadores y negocios publican avisos y promociones, y los negocios se enfocan en su zona: por eso su costo es menor.</p>
+</section>
+
 <section>
   <p class="eyebrow">Más herramientas</p>
   <h2>Herramientas para cada situación.</h2>
@@ -523,7 +640,7 @@ footer a{text-decoration:none;color:var(--dim)}
   <h2>Tu marca, presente en cada barrio.</h2>
   <p class="lead">Los aliados aparecen dentro de la app, frente a los vecinos de las zonas que contratan: en la página principal o en el muro de la comunidad.</p>
   <div class="levels">
-    <div class="lvl"><b>Por colonia</b><p>Para negocios y comercios que quieren a sus vecinos más cercanos.</p></div>
+    <div class="lvl"><b>Por colonia</b><p>Para negocios y comercios que quieren a sus vecinos más cercanos. <a href="#negocios" style="color:var(--accent-text)">Ver negocios</a></p></div>
     <div class="lvl"><b>Por ciudad</b><p>Para empresas con varias sucursales dentro de una ciudad.</p></div>
     <div class="lvl"><b>Nacional</b><p>Para instituciones y marcas con presencia en todo el país.</p></div>
   </div>
