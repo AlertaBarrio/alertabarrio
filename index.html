@@ -82,7 +82,7 @@ section.lhero{position:relative;overflow:hidden;margin-inline:-16px;color:#FBFBF
 .lhero-bg{position:absolute;inset:0;z-index:0}
 .lhero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 32%;max-width:none}
 .lhero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(10,16,28,.94) 0%,rgba(10,16,28,.82) 38%,rgba(10,16,28,.45) 68%,rgba(10,16,28,.25) 100%),linear-gradient(0deg,rgba(10,16,28,.55) 0%,rgba(10,16,28,0) 40%)}
-@media(max-width:700px){.lhero-bg img{object-position:85% 32%}.lhero-bg::after{background:linear-gradient(180deg,rgba(10,16,28,.55) 0%,rgba(10,16,28,.88) 55%,rgba(10,16,28,.97) 100%)}}
+@media(max-width:700px){.lhero-bg img{object-position:100% 40%}.lhero-bg::after{background:linear-gradient(180deg,rgba(10,16,28,.20) 0%,rgba(10,16,28,.38) 38%,rgba(10,16,28,.80) 68%,rgba(10,16,28,.96) 100%)}}
 .lhero-wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto}
 .lhero-content{max-width:700px}
 .leyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#C7CEDB;margin-bottom:22px}
@@ -114,6 +114,7 @@ section.lhero{position:relative;overflow:hidden;margin-inline:-16px;color:#FBFBF
 /* SCOPE */
 .scope{display:grid;gap:32px;align-items:center}
 .rings{width:min(100%,360px);aspect-ratio:1;justify-self:center}
+@media(max-width:819px){.scope .rings{order:2;width:min(86%,300px);margin-top:6px}}
 .legend{display:grid;gap:12px;margin-top:22px}
 .lg{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;align-items:baseline;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
 .lg b{font-family:var(--f-display);font-size:1rem}
@@ -275,7 +276,7 @@ footer a{text-decoration:none;color:var(--dim)}
   <div class="topbar-in">
     <a class="lbrand" href="#top">
       <div class="mark">
-        <img src="logo.png" alt="Alerta Barrio" onerror="this.parentElement.innerHTML='&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M12 2L2 7v6c0 5.2 3.6 9.7 10 11 6.4-1.3 10-5.8 10-11V7l-10-5z&quot; fill=&quot;#FF2244&quot;/&gt;&lt;/svg&gt;'">
+        <img src="logo.jpg" alt="Alerta Barrio" onerror="this.parentElement.innerHTML='&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M12 2L2 7v6c0 5.2 3.6 9.7 10 11 6.4-1.3 10-5.8 10-11V7l-10-5z&quot; fill=&quot;#FF2244&quot;/&gt;&lt;/svg&gt;'">
       </div>
       <span><span class="a">Alerta</span><span class="b">Barrio</span></span>
     </a>
@@ -345,30 +346,6 @@ footer a{text-decoration:none;color:var(--dim)}
   </div>
 </section>
 
-<section id="alcance" class="scope">
-  <svg class="rings" viewBox="0 0 360 360" role="img" aria-label="Tres círculos concéntricos: colonia dentro de ciudad dentro de país">
-    <circle cx="180" cy="180" r="172" fill="color-mix(in srgb,var(--blue) 10%,transparent)" stroke="var(--blue)" stroke-width="1.5"/>
-    <circle cx="180" cy="180" r="118" fill="color-mix(in srgb,var(--amber) 12%,transparent)" stroke="var(--amber)" stroke-width="1.5"/>
-    <circle cx="180" cy="180" r="64" fill="color-mix(in srgb,var(--red) 16%,transparent)" stroke="var(--red)" stroke-width="1.5"/>
-    <circle cx="180" cy="180" r="6" fill="var(--red)"/>
-    <g font-family="Instrument Sans, sans-serif" font-size="13" font-weight="600" text-anchor="middle">
-      <text x="180" y="166" fill="var(--fg)" dy="-18">Tu colonia</text>
-      <text x="180" y="86" fill="var(--fg)">Tu ciudad</text>
-      <text x="180" y="30" fill="var(--fg)">Tu país</text>
-    </g>
-  </svg>
-  <div>
-    <p class="eyebrow">Alcance</p>
-    <h2>Alcance segmentado. Directo a cada colonia.</h2>
-    <p class="lead">Todos los barrios y colonias viven en una misma app, organizados por país, ciudad y zona. Cada alerta, aviso o promoción llega directamente a las zonas que elijas, y nadie recibe ruido de otras partes.</p>
-    <div class="legend">
-      <div class="lg"><i style="background:var(--red)"></i><b>Colonia</b><span></span><span>Emergencias y advertencias de vecinos. Solo los de tu colonia las ven.</span></div>
-      <div class="lg"><i style="background:var(--amber)"></i><b>Ciudad</b><span></span><span>Avisos municipales, reportes de ciudad y personas o mascotas perdidas.</span></div>
-      <div class="lg"><i style="background:var(--blue)"></i><b>País</b><span></span><span>Instituciones gubernamentales nacionales y empresas con cobertura total.</span></div>
-    </div>
-  </div>
-</section>
-
 <section id="alertas">
   <p class="eyebrow">Tipos de alerta</p>
   <h2>Cada alerta, con su color y su alcance.</h2>
@@ -430,6 +407,30 @@ footer a{text-decoration:none;color:var(--dim)}
   </div>
 </section>
 
+<section id="alcance" class="scope">
+  <svg class="rings" viewBox="0 0 360 360" role="img" aria-label="Tres círculos concéntricos: colonia dentro de ciudad dentro de país">
+    <circle cx="180" cy="180" r="172" fill="color-mix(in srgb,var(--blue) 10%,transparent)" stroke="var(--blue)" stroke-width="1.5"/>
+    <circle cx="180" cy="180" r="118" fill="color-mix(in srgb,var(--amber) 12%,transparent)" stroke="var(--amber)" stroke-width="1.5"/>
+    <circle cx="180" cy="180" r="64" fill="color-mix(in srgb,var(--red) 16%,transparent)" stroke="var(--red)" stroke-width="1.5"/>
+    <circle cx="180" cy="180" r="6" fill="var(--red)"/>
+    <g font-family="Instrument Sans, sans-serif" font-size="16" font-weight="600" text-anchor="middle">
+      <text x="180" y="166" fill="var(--fg)" dy="-18">Tu colonia</text>
+      <text x="180" y="86" fill="var(--fg)">Tu ciudad</text>
+      <text x="180" y="30" fill="var(--fg)">Tu país</text>
+    </g>
+  </svg>
+  <div>
+    <p class="eyebrow">Alcance</p>
+    <h2>Alcance segmentado. Directo a cada colonia.</h2>
+    <p class="lead">Todos los barrios y colonias viven en una misma app, organizados por país, ciudad y zona. Cada alerta, aviso o promoción llega directamente a las zonas que elijas, y nadie recibe ruido de otras partes.</p>
+    <div class="legend">
+      <div class="lg"><i style="background:var(--red)"></i><b>Colonia</b><span></span><span>Emergencias y advertencias de vecinos. Solo los de tu colonia las ven.</span></div>
+      <div class="lg"><i style="background:var(--amber)"></i><b>Ciudad</b><span></span><span>Avisos municipales, reportes de ciudad y personas o mascotas perdidas.</span></div>
+      <div class="lg"><i style="background:var(--blue)"></i><b>País</b><span></span><span>Instituciones gubernamentales nacionales y empresas con cobertura total.</span></div>
+    </div>
+  </div>
+</section>
+
 <section id="app">
   <p class="eyebrow">La app</p>
   <h2>Todo lo que tu barrio necesita, en cinco pestañas.</h2>
@@ -455,7 +456,7 @@ footer a{text-decoration:none;color:var(--dim)}
     <article class="sec">
       <header><span class="ico" style="--c:var(--violet)"><svg><use href="#i-store"/></svg></span><h3>Negocios y Servicios</h3></header>
       <p>Dos secciones en una pestaña, con un selector arriba.</p>
-      <ul><li><b>Negocios:</b> directorio de negocios de tu zona, por categoría</li><li><b>Servicios del barrio:</b> solicita u ofrece tus servicios, empleada doméstica, electricista, plomero, mecánico y más</li><li>Las solicitudes nuevas se avisan con un globo rojo</li></ul>
+      <ul><li><b>Negocios:</b> directorio de negocios de tu zona, por categoría</li><li><b>Servicios del barrio:</b> pide u ofrece tus servicios: empleada doméstica, electricista, plomero, mecánico y más</li><li>Las solicitudes nuevas se avisan con un globo rojo</li></ul>
     </article>
     <article class="sec">
       <header><span class="ico" style="--c:var(--violet)"><svg><use href="#i-chat"/></svg></span><h3>Chat</h3></header>
