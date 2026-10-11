@@ -1,6 +1,18 @@
 <!doctype html>
 <html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="Alerta Barrio: todos los barrios y colonias en una sola app. Alertas en tiempo real entre vecinos, instituciones y empresas, con alcance segmentado.">
-<title>Alerta Barrio</title>
+<title>Alerta Barrio — Tu colonia, conectada en tiempo real</title>
+<meta name="theme-color" content="#101A2E">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+<link rel="canonical" href="https://alertabarrio.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Alerta Barrio">
+<meta property="og:locale" content="es_HN">
+<meta property="og:title" content="Alerta Barrio — Tu colonia, conectada en tiempo real">
+<meta property="og:description" content="Alertas en tiempo real entre vecinos, instituciones y empresas, segmentadas por colonia, ciudad y país.">
+<meta property="og:url" content="https://alertabarrio.com/">
+<meta property="og:image" content="https://alertabarrio.com/images/hero-cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -55,14 +67,15 @@ a{color:inherit}
 
 
 /* TOP BAR + LANDING ANTERIOR (hero con foto) */
-:root{--navh:108px;--l-navy:#101A2E;--l-navy2:#0B1220;--l-rojo:#FF2244}
+:root{--navh:84px;--l-navy:#101A2E;--l-navy2:#0B1220;--l-rojo:#FF2244}
 section[id]{scroll-margin-top:var(--navh)}
 .topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;margin-inline:-16px;background:var(--l-navy);border-bottom:1px solid rgba(255,255,255,.08);font-family:'DM Sans',-apple-system,'Segoe UI',sans-serif}
 .topbar-in{max-width:1100px;margin:0 auto;padding:0 24px;height:var(--navh);display:flex;align-items:center;justify-content:space-between;gap:16px}
-.lbrand{display:flex;align-items:center;gap:14px;font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;text-decoration:none;min-width:0}
-.lbrand .mark{height:90px;min-width:90px;border-radius:14px;background:var(--l-navy);display:flex;align-items:center;justify-content:center;flex:none;overflow:hidden}
-.lbrand .mark img{height:100%;width:auto;max-width:140px;object-fit:contain;display:block}
-.lbrand .mark svg{width:44px;height:44px}
+.lbrand{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-size:clamp(22px,6.8vw,32px);font-weight:700;letter-spacing:-.02em;line-height:1;text-decoration:none;min-width:0;white-space:nowrap}
+.lbrand .mark{height:clamp(40px,12vw,60px);display:flex;align-items:center;justify-content:center;flex:none}
+.lbrand .mark img{height:100%;width:auto;max-width:none;object-fit:contain;display:block;opacity:0;transition:opacity .15s ease}
+.lbrand .mark img.ok{opacity:1}
+.lbrand .mark svg{width:40px;height:40px}
 .lbrand .a{color:var(--l-rojo)}.lbrand .b{color:#fff}
 nav.llinks{display:flex;gap:26px}
 nav.llinks a{font-size:14px;font-weight:600;text-decoration:none;color:#C7CEDB}
@@ -72,20 +85,20 @@ nav.llinks a:hover{color:#fff}
 .burger{display:none;cursor:pointer;width:26px;height:20px;flex-direction:column;justify-content:space-between}
 .burger span{display:block;height:2px;background:#fff;border-radius:2px}
 @media(max-width:860px){
-  :root{--navh:100px}
+  :root{--navh:72px}
   nav.llinks{position:absolute;top:var(--navh);left:0;right:0;background:var(--l-navy);flex-direction:column;gap:0;border-bottom:1px solid rgba(255,255,255,.08);max-height:0;overflow:hidden;transition:max-height .25s ease}
   nav.llinks a{padding:16px 24px;border-top:1px solid rgba(255,255,255,.08)}
   #menu-toggle:checked ~ .topbar-in nav.llinks{max-height:520px}
   .burger{display:flex}.lcta{display:none}
 }
-section.lhero{position:relative;overflow:hidden;margin-inline:-16px;color:#FBFBFB;padding:120px 24px 100px;background:linear-gradient(160deg,var(--l-navy) 0%,var(--l-navy2) 100%);font-family:'DM Sans',-apple-system,'Segoe UI',sans-serif;line-height:1.6}
+section.lhero{position:relative;overflow:hidden;margin-inline:-16px;color:#FBFBFB;padding:96px 24px 90px;background:linear-gradient(160deg,var(--l-navy) 0%,var(--l-navy2) 100%);font-family:'DM Sans',-apple-system,'Segoe UI',sans-serif;line-height:1.6}
 .lhero-bg{position:absolute;inset:0;z-index:0}
 .lhero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 32%;max-width:none}
-.lhero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(10,16,28,.94) 0%,rgba(10,16,28,.82) 38%,rgba(10,16,28,.45) 68%,rgba(10,16,28,.25) 100%),linear-gradient(0deg,rgba(10,16,28,.55) 0%,rgba(10,16,28,0) 40%)}
-@media(max-width:700px){.lhero-bg img{object-position:100% 40%}.lhero-bg::after{background:linear-gradient(180deg,rgba(10,16,28,.20) 0%,rgba(10,16,28,.38) 38%,rgba(10,16,28,.80) 68%,rgba(10,16,28,.96) 100%)}}
+.lhero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,16,28,.62) 0%,rgba(10,16,28,.30) 22%,rgba(10,16,28,0) 40%),linear-gradient(100deg,rgba(10,16,28,.94) 0%,rgba(10,16,28,.82) 38%,rgba(10,16,28,.45) 68%,rgba(10,16,28,.25) 100%),linear-gradient(0deg,rgba(10,16,28,.55) 0%,rgba(10,16,28,0) 40%)}
+@media(max-width:700px){.lhero-bg img{object-position:100% 40%}.lhero-bg::after{background:linear-gradient(180deg,rgba(10,16,28,.72) 0%,rgba(10,16,28,.55) 24%,rgba(10,16,28,.42) 42%,rgba(10,16,28,.82) 68%,rgba(10,16,28,.96) 100%)}}
 .lhero-wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto}
 .lhero-content{max-width:700px}
-.leyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#C7CEDB;margin-bottom:22px}
+.leyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#E3E7F0;text-shadow:0 1px 12px rgba(0,0,0,.55);margin-bottom:22px}
 .lhero h1{font-family:'Space Grotesk',-apple-system,sans-serif;font-size:clamp(40px,6.5vw,76px);font-weight:700;letter-spacing:-2px;line-height:1.05;color:#FBFBFB;text-shadow:0 2px 24px rgba(0,0,0,.35);text-wrap:initial}
 .lhero h1 .rojo{color:var(--l-rojo)}
 .lhero p.llead{font-size:clamp(17px,2.2vw,20px);color:#E3E7F0;max-width:620px;margin-top:26px;line-height:1.55}
@@ -248,6 +261,7 @@ footer a{text-decoration:none;color:var(--dim)}
 .callout b{color:var(--fg)}
 @media (prefers-reduced-motion:reduce){.sweep,.ping{animation:none}html{scroll-behavior:auto}}
 </style>
+<noscript><style>.lbrand .mark img{opacity:1}</style></noscript>
 </head><body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -276,7 +290,7 @@ footer a{text-decoration:none;color:var(--dim)}
   <div class="topbar-in">
     <a class="lbrand" href="#top">
       <div class="mark">
-        <img src="logo.png" alt="Alerta Barrio" onerror="this.parentElement.innerHTML='&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M12 2L2 7v6c0 5.2 3.6 9.7 10 11 6.4-1.3 10-5.8 10-11V7l-10-5z&quot; fill=&quot;#FF2244&quot;/&gt;&lt;/svg&gt;'">
+        <img id="brand-logo" src="logo.png" alt="Alerta Barrio" onerror="this.parentElement.innerHTML='&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M12 2L2 7v6c0 5.2 3.6 9.7 10 11 6.4-1.3 10-5.8 10-11V7l-10-5z&quot; fill=&quot;#FF2244&quot;/&gt;&lt;/svg&gt;'">
       </div>
       <span><span class="a">Alerta</span><span class="b">Barrio</span></span>
     </a>
@@ -295,7 +309,7 @@ footer a{text-decoration:none;color:var(--dim)}
 
 <section class="lhero" id="top">
   <div class="lhero-bg">
-    <img src="images/hero-cover.jpg" alt="" aria-hidden="true">
+    <img src="images/hero-cover.jpg" alt="" aria-hidden="true" width="1774" height="884" fetchpriority="high" decoding="async">
   </div>
   <div class="lhero-wrap">
     <div class="lhero-content">
@@ -361,7 +375,7 @@ footer a{text-decoration:none;color:var(--dim)}
       <span class="ico"><svg><use href="#i-warn"/></svg></span>
       <span class="tag">Alerta amarilla</span><h3>Advertencias</h3>
       <p>Situaciones menos graves que conviene conocer a tiempo.</p>
-      <ul><li>Persona o vehículo sospechoso</li><li>Ruido excesivo, vehículo mal estacionado</li><li>Hasta 3 fotos o 1 video corto</li></ul>
+      <ul><li>Persona o vehículo sospechoso</li><li>Ruido excesivo, vehículo mal estacionado</li><li>Hasta 3 fotos; el video corto llega pronto</li></ul>
     </article>
     <article class="type" style="--c:var(--blue)">
       <span class="ico"><svg><use href="#i-bank"/></svg></span>
@@ -395,7 +409,7 @@ footer a{text-decoration:none;color:var(--dim)}
     <h2 id="flow-h">Una emergencia, en un solo toque.</h2>
     <div class="flow">
       <div class="step"><span class="n"></span><div><h3>Elige qué pasa</h3><p>Una lista de situaciones reales: asalto, incendio, persona sospechosa y más.</p></div></div>
-      <div class="step"><span class="n"></span><div><h3>Emite la alerta</h3><p>Fotos, video y descripción son opcionales. Con solo la situación ya se puede enviar.</p></div></div>
+      <div class="step"><span class="n"></span><div><h3>Emite la alerta</h3><p>Fotos y descripción son opcionales. Con solo la situación ya se puede enviar.</p></div></div>
       <div class="step"><span class="n"></span><div><h3>Los vecinos la ven</h3><p>Aparece en pantalla completa a cada vecino de la colonia, con una foto y el resumen.</p></div></div>
       <div class="step"><span class="n"></span><div><h3>Ver detalles</h3><p>Abre el muro de alertas con la publicación completa, comentarios y reacciones.</p></div></div>
     </div>
@@ -424,7 +438,7 @@ footer a{text-decoration:none;color:var(--dim)}
     <h2>Alcance segmentado. Directo a cada colonia.</h2>
     <p class="lead">Todos los barrios y colonias viven en una misma app, organizados por país, ciudad y zona. Cada alerta, aviso o promoción llega directamente a las zonas que elijas, y nadie recibe ruido de otras partes.</p>
     <div class="legend">
-      <div class="lg"><i style="background:var(--red)"></i><b>Colonia</b><span></span><span>Emergencias y advertencias de vecinos. Solo los de tu colonia las ven.</span></div>
+      <div class="lg"><i style="background:var(--red)"></i><b>Colonia</b><span></span><span>Emergencias y advertencias de vecinos. Solo los de tu colonia las ven. Si tu colonia tiene sectores (Etapa 1, 2, 3…), también puedes publicar solo para tu sector.</span></div>
       <div class="lg"><i style="background:var(--amber)"></i><b>Ciudad</b><span></span><span>Avisos municipales, reportes de ciudad y personas o mascotas perdidas.</span></div>
       <div class="lg"><i style="background:var(--blue)"></i><b>País</b><span></span><span>Instituciones gubernamentales nacionales y empresas con cobertura total.</span></div>
     </div>
@@ -446,12 +460,12 @@ footer a{text-decoration:none;color:var(--dim)}
     <article class="sec" style="--c:var(--red)">
       <header><span class="ico" style="--c:var(--red)"><svg><use href="#i-siren"/></svg></span><h3>Alertas</h3></header>
       <p>La página principal, en tema oscuro. Un radar muestra la actividad de tu zona y las categorías se ordenan en una cuadrícula con imágenes reales.</p>
-      <ul><li>Alertas recientes de tu colonia</li><li>Notificaciones de instituciones y empresas</li><li>“Nuestros aliados” con los patrocinadores</li></ul>
+      <ul><li>Alertas recientes de tu colonia</li><li>Notificaciones de instituciones y empresas</li><li>“Nuestros aliados”: los patrocinadores de tu zona, que se desplazan solos</li></ul>
     </article>
     <article class="sec">
       <header><span class="ico" style="--c:var(--blue)"><svg><use href="#i-home"/></svg></span><h3>Vecinos</h3></header>
       <p>El muro comunitario, igual que una red social. Publica, comenta, responde y comparte fotos con tu colonia.</p>
-      <ul><li>Mensajes de convivencia ciudadana</li><li>Me gusta, comentarios y respuestas</li><li>Reportar o editar tus publicaciones</li></ul>
+      <ul><li>Mensajes de convivencia ciudadana</li><li>Publica para toda tu colonia o solo para tu sector</li><li>Me gusta, comentarios y respuestas</li><li>Reportar o editar tus publicaciones</li></ul>
     </article>
     <article class="sec">
       <header><span class="ico" style="--c:var(--violet)"><svg><use href="#i-store"/></svg></span><h3>Negocios y Servicios</h3></header>
@@ -466,7 +480,7 @@ footer a{text-decoration:none;color:var(--dim)}
     <article class="sec">
       <header><span class="ico" style="--c:var(--sky)"><svg><use href="#i-user"/></svg></span><h3>Perfil</h3></header>
       <p>Sencillo y bonito. Foto, nombre y las opciones de tu cuenta.</p>
-      <ul><li>Editar perfil y contactos de confianza</li><li>Cambio de vecindario, permitido una vez cada 2 meses</li><li>Ser patrocinador, colaborar, contacto y términos</li></ul>
+      <ul><li>Editar perfil y contactos de confianza</li><li>Cambio de vecindario, permitido una vez cada 2 meses</li><li>Mi negocio, si tienes uno registrado</li><li>Ser patrocinador, colaborar, contacto y términos</li></ul>
     </article>
     <article class="sec">
       <header><span class="ico" style="--c:var(--amber)"><svg><use href="#i-phone"/></svg></span><h3>Registro con tu número</h3></header>
@@ -576,7 +590,7 @@ footer a{text-decoration:none;color:var(--dim)}
   <div class="grid types tools">
     <article class="type" style="--c:var(--red)">
       <span class="ico"><svg><use href="#i-shield"/></svg></span><h3>Contactos de confianza</h3>
-      <p>Hasta 3 personas con la app. Si estás fuera de tu zona y tienes una emergencia, la alerta roja les llega solo a ellos.</p>
+      <p>Hasta 3 personas que aceptan tu invitación. Si estás fuera de tu zona y tienes una emergencia, la alerta roja les llega solo a ellos, con tu ubicación exacta y cómo llegar en Google Maps o Waze. Les suena y vibra aunque hayan silenciado las alertas en la app.</p>
     </article>
     <article class="type" style="--c:var(--sky)">
       <span class="ico"><svg><use href="#i-find"/></svg></span><h3>Recompensas</h3>
@@ -588,7 +602,7 @@ footer a{text-decoration:none;color:var(--dim)}
     </article>
     <article class="type" style="--c:var(--sky)">
       <span class="ico"><svg><use href="#i-bell"/></svg></span><h3>Tú decides qué ver</h3>
-      <p>Puedes silenciar a una empresa o institución. No recibes su notificación, solo ves el indicador.</p>
+      <p>Silencia a una empresa o institución, o apaga el sonido por categoría. La alerta sigue visible, solo sin sonido ni vibración.</p>
     </article>
   </div>
 </section>
@@ -639,12 +653,13 @@ footer a{text-decoration:none;color:var(--dim)}
 <section id="aliados">
   <p class="eyebrow">Nuestros aliados</p>
   <h2>Tu marca, presente en cada barrio.</h2>
-  <p class="lead">Los aliados aparecen dentro de la app, frente a los vecinos de las zonas que contratan: en la página principal o en el muro de la comunidad.</p>
+  <p class="lead">Los aliados aparecen en la página principal de la app, frente a los vecinos de las zonas que contratan. Si son varios, se desplazan solos para que todos se vean, y una barra indica cuántos hay.</p>
   <div class="levels">
-    <div class="lvl"><b>Por colonia</b><p>Para negocios y comercios que quieren a sus vecinos más cercanos. <a href="#negocios" style="color:var(--accent-text)">Ver negocios</a></p></div>
+    <div class="lvl"><b>Por colonia o sector</b><p>Para negocios y comercios que quieren a sus vecinos más cercanos. <a href="#negocios" style="color:var(--accent-text)">Ver negocios</a></p></div>
     <div class="lvl"><b>Por ciudad</b><p>Para empresas con varias sucursales dentro de una ciudad.</p></div>
     <div class="lvl"><b>Nacional</b><p>Para instituciones y marcas con presencia en todo el país.</p></div>
   </div>
+  <p class="callout"><b>Con fecha de inicio y fin.</b> Cada aliado se muestra solo durante el periodo acordado, y su logo aparece completo dentro de su recuadro.</p>
 </section>
 
 <section id="contacto" class="contact">
@@ -707,6 +722,44 @@ footer a{text-decoration:none;color:var(--dim)}
 </script>
 </main>
 
+<script>
+/* Recorta el espacio vacío del logo (transparente o de fondo) para que quede
+   pegado al texto y se vea grande. Si algo falla, se muestra el logo tal cual. */
+(function(){
+  var img=document.getElementById('brand-logo'); if(!img) return;
+  var done=false;
+  function show(){ done=true; img.classList.add('ok'); }
+  function trim(){
+    if(done) return;
+    try{
+      var w=img.naturalWidth,h=img.naturalHeight; if(!w||!h){ show(); return; }
+      var k=Math.min(1,512/Math.max(w,h)), cw=Math.round(w*k), ch=Math.round(h*k);
+      var c=document.createElement('canvas'); c.width=cw; c.height=ch;
+      var cx=c.getContext('2d',{willReadFrequently:true}); cx.drawImage(img,0,0,cw,ch);
+      var d=cx.getImageData(0,0,cw,ch).data;
+      var br=d[0],bg=d[1],bb=d[2],ba=d[3];
+      var x0=cw,y0=ch,x1=-1,y1=-1,x,y,i,hit;
+      for(y=0;y<ch;y++){for(x=0;x<cw;x++){
+        i=(y*cw+x)*4; hit=d[i+3]>24;
+        if(hit&&ba>24) hit=Math.abs(d[i]-br)+Math.abs(d[i+1]-bg)+Math.abs(d[i+2]-bb)>60;
+        if(hit){ if(x<x0)x0=x; if(x>x1)x1=x; if(y<y0)y0=y; if(y>y1)y1=y; }
+      }}
+      if(x1<0){ show(); return; }
+      var p=Math.round(Math.max(cw,ch)*.01);
+      x0=Math.max(0,x0-p); y0=Math.max(0,y0-p); x1=Math.min(cw-1,x1+p); y1=Math.min(ch-1,y1+p);
+      var nw=x1-x0+1, nh=y1-y0+1;
+      if(nw>=cw*.98&&nh>=ch*.98){ show(); return; }
+      var o=document.createElement('canvas'); o.width=nw; o.height=nh;
+      o.getContext('2d').drawImage(c,x0,y0,nw,nh,0,0,nw,nh);
+      done=true;
+      img.addEventListener('load',function(){ img.classList.add('ok'); },{once:true});
+      img.src=o.toDataURL('image/png');
+    }catch(e){ show(); }
+  }
+  if(img.complete&&img.naturalWidth) trim(); else img.addEventListener('load',trim,{once:true});
+  setTimeout(function(){ if(!img.classList.contains('ok')) show(); },2000);
+})();
+</script>
 <footer class="wrap">
   <nav aria-label="Legal"><a href="terminos.html">Términos y condiciones</a><a href="privacidad.html">Política de privacidad</a></nav>
   <span>© Alerta Barrio, Honduras C. A. · Alertas Globales S. de R. L.</span>
