@@ -67,12 +67,18 @@ a{color:inherit}
 
 
 /* TOP BAR + LANDING ANTERIOR (hero con foto) */
-:root{--navh:84px;--l-navy:#101A2E;--l-navy2:#0B1220;--l-rojo:#FF2244}
+:root{
+  /* ====== TAMAÑO DEL LOGO Y DEL NOMBRE (cámbialos aquí) ======
+     --logo-h : altura del logo (el búho ya viene recortado, sin margen)
+     --brand-fs : tamaño de la letra "AlertaBarrio"
+     --navh : alto de la barra superior                              */
+  --logo-h:46px; --brand-fs:27px; --navh:76px;
+  --l-navy:#101A2E;--l-navy2:#0B1220;--l-rojo:#FF2244}
 section[id]{scroll-margin-top:var(--navh)}
 .topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;margin-inline:-16px;background:var(--l-navy);border-bottom:1px solid rgba(255,255,255,.08);font-family:'DM Sans',-apple-system,'Segoe UI',sans-serif}
 .topbar-in{max-width:1100px;margin:0 auto;padding:0 24px;height:var(--navh);display:flex;align-items:center;justify-content:space-between;gap:16px}
-.lbrand{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-size:clamp(22px,6.8vw,32px);font-weight:700;letter-spacing:-.02em;line-height:1;text-decoration:none;min-width:0;white-space:nowrap}
-.lbrand .mark{height:clamp(40px,12vw,60px);display:flex;align-items:center;justify-content:center;flex:none}
+.lbrand{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-size:var(--brand-fs);font-weight:700;letter-spacing:-.02em;line-height:1;text-decoration:none;min-width:0;white-space:nowrap}
+.lbrand .mark{height:var(--logo-h);display:flex;align-items:center;justify-content:center;flex:none}
 .lbrand .mark img{height:100%;width:auto;max-width:none;object-fit:contain;display:block;opacity:0;transition:opacity .15s ease}
 .lbrand .mark img.ok{opacity:1}
 .lbrand .mark svg{width:40px;height:40px}
@@ -85,12 +91,13 @@ nav.llinks a:hover{color:#fff}
 .burger{display:none;cursor:pointer;width:26px;height:20px;flex-direction:column;justify-content:space-between}
 .burger span{display:block;height:2px;background:#fff;border-radius:2px}
 @media(max-width:860px){
-  :root{--navh:72px}
+  :root{--logo-h:42px;--brand-fs:24px;--navh:68px}
   nav.llinks{position:absolute;top:var(--navh);left:0;right:0;background:var(--l-navy);flex-direction:column;gap:0;border-bottom:1px solid rgba(255,255,255,.08);max-height:0;overflow:hidden;transition:max-height .25s ease}
   nav.llinks a{padding:16px 24px;border-top:1px solid rgba(255,255,255,.08)}
   #menu-toggle:checked ~ .topbar-in nav.llinks{max-height:520px}
   .burger{display:flex}.lcta{display:none}
 }
+@media(max-width:360px){:root{--logo-h:36px;--brand-fs:21px}}
 section.lhero{position:relative;overflow:hidden;margin-inline:-16px;color:#FBFBFB;padding:96px 24px 90px;background:linear-gradient(160deg,var(--l-navy) 0%,var(--l-navy2) 100%);font-family:'DM Sans',-apple-system,'Segoe UI',sans-serif;line-height:1.6}
 .lhero-bg{position:absolute;inset:0;z-index:0}
 .lhero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 32%;max-width:none}
